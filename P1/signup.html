@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar has-shadow is-primary">
+        <div class="navbar-brand pl-6">
+            <a href="#" class="navbar-item">
+                <span class="icon is-large has-text-dark">
+                    <i class="fas fa-store fa-2x"></i>
+                  </span>
+                  <a class="navbar-burger">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                  </a>
+            </a>
+        </div> 
+        <div class="navbar-menu">
+            <div class="navbar-end pr-6">
+                <a href="" class="navbar-item">Placeholder</a>
+                <a href="" class="navbar-item">Placeholder</a>
+                <a href="" class="navbar-item">Placeholder</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="section">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-4">
+                    <h1 class="title has-text-centered">Sign up</h1>
+                    <!-- input tags referenced from https://www.w3schools.com/html/html_form_input_types.asp -->
+                    <form action="" class="box">
+
+                        <div class="field is-horizontal">
+                            <div class="field-body">
+                                <div class="field">
+                                    <label for="fname" class="label">First Name</label>
+                                    <p class="control">
+                                        <input type="text" id="fname" name="fname" class="input" placeholder="John">
+                                    </p>
+                                </div>
+                                <div class="field">
+                                    <label for="lname" class="label">Last Name</label>
+                                    <p class="control">
+                                        <input type="text" id="lname" name="lname" class="input" placeholder="Doe">
+                                    </p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="field">
+                            <label for="email" class="label">Email</label>
+                            <p class="control has-icons-left">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                                <input type="email" id="email" name="email" class="input" placeholder="john@doe.com">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label for="phone" class="label">Phone</label>
+                            <p class="control has-icons-left">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-phone"></i>
+                                </span>
+                                <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" class="input" placeholder="999-999-999">
+                            </p>
+                        </div>
+
+                        <hr>
+
+                        <div class="field">
+                            <label for="username" class="label">Username</label>
+                            <p class="control has-icons-left">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                <input type="text" id="username" name="username" class="input">
+                            </p>
+                            
+                        </div>
+                        <div class="field">
+                            <label for="password" class="label">Password</label>
+                            <p class="control has-icons-left">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-key"></i>
+                                </span>
+                                <input type="password" id="password" name="password" class="input">
+                            </p>
+                        </div>
+                        
+
+                        <div class="field">
+                            <label for="avatar" class="label">Avatar</label>
+                            <div class="buttons">
+                                <button class="button">
+                                    <span class="icon is-large">
+                                        <i class="fas fa-male fa-2x"></i>
+                                    </span>
+                                </button>
+                                <button class="button">
+                                    <span class="icon is-large">
+                                        <i class="fas fa-female fa-2x"></i>
+                                    </span>
+                                </button>
+                                <button class="button">
+                                    <span class="icon is-large">
+                                        <i class="fas fa-apple-alt fa-2x"></i>
+                                    </span>
+                                </button>
+                                <button class="button">
+                                    <span class="icon is-large">
+                                        <i class="fas fa-lemon fa-2x"></i>
+                                    </span>
+                                </button>
+                                <button class="button">
+                                    <span class="icon is-large">
+                                        <i class="fas fa-cookie fa-2x"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="control">
+                            <input class="button is-primary" type="submit" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+      </section>
+</body>
+</html>
