@@ -11,9 +11,9 @@
 </head>
 <body>
     <nav class="navbar has-shadow is-primary">
-        <div class="navbar-brand pl-6">
+        <div class="navbar-brand pl-2">
             <a href="#" class="navbar-item">
-                <span class="icon is-large has-text-dark">
+                <span class="icon is-large has-text-primary-dark">
                     <i class="fas fa-store fa-2x"></i>
                   </span>
                   <a class="navbar-burger">
@@ -23,11 +23,25 @@
                   </a>
             </a>
         </div> 
+        
         <div class="navbar-menu">
-            <div class="navbar-end pr-6">
-                <a href="" class="navbar-item">Placeholder</a>
-                <a href="" class="navbar-item">Placeholder</a>
-                <a href="" class="navbar-item">Placeholder</a>
+            <div class="navbar-item">
+                <div class="field">
+                    <p class="control is-expanded has-icons-right">
+                        <input class="input" type="search" placeholder="Search..."/>
+                        <span class="icon is-small is-right"><i class="fas fa-search"></i></span>
+                    </p>
+                </div>
+            </div>
+            <div class="navbar-end pr-2">
+                <a href="" class="navbar-item">Home</a>
+                <a href="" class="navbar-item">Restaurants</a>
+                <a href="" class="navbar-item">Account</a>
+                <a class="navbar-item">
+                    <span class="icon is-large has-text-light">
+                        <i class="fas fa-bell fa-2x"></i>
+                    </span>
+                </a>
             </div>
         </div>
     </nav>
@@ -37,9 +51,10 @@
         <div class="container">
             <div class="columns is-centered">
                 <div class="column is-4">
-                    <h1 class="title has-text-centered">Sign up</h1>
+                    <h1 class="title has-text-centered">Create an Account</h1>
+                    <h2 class="subtitle has-text-centered is-size-6 is-underlined"><a href="login.html">Already have an account?</a></h2>
                     <!-- input tags referenced from https://www.w3schools.com/html/html_form_input_types.asp -->
-                    <form action="" class="box">
+                    <form action="" class="box py-5">
 
                         <div class="field is-horizontal">
                             <div class="field-body">
@@ -86,7 +101,7 @@
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-user"></i>
                                 </span>
-                                <input type="text" id="username" name="username" class="input">
+                                <input type="text" id="username" name="username" class="input" placeholder="Username">
                             </p>
                             
                         </div>
@@ -96,7 +111,7 @@
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-key"></i>
                                 </span>
-                                <input type="password" id="password" name="password" class="input">
+                                <input type="password" id="password" name="password" class="input" placeholder="Password">
                             </p>
                         </div>
                         
@@ -105,36 +120,36 @@
                             <label for="avatar" class="label">Avatar</label>
                             <div class="buttons">
                                 <button class="button">
-                                    <span class="icon is-large">
+                                    <span class="icon is-large has-text-grey-dark">
                                         <i class="fas fa-male fa-2x"></i>
                                     </span>
                                 </button>
                                 <button class="button">
-                                    <span class="icon is-large">
+                                    <span class="icon is-large has-text-grey-dark">
                                         <i class="fas fa-female fa-2x"></i>
                                     </span>
                                 </button>
                                 <button class="button">
-                                    <span class="icon is-large">
+                                    <span class="icon is-large has-text-grey-dark">
                                         <i class="fas fa-apple-alt fa-2x"></i>
                                     </span>
                                 </button>
                                 <button class="button">
-                                    <span class="icon is-large">
+                                    <span class="icon is-large has-text-grey-dark">
                                         <i class="fas fa-lemon fa-2x"></i>
                                     </span>
                                 </button>
                                 <button class="button">
-                                    <span class="icon is-large">
+                                    <span class="icon is-large has-text-grey-dark">
                                         <i class="fas fa-cookie fa-2x"></i>
                                     </span>
                                 </button>
                             </div>
                         </div>
 
-                        <div class="control">
+                        <div class="column has-text-centered"><div class="control">
                             <input class="button is-primary" type="submit" value="Submit">
-                        </div>
+                        </div></div>
                     </form>
                 </div>
             </div>
