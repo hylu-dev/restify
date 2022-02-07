@@ -46,28 +46,30 @@
         </div>
     </nav>
 
-
     <section class="section">
-        <div class="container">
+        <div class="container box p-6">
+            <h1 class="title">Account</h1>
+            <hr>
             <div class="columns is-centered">
-                <div class="column is-4">
-                    <h1 class="title has-text-centered">Create an Account</h1>
-                    <h2 class="subtitle has-text-centered is-size-6 is-underlined"><a href="login.html">Already have an account?</a></h2>
-                    <!-- input tags referenced from https://www.w3schools.com/html/html_form_input_types.asp -->
-                    <form action="" class="box py-5">
-
+                <div class="column is-3">
+                    <p class="is-size-5">View and update your account information.</p>
+                    <a href="login.html"><button class="button is-danger my-5">Log Out</button></a>
+                </div>
+                <div class="column is-9">
+                    <form action="">
+                        <h2 class="subtitle">Personal Information</h2>
                         <div class="field is-horizontal">
                             <div class="field-body">
                                 <div class="field">
                                     <label for="fname" class="label">First Name</label>
                                     <p class="control">
-                                        <input type="text" id="fname" name="fname" class="input" placeholder="John">
+                                        <input type="text" id="fname" name="fname" class="input" placeholder="John" value="John">
                                     </p>
                                 </div>
                                 <div class="field">
                                     <label for="lname" class="label">Last Name</label>
                                     <p class="control">
-                                        <input type="text" id="lname" name="lname" class="input" placeholder="Doe">
+                                        <input type="text" id="lname" name="lname" class="input" placeholder="Doe" value="Doe">
                                     </p>
                                 </div>
                             </div>
@@ -80,7 +82,7 @@
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-envelope"></i>
                                 </span>
-                                <input type="email" id="email" name="email" class="input" placeholder="john@doe.com">
+                                <input type="email" id="email" name="email" class="input" placeholder="john@doe.com" value="john@doe.com">
                             </p>
                         </div>
                         <div class="field">
@@ -89,11 +91,13 @@
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-phone"></i>
                                 </span>
-                                <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" class="input" placeholder="999-999-999">
+                                <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" class="input" placeholder="999-999-999" value="999999999">
                             </p>
                         </div>
 
                         <hr>
+
+                        <h2 class="subtitle">Credentials</h2>
 
                         <div class="field">
                             <label for="username" class="label">Username</label>
@@ -101,28 +105,26 @@
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-user"></i>
                                 </span>
-                                <input type="text" id="username" name="username" class="input" placeholder="Username">
+                                <input type="text" id="username" name="username" class="input" placeholder="Username" value="jdoe">
                             </p>
                             
                         </div>
                         <div class="field">
-                            <label for="password" class="label">Password</label>
+                            <label for="old_password" class="label">Current password</label>
                             <p class="control has-icons-left">
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-key"></i>
                                 </span>
-                                <input type="password" id="password" name="password" class="input" placeholder="Password">
+                                <input type="password" id="old_password" name="old_password" class="input" placeholder="Enter your current password">
                             </p>
                         </div>
-
-                        
                         <div class="field">
-                            <label for="confirm_password" class="label">Confirm Password</label>
+                            <label for="password" class="label">New Password</label>
                             <p class="control has-icons-left">
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-key"></i>
                                 </span>
-                                <input type="password" id="confirm_password" name="confirm_password" class="input" placeholder="Password">
+                                <input type="password" id="password" name="password" class="input" placeholder="Enter your new password">
                             </p>
                         </div>
                         
@@ -158,14 +160,16 @@
                             </div>
                         </div>
 
-                        <div class="column has-text-centered"><div class="control">
-                            <input class="button is-primary" type="submit" value="Submit">
-                        </div></div>
+                        <div class="control py-5">
+                            <input class="button is-primary" type="submit" value="Save Changes">
+                        </div>
                     </form>
                 </div>
             </div>
             
         </div>
-      </section>
+    </section>
+
+
 </body>
 </html>
