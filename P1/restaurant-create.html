@@ -131,126 +131,93 @@
 
     <section class="section">
         <div class="container box p-6">
-            <h1 class="title has-text-grey-dark">Account</h1>
+            <h1 class="title has-text-grey-dark">Create a Restaurant</h1>
             <hr>
             <div class="columns is-centered">
                 <div class="column is-3">
-                    <p class="is-size-5">View and update your account information.</p>
-                    <a href="login.html"><button class="button is-danger my-5">Log Out</button></a>
+                    <p class="is-size-5">Create your first restaurant</p>
+                    <a href="account.html"><button class="button is-info my-5">Back</button></a>
                 </div>
-                <div class="column is-9">
-                    <h2 class="subtitle is-size-3">My Restaurant</h2>
-                    <h3>You do not currently have a restaurant set up</h3>
-                    <a href="restaurant-create.html"><button class="button is-info my-5">Create a Restaurant</button></a>
 
+                <div class="column is-9">
                     <form action="">
-                        <h2 class="subtitle is-size-3">Personal Information</h2>
+                        <h2 class="subtitle is-size-3">Restaurant Information</h2>
+
+                        <div class="field">
+                            <label for="rname" class="label">Restaurant Name</label>
+                            <input type="text" id="rname" name="rname" class="input" placeholder="Restaurant Name">
+                        </div>
+
                         <div class="field is-horizontal">
                             <div class="field-body">
                                 <div class="field">
-                                    <label for="fname" class="label">First Name</label>
+                                    <label for="country" class="label">Country</label>
                                     <p class="control">
-                                        <input type="text" id="fname" name="fname" class="input" placeholder="John" value="John">
+                                        <input type="text" id="country" name="country" class="input" placeholder="England">
                                     </p>
                                 </div>
                                 <div class="field">
-                                    <label for="lname" class="label">Last Name</label>
+                                    <label for="city" class="label">City</label>
                                     <p class="control">
-                                        <input type="text" id="lname" name="lname" class="input" placeholder="Doe" value="Doe">
+                                        <input type="text" id="city" name="city" class="input" placeholder="London">
                                     </p>
                                 </div>
                             </div>
-                            
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-body">
+                                <div class="field">
+                                    <label for="address" class="label">Address</label>
+                                    <p class="control">
+                                        <input type="text" id="address" name="address" class="input" placeholder="221B Baker Street">
+                                    </p>
+                                </div>
+                                <div class="field">
+                                    <label for="pcode" class="label">Postal Code</label>
+                                    <p class="control">
+                                        <input type="text" id="pcode" name="pcode" class="input" placeholder="XXXXXX">
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                         
                         <div class="field">
-                            <label for="email" class="label">Email</label>
-                            <p class="control has-icons-left">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-envelope"></i>
-                                </span>
-                                <input type="email" id="email" name="email" class="input" placeholder="john@doe.com" value="john@doe.com">
-                            </p>
-                        </div>
-                        <div class="field">
-                            <label for="phone" class="label">Phone</label>
+                            <label for="rphone" class="label">Phone</label>
                             <p class="control has-icons-left">
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-phone"></i>
                                 </span>
-                                <input type="tel" id="phone" name="phone" class="input" placeholder="999-999-9999" value="999-999-9999">
+                                <input type="tel" id="rphone" name="rphone" class="input" placeholder="999-999-9999" value="999-999-9999">
                             </p>
                         </div>
 
-                        <hr>
-
-                        <h2 class="subtitle is-size-3">Credentials</h2>
-
                         <div class="field">
-                            <label for="username" class="label">Username</label>
-                            <p class="control has-icons-left">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-user"></i>
-                                </span>
-                                <input type="text" id="username" name="username" class="input" placeholder="Username" value="jdoe">
-                            </p>
-                            
-                        </div>
-                        <div class="field">
-                            <label for="old_password" class="label">Current password</label>
-                            <p class="control has-icons-left">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-key"></i>
-                                </span>
-                                <input type="password" id="old_password" name="old_password" class="input" placeholder="Enter your current password">
-                            </p>
-                        </div>
-                        <div class="field">
-                            <label for="password" class="label">New Password</label>
-                            <p class="control has-icons-left">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-key"></i>
-                                </span>
-                                <input type="password" id="password" name="password" class="input" placeholder="Enter your new password">
-                            </p>
-                        </div>
-                        
-
-                        <div class="field">
-                            <label for="avatar" class="label">Avatar</label>
-                            <div class="buttons">
-                                <button class="button">
-                                    <span class="icon is-large has-text-grey-dark">
-                                        <i class="fas fa-male fa-2x"></i>
+                            <div class="level">
+                                <label for="rphone" class="label">Upload a logo</label>
+                                
+                            </div>
+                            <div>
+                                <img src="https://bulma.io/images/placeholders/128x128.png">
+                            </div>
+                            <div class="file level">
+                                <label class="file-label">
+                                  <input class="file-input" type="file" name="resume">
+                                  <span class="file-cta">
+                                    <span class="file-icon">
+                                      <i class="fas fa-upload"></i>
                                     </span>
-                                </button>
-                                <button class="button">
-                                    <span class="icon is-large has-text-grey-dark">
-                                        <i class="fas fa-female fa-2x"></i>
+                                    <span class="file-label">
+                                      Choose a file…
                                     </span>
-                                </button>
-                                <button class="button">
-                                    <span class="icon is-large has-text-grey-dark">
-                                        <i class="fas fa-apple-alt fa-2x"></i>
-                                    </span>
-                                </button>
-                                <button class="button">
-                                    <span class="icon is-large has-text-grey-dark">
-                                        <i class="fas fa-lemon fa-2x"></i>
-                                    </span>
-                                </button>
-                                <button class="button">
-                                    <span class="icon is-large has-text-grey-dark">
-                                        <i class="fas fa-cookie fa-2x"></i>
-                                    </span>
-                                </button>
+                                  </span>
+                                </label>
                             </div>
                         </div>
-
-                        <div class="control py-5">
-                            <input class="button is-primary" type="submit" value="Save Changes">
-                        </div>
                     </form>
+                    <div class="control py-5">
+                        <a href="account-admin.html"><input class="button is-primary" type="submit" value="Create Restaurant"></a>
+                    </div>
                 </div>
             </div>
             

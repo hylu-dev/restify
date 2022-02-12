@@ -37,11 +37,94 @@
                 <a href="" class="navbar-item">Home</a>
                 <a href="" class="navbar-item">Restaurants</a>
                 <a href="account.html" class="navbar-item">Account</a>
-                <a href="notifications.html" class="navbar-item">
-                    <span class="icon is-large has-text-light">
-                        <i class="fas fa-bell fa-2x"></i>
-                    </span>
-                </a>
+
+                <div class="dropdown is-right is-hoverable">
+                    <div class="dropdown-trigger">
+                        <a href="notifications.html" class="navbar-item">
+                            <span class="icon is-large has-text-light">
+                                <i class="fas fa-bell fa-2x"></i>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="dropdown-menu" id="dropdown-menu2" role="menu">
+                        <div class="dropdown-content has-background-primary-light">
+                            <a href="#" class="dropdown-item">
+                                <article class="media has-text-primary-dark">
+                                    <figure class="media-left">
+                                        <p class="image is-64x64">
+                                        <img src="https://bulma.io/images/placeholders/128x128.png">
+                                        </p>
+                                    </figure>
+                                    <div class="media-content">
+                                        <div class="content">
+                                            <p>
+                                                <strong>Restaurant</strong> <small>@restaurant</small> <small>40m</small>
+                                                <br>
+                                                <span class="icon is-small"><i class="fas fa-file-alt"></i></span> Restaurant made a new post
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </a>
+
+                            <a href="#" class="dropdown-item">
+                                <article class="media has-text-primary-dark">
+                                    <figure class="media-left">
+                                        <p class="image is-64x64">
+                                        <img src="https://bulma.io/images/placeholders/128x128.png">
+                                        </p>
+                                    </figure>
+                                    <div class="media-content">
+                                        <div class="content">
+                                            <p>
+                                                <strong>Jane Doe</strong> <small>@janedoe</small> <small>2hr</small>
+                                                <br>
+                                                <span class="icon is-small"><i class="fas fa-heart"></i></span> Jane Doe liked your post
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <article class="media has-text-primary-dark">
+                                    <figure class="media-left">
+                                        <p class="image is-64x64">
+                                        <img src="https://bulma.io/images/placeholders/128x128.png">
+                                        </p>
+                                    </figure>
+                                    <div class="media-content">
+                                        <div class="content">
+                                            <p>
+                                                <strong>Jane Doe</strong> <small>@janedoe</small> <small>2hr</small>
+                                                <br>
+                                                <span class="icon is-small"><i class="fas fa-heart"></i></span> Jane Doe liked your restaurant
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <article class="media has-text-primary-dark">
+                                    <figure class="media-left">
+                                        <p class="image is-64x64">
+                                            <img src="https://bulma.io/images/placeholders/128x128.png">
+                                        </p>
+                                    </figure>
+                                    <div class="media-content">
+                                        <div class="content">
+                                            <p>
+                                                <strong>Restaurant</strong> <small>@restaurant</small> <small>5hr</small>
+                                                <br>
+                                                <span class="icon is-small"><i class="fas fa-utensils"></i></span> Restaurant updated their menu
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </nav>
@@ -89,7 +172,7 @@
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-phone"></i>
                                 </span>
-                                <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" class="input" placeholder="999-999-999">
+                                <input type="tel" id="phone" name="phone" class="input" placeholder="999-999-9999">
                             </p>
                         </div>
 
