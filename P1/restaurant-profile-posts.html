@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+body{
+	background-color: #ADFFF3;
+}
+</style>
+
+<head>
+    <meta charset=UTF-8>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script src=
+'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js'>
+    </script>
+    <title>Restify</title>
+</head>
+
+<body>
+
+<section class="hero is-primary is-halfheight">
+    <div class="hero-body">
+        <div class="columns my-6">
+            <div class="column is-full">
+                <figure class="image is-square is-128x128" style="border: 2px dashed white; border-radius: 90px">
+                    <img class="is-rounded" src="https://th.bing.com/th/id/R.23bce0ee3759a2d1f406aaeb0592ffea?rik=Huo25KyrLKlNGw&riu=http%3a%2f%2fcdn.abclocal.go.com%2fcontent%2fwpvi%2fimages%2fcms%2f306462_1280x720.jpg&ehk=usR8dR5UJvUM7sIxlatLasT0uW%2bsz41KQkRFgP8VwWc%3d&risl=&pid=ImgRaw&r=0" alt="Olive Garden">
+                </figure>
+            </div>
+        </div>
+
+        <div class="column is-four-fifths" style="margin-left: 80px">
+            <p class="title ml-6">
+                Olive Garden
+            </p>
+            <hr class="navbar-divider" style="width: 300px">
+
+            <!-- Max 1071 characters -->
+            <p class="subtitle mt-5 ml-6">
+                fillerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+            </p>
+        </div>
+    </div>
+</section>
+
+<nav class="navbar is-primary is-transparent" style="background-color: #02b196; height: 10px">  
+  <div class="navbar-menu">
+      <div class="navbar-item pl-6 ml-3">
+          <a class="button is-light my-1">
+              <span class="icon">
+                  <i class="fas fa-heart"></i>
+              </span>
+              <span>Follow</span>
+          </a>
+      </div>
+
+      <a class="navbar-item has-text-light ml-6">
+          <span class="icon is-large">
+              <i class="fas fa-thumbs-up"></i>
+          </span>
+          <span>500</span>
+      </a>
+      
+      <a class="navbar-item has-text-light is-expanded ml-6">
+          <span class="icon is-large">
+              <i class="fas fa-share"></i>
+          </span>
+          <span>Share</span>
+      </a>
+
+      <div class="navbar-item pr-4">
+          <a href=restaurant-profile-edit.html class="button is-light my-1">
+              <span class="icon">
+                  <i class="fas fa-edit"></i>
+              </span>
+              <span>Edit</span>
+          </a>
+      </div>
+
+      <div class="navbar-item pr-6 mr-3">
+          <a class="button is-danger my-1">
+              <span class="icon">
+                  <i class="fas fa-trash-alt"></i>
+              </span>
+              <span>Delete Restaurant</span>
+          </a>
+      </div>
+  </div>
+</nav>
+
+<nav class="navbar is-primary is-fixed-top">
+  <div class="navbar-brand pl-2">
+      <a href="#" class="navbar-item">
+          <span class="icon is-large has-text-primary-dark">
+              <i class="fas fa-store fa-2x"></i>
+              </span>
+              <a class="navbar-burger">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </a>
+      </a>
+  </div> 
+  
+  <div class="navbar-menu">
+      <div class="navbar-item">
+          <div class="field">
+              <p class="control is-expanded has-icons-right">
+                  <input class="input" type="search" placeholder="Search..."/>
+                  <span class="icon is-small is-right"><i class="fas fa-search"></i></span>
+              </p>
+          </div>
+      </div>
+      <div class="navbar-end pr-2">
+          <a href="" class="navbar-item">Home</a>
+          <a href="" class="navbar-item">Restaurants</a>
+
+          <a class="navbar-item">
+              <span class="icon is-large has-text-light">
+                  <i class="fas fa-bell fa-2x"></i>
+              </span>
+          </a>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+              Account
+              </a>
+
+              <div class="navbar-dropdown">
+                  <!-- <hr class="navbar-divider"> -->
+
+                  <a class="navbar-item">
+                      Edit Profile
+                  </a>
+                  <a class="navbar-item">
+                      Logout
+                  </a>
+              </div>
+          </div>
+      </div>
+  </div>
+</nav>
+
+<br>
+<br>
+<br>
+
+
+
+<div class="tabs is-boxed is-fullwidth m-0 mx-6">
+    <ul>
+      <li><a href="restaurant-profile-menu.html">Menu</a></li>
+      <li><a href="restaurant-profile-photos.html">Photos</a></li>
+      <li class="is-active"><a href="restaurant-profile-posts.html">Posts</a></li>
+    </ul>
+</div>
+
+<div id="Posts-list" style="background-color: white">
+  <br>
+  <div class="columns">
+      <div class="column">
+          <div class="card">
+              <div class="card-content">
+                  <div class="card-content">
+                      <div class="media">
+                        <div class="media-left">
+                          <figure class="image is-96x96">
+                              <img class="is-rounded" src="https://th.bing.com/th/id/OIP.l3y2GfM9QPGyBJgU8MgcNgHaFP?w=268&h=189&c=7&r=0&o=5&dpr=1.25&pid=1.7" alt="Burger Logo">
+                          </figure>
+                        </div>
+                        <div class="media-content">
+                          <p class="title is-4">Restaurant Name</p>
+                          <p class="subtitle is-6">@restaurantzzz</p>
+                        </div>
+                      </div>
+                  
+                      <div class="content">
+                          <form method="post" id="form">
+                              <textarea placeholder="What's on your mind?" style="width: 100%; height: 100px"></textarea>
+                          </form>
+                      </div>
+
+                      <section class="container has-text-right">
+                          <a class="button is-success">
+                              <span class="icon-text">
+                                  <span class="icon">
+                                      <i class="fas fa-edit"></i>
+                                  </span>
+                                  <span>Post</span>
+                              </span>
+                          </a>
+                      </section>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="columns px-6">
+      <div class="column p-0">
+          <div class="card">
+              <div class="card-content">
+                  <div class="card-content">
+                      <div class="media">
+                        <div class="media-left">
+                          <figure class="image is-96x96">
+                              <img class="is-rounded" src="https://th.bing.com/th/id/OIP.l3y2GfM9QPGyBJgU8MgcNgHaFP?w=268&h=189&c=7&r=0&o=5&dpr=1.25&pid=1.7" alt="Burger Logo">
+                          </figure>
+                        </div>
+                        <div class="media-content">
+                          <p class="title is-4">Restaurant Name</p>
+                          <p class="subtitle is-6">@restaurantzzz</p>
+                        </div>
+                      </div>
+                  
+                      <div class="content">
+                        Fooooooooooooooooooooooooooooooooooooooooooooood</a>.
+                        <br>
+                        <br>
+                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                      </div>
+
+                      <div class="tabs is-fullwidth">
+                          <ul>
+                          </ul>
+                        </div>
+
+                      <div class="content">
+                          <div class="media">
+                              <div class="media-left">
+                                <figure class="image is-96x96">
+                                    <img class="is-rounded" src="https://th.bing.com/th/id/OIP.l3y2GfM9QPGyBJgU8MgcNgHaFP?w=268&h=189&c=7&r=0&o=5&dpr=1.25&pid=1.7" alt="Burger Logo">
+                                </figure>
+                              </div>
+                              <div class="media-content">
+                                <p class="title is-4">Restaurant Name</p>
+                                <p class="subtitle is-6">@restaurantzzz</p>
+                              </div>
+                          </div>
+
+                          Fooooooooooooooooooooooooooooooooooooooooooooood</a>.
+                          <br>
+                          <br>
+                          <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                      </div>
+
+                      <div class="tabs is-fullwidth">
+                          <ul>
+                          </ul>
+                        </div>
+
+                      <div class="content">
+                          <div class="media">
+                              <div class="media-left">
+                                <figure class="image is-96x96">
+                                    <img class="is-rounded" src="https://th.bing.com/th/id/OIP.l3y2GfM9QPGyBJgU8MgcNgHaFP?w=268&h=189&c=7&r=0&o=5&dpr=1.25&pid=1.7" alt="Burger Logo">
+                                </figure>
+                              </div>
+                              <div class="media-content">
+                                <p class="title is-4">Restaurant Name</p>
+                                <p class="subtitle is-6">@restaurantzzz</p>
+                              </div>
+                          </div>
+
+                          <form method="post" id="form">
+                              <textarea placeholder="Comment here." style="width: 100%; height: 100px"></textarea>
+                          </form>
+
+                          <br>
+
+                          <section class="container has-text-right">
+                              <a class="button is-success">
+                                  <span class="icon-text">
+                                      <span class="icon">
+                                          <i class="fas fa-edit"></i>
+                                      </span>
+                                      <span>Post</span>
+                                  </span>
+                              </a>
+                          </section>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+
+              <footer class="card-footer is-white">
+                  <a href="#" class="card-footer-item">
+                      <span class="icon-text">
+                          <span class="icon">
+                              <i class="fas fa-edit"></i>
+                          </span>
+                          <span>Edit</span>
+                      </span>
+                  </a>
+                  <a href="#" class="card-footer-item">
+                      <span class="icon-text">
+                          <span class="icon">
+                              <i class="fas fa-trash-alt"></i>
+                          </span>
+                          <span>Delete</span>
+                      </span>
+                  </a>
+              </footer>
+          </div>
+      </div>
+  </div>
+</div>
+
+</body>
+
+</html>
