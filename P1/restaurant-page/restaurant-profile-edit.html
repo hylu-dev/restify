@@ -83,7 +83,7 @@ body{
     </div>
 </nav>
 
-<nav class="navbar is-primary is-fixed-top">
+<nav class="navbar is-primary is-fixed-top" role="navigation">
     <div class="navbar-brand pl-2">
         <a href="#" class="navbar-item">
             <span class="icon is-large has-text-primary-dark">
@@ -121,14 +121,38 @@ body{
                 Account
                 </a>
 
-                <div class="navbar-dropdown">
-                    <!-- <hr class="navbar-divider"> -->
+                <div class="navbar-dropdown is-right" style="width: 380px">
+                    <article class="media">
+                        <div class="media-left pt-5 pl-5">
+                            <img class="is-64x64 is-rounded" src="https://vistapointe.net/images/stick-man-1.jpg" alt="Person">
+                        </div>
+                        <div class="media-content py-2">
+                            <div class="content mt-1">
+                              <div class="media-content">
+                                <p class="title is-4">John Doe</p>
+                                <p class="subtitle is-6">@megabillionaire</p>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="media-right pr-5 pt-4">
+                            <div class="box has-background-grey-lighter has-text-centered p-2" style="width: 80px">Owner</div>
+                        </div>
+                    </article>
+
+                    <hr class="navbar-divider">
 
                     <a class="navbar-item">
-                        Edit Profile
+                        <span class="icon is-large">
+                            <i class="fas fa-edit"></i>
+                        </span>
+                        <span>Edit Profile</span>
                     </a>
+
                     <a class="navbar-item">
-                        Logout
+                        <span class="icon is-large">
+                            <i class="fas fa-door-open"></i>
+                        </span>
+                        <span>Logout</span>
                     </a>
                 </div>
             </div>
