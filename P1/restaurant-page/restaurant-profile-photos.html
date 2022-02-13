@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+body{
+	background-color: #ADFFF3;
+}
+</style>
+
+<head>
+    <meta charset=UTF-8>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script src=
+'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js'>
+    </script>
+    <title>Restify</title>
+</head>
+
+<body>
+<section class="hero is-primary is-halfheight">
+    <div class="hero-body">
+        <div class="columns my-6">
+            <div class="column is-full">
+                <figure class="image is-square is-128x128" style="border: 2px dashed white; border-radius: 90px">
+                    <img class="is-rounded" src="https://th.bing.com/th/id/R.23bce0ee3759a2d1f406aaeb0592ffea?rik=Huo25KyrLKlNGw&riu=http%3a%2f%2fcdn.abclocal.go.com%2fcontent%2fwpvi%2fimages%2fcms%2f306462_1280x720.jpg&ehk=usR8dR5UJvUM7sIxlatLasT0uW%2bsz41KQkRFgP8VwWc%3d&risl=&pid=ImgRaw&r=0" alt="Olive Garden">
+                </figure>
+            </div>
+        </div>
+
+        <div class="column is-four-fifths" style="margin-left: 80px">
+            <p class="title ml-6">
+                Olive Garden
+            </p>
+            <hr class="navbar-divider" style="width: 300px">
+
+            <!-- Max 1071 characters -->
+            <p class="subtitle mt-5 ml-6">
+                fillerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+            </p>
+        </div>
+    </div>
+</section>
+
+<nav class="navbar is-primary is-transparent" style="background-color: #02b196; height: 10px">  
+    <div class="navbar-menu">
+        <div class="navbar-item pl-6 ml-3">
+            <a class="button is-light my-1">
+                <span class="icon">
+                    <i class="fas fa-heart"></i>
+                </span>
+                <span>Follow</span>
+            </a>
+        </div>
+
+        <a class="navbar-item has-text-light ml-6">
+            <span class="icon is-large">
+                <i class="fas fa-thumbs-up"></i>
+            </span>
+            <span>500</span>
+        </a>
+        
+        <a class="navbar-item has-text-light is-expanded ml-6">
+            <span class="icon is-large">
+                <i class="fas fa-share"></i>
+            </span>
+            <span>Share</span>
+        </a>
+
+        <div class="navbar-item pr-4">
+            <a href=restaurant-profile-edit.html class="button is-light my-1">
+                <span class="icon">
+                    <i class="fas fa-edit"></i>
+                </span>
+                <span>Edit</span>
+            </a>
+        </div>
+
+        <div class="navbar-item pr-6 mr-3">
+            <a class="button is-danger my-1">
+                <span class="icon">
+                    <i class="fas fa-trash-alt"></i>
+                </span>
+                <span>Delete Restaurant</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar is-primary is-fixed-top">
+    <div class="navbar-brand pl-2">
+        <a href="#" class="navbar-item">
+            <span class="icon is-large has-text-primary-dark">
+                <i class="fas fa-store fa-2x"></i>
+                </span>
+                <a class="navbar-burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+        </a>
+    </div> 
+    
+    <div class="navbar-menu">
+        <div class="navbar-item">
+            <div class="field">
+                <p class="control is-expanded has-icons-right">
+                    <input class="input" type="search" placeholder="Search..."/>
+                    <span class="icon is-small is-right"><i class="fas fa-search"></i></span>
+                </p>
+            </div>
+        </div>
+        <div class="navbar-end pr-2">
+            <a href="" class="navbar-item">Home</a>
+            <a href="" class="navbar-item">Restaurants</a>
+
+            <a class="navbar-item">
+                <span class="icon is-large has-text-light">
+                    <i class="fas fa-bell fa-2x"></i>
+                </span>
+            </a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                Account
+                </a>
+
+                <div class="navbar-dropdown">
+                    <!-- <hr class="navbar-divider"> -->
+
+                    <a class="navbar-item">
+                        Edit Profile
+                    </a>
+                    <a class="navbar-item">
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+<br>
+
+<div class="tabs tabs is-boxed is-fullwidth m-0 mx-6">
+    <ul>
+      <li><a href="restaurant-profile-menu.html">Menu</a></li>
+      <li class="is-active"><a href="restaurant-profile-photos.html">Photos</a></li>
+      <li><a href="restaurant-profile-posts.html">Posts</a></li>
+    </ul>
+  </div>
+
+<div id="Photos-list" style="background-color: white">
+    <br>
+    <br>
+
+    <div class="columns mx-3">
+        <div class="column is-one-third">
+            <div class="card">
+                <div class="card-image">
+                <figure class="image is-3by2">
+                    <img src="https://th.bing.com/th/id/R.ee5befb6305871bd80c2bd95d734cf7a?rik=hPezj8hrEB05Mg&riu=http%3a%2f%2f4.bp.blogspot.com%2f-2RxTrhz8HS8%2fUNfHl08Q9KI%2fAAAAAAAACAg%2fYFOc4OjNeiI%2fs1600%2fDSCF8782.JPG&ehk=sd4udouHztxR6g4nPXriWW9g3ztRW70HIAf9SIDbS90%3d&risl=&pid=ImgRaw&r=0" alt="Prime Rib Roast" width="200" height="200">
+                </figure>
+                </div>
+
+                <div class="card-content" style="padding: 10px;">
+                    <div class="media">
+                    <section class="container has-text-centered">
+                        <p class="title is-3 my-1">Prime Rib Roast</p>
+                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                    </section>
+                </div>
+                </div>
+
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                            <span>Edit</span>
+                        </span>
+                    </a>
+                    <a href="#" class="card-footer-item">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </span>
+                            <span>Delete</span>
+                        </span>
+                    </a>
+                </footer>
+            </div>
+        </div>
+
+        <div class="column is-one-third">
+            <div class="card">
+                <div class="card-image">
+                <figure class="image is-3by2">
+                    <img src="https://www.lemoosecrepecafe.com/wp-content/uploads/2018/08/CAESAR-SALAD.jpg" alt="Caesar Salad" width="500px" height="500px">
+                </figure>
+                </div>
+
+                <div class="card-content" style="padding: 10px;">
+                    <div class="media">
+                    <section class="container has-text-centered">
+                        <p class="title is-3 my-1">Caesar Salad</p>
+                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                    </section>
+                </div>
+                </div>
+
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                            <span>Edit</span>
+                        </span>
+                    </a>
+                    <a href="#" class="card-footer-item">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </span>
+                            <span>Delete</span>
+                        </span>
+                    </a>
+                </footer>
+            </div>
+        </div>
+
+        <div class="column is-one-third">
+            <div class="card">
+                <div class="card-image">
+                <figure class="image is-3by2">
+                    <img src="https://th.bing.com/th/id/R.3182db5fd3af776ee5ca9a219236c8b4?rik=ItRI1HPls7%2fNaQ&riu=http%3a%2f%2fthesuburbansoapbox.com%2fwp-content%2fuploads%2f2015%2f02%2fLobster-Bisque.jpg&ehk=YQDqbJy2bl1ODya9fAUa483bcp8WtAE5C2H%2b4pWGwUM%3d&risl=&pid=ImgRaw&r=0" alt="Lobster Bisque" width="200" height="200">
+                </figure>
+                </div>
+
+                <div class="card-content" style="padding: 10px;">
+                    <div class="media">
+                    <section class="container has-text-centered">
+                        <p class="title is-3 my-1">Lobster Bisque</p>
+                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                    </section>
+                </div>
+                </div>
+
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                            <span>Edit</span>
+                        </span>
+                    </a>
+                    <a href="#" class="card-footer-item">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </span>
+                            <span>Delete</span>
+                        </span>
+                    </a>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns mx-3">
+        <div class="column is-one-third">
+            <div class="card">
+                <div class="card-image">
+                <figure class="image is-3by2">
+                    <img src="https://www.eazypeazymealz.com/wp-content/uploads/2016/06/zuppa-toscana-slow-cooker-low-carb-10.jpg" alt="Zuppa Toscana" width="200" height="200">
+                </figure>
+                </div>
+
+                <div class="card-content" style="padding: 10px;">
+                    <div class="media">
+                    <section class="container has-text-centered">
+                        <p class="title is-3 my-1">Zuppa Toscana</p>
+                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                    </section>
+                </div>
+                </div>
+
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                            <span>Edit</span>
+                        </span>
+                    </a>
+                    <a href="#" class="card-footer-item">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </span>
+                            <span>Delete</span>
+                        </span>
+                    </a>
+                </footer>
+            </div>
+        </div>
+
+        <div class="column is-one-third">
+            <div class="card">
+                <div class="card-image">
+                <figure class="image is-3by2">
+                    <img src="https://th.bing.com/th/id/R.10d08e2a7e13a612d3231ff3dcc06a43?rik=8h8%2fHJaxGcn4Rg&riu=http%3a%2f%2fs3.amazonaws.com%2fstudio-me%2fsystem%2fphotos%2fphotos%2f000%2f434%2f154%2foriginal%2fosso-buco.jpg%3f1394183111&ehk=Fh5N9vptBswwKFOzMKOGZ3vq4W1T7BszO9S6MpWpIGQ%3d&risl=&pid=ImgRaw&r=0" alt="Osso Buco" width="200" height="200">
+                </figure>
+                </div>
+
+                <div class="card-content" style="padding: 10px;">
+                    <div class="media">
+                    <section class="container has-text-centered">
+                        <p class="title is-3 my-1">Osso Buco</p>
+                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                    </section>
+                </div>
+                </div>
+
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                            <span>Edit</span>
+                        </span>
+                    </a>
+                    <a href="#" class="card-footer-item">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </span>
+                            <span>Delete</span>
+                        </span>
+                    </a>
+                </footer>
+            </div>
+        </div>
+
+        <div class="column is-one-third">
+            <div class="card">
+                <div class="card-image">
+                <figure class="image is-3by2">
+                    <img src="https://i.pinimg.com/originals/98/f1/37/98f137f6e61796a5310c116f4b0772cd.jpg" alt="Linguine Vongole" width="200" height="200">
+                </figure>
+                </div>
+
+                <div class="card-content" style="padding: 10px;">
+                    <div class="media">
+                    <section class="container has-text-centered">
+                        <p class="title is-3 my-1">Linguine Vongole</p>
+                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                    </section>
+                </div>
+                </div>
+
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                            <span>Edit</span>
+                        </span>
+                    </a>
+                    <a href="#" class="card-footer-item">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </span>
+                            <span>Delete</span>
+                        </span>
+                    </a>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns my-6">
+        <section class="container has-text-centered">
+            <a class="button is-medium is-success">
+                <span class="icon">
+                    <i class="fas fa-plus-circle"></i>
+                </span>
+                <span>Add Photo</span>
+            </a>
+        </section>
+    </div>
+</div>
+
+</body>
+
+</html>

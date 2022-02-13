@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+body{
+	background-color: #ADFFF3;
+}
+</style>
+
+<head>
+    <meta charset=UTF-8>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script src=
+'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js'>
+    </script>
+    <title>Restify</title>
+</head>
+
+<body>
+
+<section class="hero is-primary is-halfheight">
+    <div class="hero-body">
+        <div class="columns my-6">
+            <div class="column is-full">
+                <figure class="image is-square is-128x128" style="border: 2px dashed white; border-radius: 90px">
+                    <img class="is-rounded" src="https://th.bing.com/th/id/R.23bce0ee3759a2d1f406aaeb0592ffea?rik=Huo25KyrLKlNGw&riu=http%3a%2f%2fcdn.abclocal.go.com%2fcontent%2fwpvi%2fimages%2fcms%2f306462_1280x720.jpg&ehk=usR8dR5UJvUM7sIxlatLasT0uW%2bsz41KQkRFgP8VwWc%3d&risl=&pid=ImgRaw&r=0" alt="Olive Garden">
+                </figure>
+            </div>
+        </div>
+
+        <div class="column is-four-fifths" style="margin-left: 80px">
+            <input class="title has-text-black ml-6" type="text" value="Olive Garden">
+            <hr class="navbar-divider" style="width: 300px">
+
+            <!-- Max 1071 characters -->
+            <textarea class="subtitle has-text-black mt-5 ml-6" placeholder="fillerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr" style="width: 1000px; height: 120px"></textarea>
+        </div>
+    </div>
+</section>
+
+<nav class="navbar is-primary is-transparent" style="background-color: #02b196; height: 10px">  
+    <div class="navbar-menu">
+        <div class="navbar-item pl-6 ml-3">
+            <a class="button is-light my-1">
+                <span class="icon">
+                    <i class="fas fa-heart"></i>
+                </span>
+                <span>Follow</span>
+            </a>
+        </div>
+
+        <a class="navbar-item has-text-light ml-6">
+            <span class="icon is-large">
+                <i class="fas fa-thumbs-up"></i>
+            </span>
+            <span>500</span>
+        </a>
+        
+        <a class="navbar-item has-text-light is-expanded ml-6">
+            <span class="icon is-large">
+                <i class="fas fa-share"></i>
+            </span>
+            <span>Share</span>
+        </a>
+
+        <div class="navbar-item pr-4">
+            <a href=restaurant-profile-menu.html class="button is-light my-1">
+                <span class="icon">
+                    <i class="far fa-save"></i>
+                </span>
+                <span>Save Changes</span>
+            </a>
+        </div>
+
+        <div class="navbar-item pr-6 mr-3">
+            <a class="button is-danger my-1">
+                <span class="icon">
+                    <i class="fas fa-trash-alt"></i>
+                </span>
+                <span>Delete Restaurant</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar is-primary is-fixed-top">
+    <div class="navbar-brand pl-2">
+        <a href="#" class="navbar-item">
+            <span class="icon is-large has-text-primary-dark">
+                <i class="fas fa-store fa-2x"></i>
+                </span>
+                <a class="navbar-burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+        </a>
+    </div> 
+    
+    <div class="navbar-menu">
+        <div class="navbar-item">
+            <div class="field">
+                <p class="control is-expanded has-icons-right">
+                    <input class="input" type="search" placeholder="Search..."/>
+                    <span class="icon is-small is-right"><i class="fas fa-search"></i></span>
+                </p>
+            </div>
+        </div>
+        <div class="navbar-end pr-2">
+            <a href="" class="navbar-item">Home</a>
+            <a href="" class="navbar-item">Restaurants</a>
+
+            <a class="navbar-item">
+                <span class="icon is-large has-text-light">
+                    <i class="fas fa-bell fa-2x"></i>
+                </span>
+            </a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                Account
+                </a>
+
+                <div class="navbar-dropdown">
+                    <!-- <hr class="navbar-divider"> -->
+
+                    <a class="navbar-item">
+                        Edit Profile
+                    </a>
+                    <a class="navbar-item">
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+<br>
+
+<div class="tabs is-boxed is-fullwidth m-0 mx-6">
+    <ul>
+    <li class="is-active"><a href="restaurant-profile-menu.html">Menu</a></li>
+    <li><a href="restaurant-profile-photos.html">Photos</a></li>
+    <li><a href="restaurant-profile-posts.html">Posts</a></li>
+    </ul>
+</div>
+
+<div class="section" id="Menu-list" style="background-color: white">
+    <nav class="level">
+        <div class="level-left">
+        </div>
+    
+        <div class="level-right">
+            <p class="level-item">
+                <a href="restaurant-profile-menu-form.html" class="button is-primary" style="width: 100px">
+                    <span class="icon-text">
+                        <span class="icon">
+                            <i class="fas fa-edit"></i>
+                        </span>
+                        <span>Edit</span>
+                    </span>
+                </a>
+            </p>
+        </div>
+    </nav>
+
+    <div class="box p-auto mx-6 has-shadow" style="background-color: rgb(214, 159, 135)">
+        <div class="box has-text-grey-lighter" style="background-color: rgb(59, 59, 63)">
+            <section class="container has-text-centered">
+                <br>
+                <h1 class="title has-text-grey-lighter">Salads</h1>
+            </section>
+        
+            <br>
+            <br>
+        
+            <div class="columns" style="margin-left: 10%; margin-right: 5%;">
+                <div class="column is-narrow">
+                    <h3 class="title is-4 has-text-grey-lighter">Fresh Garden Salad</h3>
+                </div>
+                <div class="column is-paddingless">
+                    <div style="border-bottom:1px dashed #b2b2b2; padding-top: 3%;">
+                    </div>
+                </div>
+                <div class="column is-narrow has-pb-0">
+                    <h3 class="title is-4 has-text-grey-lighter">$4</h3>
+                </div>
+            </div>
+        
+            <div class="columns" style="margin-left: 14%; margin-right: 5%;">
+                <p>Better call Saul-ad!</p>
+            </div>
+        
+            <br>
+            <br>
+        
+            <div class="columns" style="margin-left: 10%; margin-right: 5%;">
+                <div class="column is-narrow">
+                    <h3 class="title is-4 has-text-grey-lighter">Spring Berry Walnut Salad</h3>
+                </div>
+                <div class="column is-paddingless">
+                    <div style="border-bottom:1px dashed #b2b2b2; padding-top: 3%;">
+                    </div>
+                </div>
+                <div class="column is-narrow has-pb-0">
+                    <h3 class="title is-4 has-text-grey-lighter">$7</h3>
+                </div>
+            </div>
+        
+            <div class="columns" style="margin-left: 14%; margin-right: 5%;">
+                <p>Believe me, you'll want to try this salad berry much</p>
+            </div>
+        
+            <br>
+            <br>
+        
+            <div class="columns" style="margin-left: 10%; margin-right: 5%;">
+                <div class="column is-narrow">
+                    <h3 class="title is-4 has-text-grey-lighter">Caesar Salad</h3>
+                </div>
+                <div class="column is-paddingless">
+                    <div style="border-bottom:1px dashed #b2b2b2; padding-top: 3%;">
+                    </div>
+                </div>
+                <div class="column is-narrow has-pb-0">
+                    <h3 class="title is-4 has-text-grey-lighter">$12</h3>
+                </div>
+            </div>
+        
+            <div class="columns" style="margin-left: 14%; margin-right: 5%;">
+                <p>This is a salad with some different dressing</p>
+            </div>
+        
+            <br>
+            <br>
+        
+            <section class="container has-text-centered">
+                <h1 class="title has-text-grey-lighter">Soups</h1>
+            </section>
+        
+            <br>
+        
+            <div class="columns" style="margin-left: 10%; margin-right: 5%;">
+                <div class="column is-narrow">
+                    <h3 class="title is-4 has-text-grey-lighter">Zuppa Toscana</h3>
+                </div>
+                <div class="column is-paddingless">
+                    <div style="border-bottom:1px dashed #b2b2b2; padding-top: 3%;">
+                    </div>
+                </div>
+                <div class="column is-narrow has-pb-0">
+                    <h3 class="title is-4 has-text-grey-lighter">$7</h3>
+                </div>
+            </div>
+        
+            <div class="columns" style="margin-left: 14%; margin-right: 5%;">
+                <p>Pls tos-a-can-a this soup into my mouth</p>
+            </div>
+        
+            <br>
+        
+            <div class="columns" style="margin-left: 10%; margin-right: 5%;">
+                <div class="column is-narrow">
+                    <h3 class="title is-4 has-text-grey-lighter">Chicken and Gnocchi Soup</h3>
+                </div>
+                <div class="column is-paddingless">
+                    <div style="border-bottom:1px dashed #b2b2b2; padding-top: 3%;">
+                    </div>
+                </div>
+                <div class="column is-narrow has-pb-0">
+                    <h3 class="title is-4 has-text-grey-lighter">$7</h3>
+                </div>
+            </div>
+        
+            <div class="columns" style="margin-left: 14%; margin-right: 5%;">
+                <p>Gnocchi-dding! This is the best soup I've ever tasted!</p>
+            </div>
+        
+            <br>
+        
+            <div class="columns" style="margin-left: 10%; margin-right: 5%;">
+                <div class="column is-narrow">
+                    <h3 class="title is-4 has-text-grey-lighter">Lobster Bisque</h3>
+                </div>
+                <div class="column is-paddingless">
+                    <div style="border-bottom:1px dashed #b2b2b2; padding-top: 3%;">
+                    </div>
+                </div>
+                <div class="column is-narrow has-pb-0">
+                    <h3 class="title is-4 has-text-grey-lighter">$9</h3>
+                </div>
+            </div>
+        
+            <div class="columns" style="margin-left: 14%; margin-right: 5%;">
+                <p>For the rich friend in your life</p>
+            </div>
+        
+            <br>
+        
+            <div class="columns" style="margin-left: 10%; margin-right: 5%;">
+                <div class="column is-narrow">
+                    <h3 class="title is-4 has-text-grey-lighter">La soupe du jour</h3>
+                </div>
+                <div class="column is-paddingless">
+                    <div style="border-bottom:1px dashed #b2b2b2; padding-top: 3%;">
+                    </div>
+                </div>
+                <div class="column is-narrow has-pb-0">
+                    <h3 class="title is-4 has-text-grey-lighter">$5</h3>
+                </div>
+            </div>
+        
+            <div class="columns" style="margin-left: 14%; margin-right: 5%;">
+                <p>Mystery soup: Is it gross? Is it good? Who knows?</p>
+            </div>
+        
+            <br>
+        
+            <section class="container has-text-centered">
+                <h1 class="title has-text-grey-lighter">Entrees</h1>
+            </section>
+        
+            <br>
+            <br>
+        
+            <div class="columns" style="margin-left: 10%; margin-right: 5%;">
+                <div class="column is-narrow">
+                    <h3 class="title is-4 has-text-grey-lighter">Osso Buco</h3>
+                </div>
+                <div class="column is-paddingless">
+                    <div style="border-bottom:1px dashed #b2b2b2; padding-top: 3%;">
+                    </div>
+                </div>
+                <div class="column is-narrow has-pb-0">
+                    <h3 class="title is-4 has-text-grey-lighter">$23</h3>
+                </div>
+            </div>
+        
+            <div class="columns" style="margin-left: 14%; margin-right: 5%;">
+                <p>Osso Buca? More like Awesome Buca, amirite?</p>
+            </div>
+        
+            <br>
+        
+            <div class="columns" style="margin-left: 10%; margin-right: 5%;">
+                <div class="column is-narrow">
+                    <h3 class="title is-4 has-text-grey-lighter">Linguine Vongole</h3>
+                </div>
+                <div class="column is-paddingless">
+                    <div style="border-bottom:1px dashed #b2b2b2; padding-top: 3%;">
+                    </div>
+                </div>
+                <div class="column is-narrow has-pb-0">
+                    <h3 class="title is-4 has-text-grey-lighter">$25</h3>
+                </div>
+            </div>
+        
+            <div class="columns" style="margin-left: 14%; margin-right: 5%;">
+                <p>Ew, are your hands clammy?! No, that's just my pasta</p>
+            </div>
+
+            <br>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
