@@ -87,17 +87,17 @@ body{
     </div>
 </nav>
 
-<nav class="navbar is-primary is-fixed-top" role="navigation">
+<nav class="navbar is-primary is-fixed-top">
     <div class="navbar-brand pl-2">
-        <a href="#" class="navbar-item">
+        <a href="../feed.html" class="navbar-item">
             <span class="icon is-large has-text-primary-dark">
                 <i class="fas fa-store fa-2x"></i>
-                </span>
-                <a class="navbar-burger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </a>
+              </span>
+              <a class="navbar-burger">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </a>
         </a>
     </div> 
     
@@ -111,20 +111,40 @@ body{
             </div>
         </div>
         <div class="navbar-end pr-2">
-            <a href="" class="navbar-item">Home</a>
-            <a href="" class="navbar-item">Restaurants</a>
-
-            <a class="navbar-item">
-                <span class="icon is-large has-text-light">
-                    <i class="fas fa-bell fa-2x"></i>
+            <a href="../feed.html" class="navbar-item">
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="fas fa-home"></i>
+                    </span>
+                    <span>Home</span>
                 </span>
             </a>
-
+            <a href="../browsing.html" class="navbar-item">
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="fas fa-utensils"></i>
+                    </span>
+                    <span>Browse</span>
+                </span>
+            </a>
+            <a href="../restaurant-page/restaurant-profile-menu.html" class="navbar-item">
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="fas fa-store"></i>
+                    </span>
+                    <span>My Restaurant</span>
+                </span>
+            </a>
             <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                Account
+                <a href="../account.html" class="navbar-link">
+                    <span class="icon-text">
+                        <span class="icon">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <span>Profile</span>
+                    </span>
                 </a>
-
+  
                 <div class="navbar-dropdown is-right" style="width: 380px">
                     <article class="media">
                         <div class="media-left pt-5 pl-5">
@@ -142,17 +162,17 @@ body{
                             <div class="box has-background-grey-lighter has-text-centered p-2" style="width: 80px">Owner</div>
                         </div>
                     </article>
-
+  
                     <hr class="navbar-divider">
-
-                    <a class="navbar-item">
+  
+                    <a href="../account.html" class="navbar-item">
                         <span class="icon is-large">
                             <i class="fas fa-edit"></i>
                         </span>
                         <span>Edit Profile</span>
                     </a>
-
-                    <a class="navbar-item">
+  
+                    <a href="../login.html" class="navbar-item">
                         <span class="icon is-large">
                             <i class="fas fa-door-open"></i>
                         </span>
@@ -160,9 +180,97 @@ body{
                     </a>
                 </div>
             </div>
+  
+            <div class="dropdown is-right is-hoverable">
+                <div class="dropdown-trigger">
+                    <a href="../notifications.html" class="navbar-item">
+                        <span class="icon is-large has-text-light">
+                            <i class="fas fa-bell fa-2x"></i>
+                        </span>
+                    </a>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu2" role="menu">
+                    <div class="dropdown-content">
+                        <a href="#" class="dropdown-item">
+                            <article class="media has-text-primary-dark">
+                                <figure class="media-left">
+                                    <p class="image is-64x64">
+                                    <img src="https://bulma.io/images/placeholders/128x128.png">
+                                    </p>
+                                </figure>
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+                                            <strong>Restaurant</strong> <small>@restaurant</small> <small>40m</small>
+                                            <br>
+                                            <span class="icon is-small"><i class="fas fa-file-alt"></i></span> Restaurant made a new post
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+                        </a>
+  
+                        <a href="restaurant-profile-posts.html" class="dropdown-item">
+                            <article class="media has-text-primary-dark">
+                                <figure class="media-left">
+                                    <p class="image is-64x64">
+                                    <img src="https://bulma.io/images/placeholders/128x128.png">
+                                    </p>
+                                </figure>
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+                                            <strong>Jane Doe</strong> <small>@janedoe</small> <small>2hr</small>
+                                            <br>
+                                            <span class="icon is-small"><i class="fas fa-heart"></i></span> Jane Doe liked your post
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+                        </a>
+                        <a href="restaurant-profile-menu.html" class="dropdown-item">
+                            <article class="media has-text-primary-dark">
+                                <figure class="media-left">
+                                    <p class="image is-64x64">
+                                    <img src="https://bulma.io/images/placeholders/128x128.png">
+                                    </p>
+                                </figure>
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+                                            <strong>Jane Doe</strong> <small>@janedoe</small> <small>2hr</small>
+                                            <br>
+                                            <span class="icon is-small"><i class="fas fa-heart"></i></span> Jane Doe liked your restaurant
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+                        </a>
+                        <a href="restaurant-profile-menu.html" class="dropdown-item">
+                            <article class="media has-text-primary-dark">
+                                <figure class="media-left">
+                                    <p class="image is-64x64">
+                                        <img src="https://bulma.io/images/placeholders/128x128.png">
+                                    </p>
+                                </figure>
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+                                            <strong>Restaurant</strong> <small>@restaurant</small> <small>5hr</small>
+                                            <br>
+                                            <span class="icon is-small"><i class="fas fa-utensils"></i></span> Restaurant updated their menu
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+                        </a>
+                    </div>
+                </div>
+            </div>
+  
         </div>
     </div>
-</nav>
+  </nav>
 
 <br>
 <br>
