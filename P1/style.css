@@ -2,6 +2,7 @@
 
 body{
 	background-color: #ADFFF3;
+	min-height: 100vh;
 }
 
 #grid {
