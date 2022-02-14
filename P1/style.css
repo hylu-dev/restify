@@ -8,9 +8,9 @@ body{
 	display: flex; 
 	flex-wrap: wrap;
 	justify-content: center;
-	margin: 25px 50px 25px 50px;
+	padding: 25px 50px 25px 50px;
 }
-.card {
+.browse-card {
 	/*min-width: 150px;*/
 	width: 300px;
 	margin: 25px;
