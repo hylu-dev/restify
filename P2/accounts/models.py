@@ -33,6 +33,6 @@ class Notification(models.Model):
 	# object_id = models.PositiveIntegerField()
 	# poster = GenericForeignKey('content_type', 'object_id')
 
-    timestamp = models.DateTimeField()
-    body = models.CharField(max_length=200)
-    type = models.CharField(max_length=200)
+    timestamp = models.DateTimeField(help_text='Time of the event occurrence')
+    body = models.CharField(max_length=200, help_text='Description of the event')
+    type = models.CharField(max_length=200, help_text='Type of notification')
