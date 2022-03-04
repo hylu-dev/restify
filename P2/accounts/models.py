@@ -13,7 +13,7 @@ from phone_field import PhoneField
 # Omitted foreign keys in the case of creating relationship models
 class User(AbstractUser):
     avatar = models.ImageField(upload_to='images', help_text='Account profile icon')
-    phone_number = PhoneField(help_text='Account phone number')
+    phone_number = PhoneField(help_text='Account phone number', null=True, blank=True)
     # owned_restaurant = models.ForeignKey(to=Restaurant, on_delete=CASCADE, null=True)
 
 # Omitted foreign keys in the case of creating relationship models
