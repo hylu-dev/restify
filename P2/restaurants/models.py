@@ -9,4 +9,6 @@ class FoodItem(models.Model):
 
     name = models.CharField(max_length=200, help_text='Name of the menu item')
     description = models.CharField(max_length=200, help_text='Description of the menu item')
-    price = models.FloatField(min=0.0, help_text='Price of the menu item')
+
+    # Positive prices will be ensured by form validator
+    price = models.FloatField(help_text='Price of the menu item')
