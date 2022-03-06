@@ -6,4 +6,3 @@ from restaurants.models import FoodItem
 
 admin.site.register(User)
 admin.site.register(Notification)
-admin.site.register(FoodItem)
