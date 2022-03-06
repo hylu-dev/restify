@@ -2,7 +2,8 @@ from django.contrib import admin
 
 # Register your models here.
 
-admin.site.register(LikedEntity)
+from restaurants.models import FoodItem, LikedPost, LikedRestaurant, Restaurant, Post, Comment
+
 admin.site.register(LikedRestaurant)
 admin.site.register(LikedPost)
 admin.site.register(Restaurant)
