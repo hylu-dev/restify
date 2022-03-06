@@ -28,3 +28,14 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
+# from django.db.models import CASCADE
+
+# Create your models here.
+
+# Omitted foreign keys in the case of creating relationship models
+class FoodItem(models.Model):
+    # restaurant = models.ForeignKey(to=Restaurant, on_delete=CASCADE, null=True)
+
+    name = models.CharField(max_length=200, help_text='Name of the menu item')
+    description = models.CharField(max_length=200, help_text='Description of the menu item')
+    price = models.FloatField(min=0.0, help_text='Price of the menu item')
