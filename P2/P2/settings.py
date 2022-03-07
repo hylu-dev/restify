@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'restaurants',
     'phone_field',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
