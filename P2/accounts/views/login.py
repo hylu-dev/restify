@@ -9,18 +9,13 @@ from django.urls import reverse
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.generics import get_object_or_404, RetrieveAPIView, UpdateAPIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework_simplejwt.views import TokenObtainPairView
 
-from accounts.serializers import UserSerializer;
 
-class LoginView(APIView):
-    serializer_class = UserSerializer
+from accounts.serializers import LoginSerializer;
 
-    def post(self, request):
-        user = authenticate(username=request.POST['username'], password=request.POST['password'])
-        if user:
-            login(request, user)
-            return HttpResponseRedirect(reverse('accounts:profile'))
-        return HttpResponseBadRequest
+class LoginView(TokenObtainPairView):
+    permission_classes = [AllowAny]
+    serializer_class = LoginSerializer
