@@ -1,3 +1,4 @@
+from urllib import response
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -13,9 +14,11 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from accounts.serializers import ProfileSerializer;
+from accounts.serializers import ProfileUpdateSerializer;
 
-class UpdateProfileView(RetrieveAPIView, UpdateAPIView):
-    serializer_class = ProfileSerializer
+class ProfileUpdateView(UpdateAPIView):
+    serializer_class = ProfileUpdateSerializer
+    permission_classes = [IsAuthenticated]
+
     def get_object(self):
         return self.request.user

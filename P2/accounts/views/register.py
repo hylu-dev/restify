@@ -18,3 +18,6 @@ from accounts.serializers import RegisterSerializer;
 class RegisterView(CreateAPIView):
     serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
+
+    def get_object(self):
+        return self.request.user
