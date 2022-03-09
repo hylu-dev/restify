@@ -9,7 +9,6 @@ from django.db.models import CASCADE
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
-
 # Omitted foreign keys in the case of creating relationship models
 class User(AbstractUser):
     avatar = models.ImageField(upload_to='images', help_text='Account profile icon')
