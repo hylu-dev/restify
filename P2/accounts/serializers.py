@@ -51,10 +51,9 @@ class LoginSerializer(TokenObtainPairSerializer):
     pass
 
 class ProfileUpdateSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(required=False)
     avatar = serializers.ImageField(required=False)
-    password = serializers.CharField(required=True, validators=[validate_password])
-    password2 = serializers.CharField(required=True, write_only= True)
+    password = serializers.CharField(required=False, validators=[validate_password])
+    password2 = serializers.CharField(required=False, write_only= True)
     id = serializers.CharField(read_only= True)
     
     class Meta:
@@ -65,7 +64,6 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
             'last_name',
             'password',
             'password2',
-            'username',
             'email',
             'phone_number',
             'avatar'
@@ -73,15 +71,13 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         super().update(instance, validated_data)
-        instance.set_password(validated_data['password'])
-        instance.save()
+        if validated_data.get('password'):
+            instance.set_password(validated_data['password'])
+            instance.save()
         return instance
 
     def validate(self, data):
         errors = {}
-        request = self.context.get('request', None)
-        if data.get('username', '') != request.user.username and User.objects.filter(username=data.get('username', '')).exists():
-            errors['username'] = 'A user with that username already exists'
         if data.get('password', '') != data.get('password2', ''):
             errors['password'] = 'Passwords do not match'
         if errors:
