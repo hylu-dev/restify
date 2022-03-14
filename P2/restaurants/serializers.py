@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from restaurants.models import Restaurant
+from restaurants.models import Restaurant, Post
 
 class RestaurantSerializer(serializers.ModelSerializer):
     # Custom serializer field to show owner name instead of id
@@ -28,7 +28,7 @@ class LikedRestaurantSerializer(serializers.ModelSerializer):
 
 class LikedPostSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Restaurant
+        model = Post
         fields = ['likes']
 
     """
@@ -37,6 +37,36 @@ class LikedPostSerializer(serializers.ModelSerializer):
     """
     def update(self, instance, validated_data):
         instance.likes += 1
+        instance.save()
+
+        return instance
+
+class UnlikedRestaurantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Restaurant
+        fields = ['likes']
+
+    """
+    Instead of receiving input and updating the model instance, simply decrement
+    the likes attribute by 1
+    """
+    def update(self, instance, validated_data):
+        instance.likes -= 1
+        instance.save()
+
+        return instance
+
+class UnlikedPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ['likes']
+
+    """
+    Instead of receiving input and updating the model instance, simply decrement
+    the likes attribute by 1
+    """
+    def update(self, instance, validated_data):
+        instance.likes -= 1
         instance.save()
 
         return instance
