@@ -8,6 +8,7 @@ from accounts.views.profileall import ProfileAllView
 from accounts.views.follow import FollowedRestaurantView
 from accounts.views.unfollow import UnfollowedRestaurantView
 from rest_framework_simplejwt.views import TokenRefreshView
+from accounts.views.feed import FeedView
 
 app_name = 'accounts'
 
@@ -20,5 +21,6 @@ urlpatterns = [
     path('api/profile/edit/', ProfileUpdateView.as_view(), name='profile-update'),
     path('api/profile/all/', ProfileAllView.as_view(), name='profile-all'),
     path('api/restaurant/<int:id>/follow/', FollowedRestaurantView.as_view(), name='follow-restaurant'),
-    path('api/restaurant/<int:id>/unfollow/', UnfollowedRestaurantView.as_view(), name='unfollow-restaurant')
+    path('api/restaurant/<int:id>/unfollow/', UnfollowedRestaurantView.as_view(), name='unfollow-restaurant'),
+    path('api/feed/', FeedView.as_view(), name='feed')
 ]

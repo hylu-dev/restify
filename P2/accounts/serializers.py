@@ -120,3 +120,13 @@ class UnfollowedRestaurantSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
+class FeedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ['timestamp',
+                    'body',
+                    'likes',
+                    'user',
+                    'restaurant'
+                ]
