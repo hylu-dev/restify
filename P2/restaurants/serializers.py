@@ -10,7 +10,21 @@ class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
         fields = ['name', 'address', 'logo', 'postal_code', 'phone_number', 'owner', 'followers', 'likes']
+        read_only_fields = ('followers', 'likes')
 
+    def create(self, data):
+        if hasattr(self.context.get('request').user, 'owner'):
+            raise serializers.ValidationError("Owner already has a restaurant")
+        restaurant = Restaurant.objects.create(
+                name=data.get('name',''),
+                address=data.get('address',''),
+                logo=data.get('logo',''),
+                postal_code=data.get('postal_code',''),
+                phone_number=data.get('phone_number',''),
+                owner=self.context['request'].user
+        )
+        return restaurant
+        
 class LikedRestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
