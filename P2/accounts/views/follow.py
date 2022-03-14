@@ -4,7 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from restaurants.models import Restaurant
 
-from restaurants.serializers import FollowRestaurantSerializer
+from accounts.serializers import FollowedRestaurantSerializer
 
 class FollowedRestaurantView(UpdateAPIView):
     serializer_class = FollowedRestaurantSerializer

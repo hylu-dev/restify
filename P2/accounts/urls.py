@@ -19,6 +19,6 @@ urlpatterns = [
     path('api/profile/<int:id>/', ProfileView.as_view(), name='profile'),
     path('api/profile/edit/', ProfileUpdateView.as_view(), name='profile-update'),
     path('api/profile/all/', ProfileAllView.as_view(), name='profile-all'),
-    path('api/restaurant/<int:id>/follow', FollowedRestaurantView.as_view(), name='follow-restaurant'),
-    path('api/restaurant/<int:id>/unfollow', UnfollowedRestaurantView.as_view(), name='unfollow-restaurant')
+    path('api/restaurant/<int:id>/follow/', FollowedRestaurantView.as_view(), name='follow-restaurant'),
+    path('api/restaurant/<int:id>/unfollow/', UnfollowedRestaurantView.as_view(), name='unfollow-restaurant')
 ]
