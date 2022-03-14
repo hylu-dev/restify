@@ -28,8 +28,8 @@ class LikeRestaurantView(UpdateAPIView):
 
 class LikePostView(UpdateAPIView):
     """
-    At the click of a like button, increment the number of likes by 1 for a restaurant and create 
-    a LikedRestaurant object that tracks the user information.
+    At the click of a like button, increment the number of likes by 1 for a post and create 
+    a LikedPost object that tracks the user information.
     """
     serializer_class = LikedPostSerializer
     permission_classes = [IsAuthenticated]
