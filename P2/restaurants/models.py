@@ -4,11 +4,9 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from phone_field import PhoneField
 from accounts.models import User
 
-
-
 # Create your models here.
 class Restaurant(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
     address = models.CharField(max_length=200)
     logo = models.ImageField(upload_to='restaurant_logos/', null=True, blank=True)
     postal_code = models.CharField(max_length=7)
@@ -17,12 +15,18 @@ class Restaurant(models.Model):
     followers = models.ManyToManyField(User, related_name='followers', null=True, blank=True,)
     likes = models.IntegerField(default=0)
 
+    def getName(self):
+        return f"{self.name}"
+
 class Post(models.Model):
     timestamp = models.DateTimeField()
     body = models.TextField(null=True, blank=True)
     likes = models.IntegerField(default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+
+    def getName(self):
+        return f"Post {self.id} of {self.restaurant}"
 
 class LikedEntity(models.Model):
     users_who_like = models.ManyToManyField(User)
@@ -32,8 +36,14 @@ class LikedEntity(models.Model):
 class LikedRestaurant(LikedEntity):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
 
+    def getName(self):
+        return f"Liked {self.restaurant}"
+
 class LikedPost(LikedEntity):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def getName(self):
+        return f"Liked {self.post}"
 
 class Comment(models.Model):
     timestamp = models.DateTimeField()

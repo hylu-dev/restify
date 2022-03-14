@@ -1,4 +1,5 @@
 from rest_framework.generics import get_object_or_404, UpdateAPIView
+from rest_framework.permissions import IsAuthenticated
 from django.core.exceptions import ObjectDoesNotExist
 
 from restaurants.models import Restaurant, LikedRestaurant, LikedPost, Post
@@ -11,6 +12,7 @@ class LikeRestaurantView(UpdateAPIView):
     a LikedRestaurant object that tracks the user information.
     """
     serializer_class = LikedRestaurantSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_object(self):
         restaurant = get_object_or_404(Restaurant, id=self.kwargs['id'])
@@ -30,6 +32,7 @@ class LikePostView(UpdateAPIView):
     a LikedRestaurant object that tracks the user information.
     """
     serializer_class = LikedPostSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_object(self):
         post = get_object_or_404(Post, id=self.kwargs['id'])
