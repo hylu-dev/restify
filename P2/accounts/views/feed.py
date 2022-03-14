@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from accounts.models import User
+from restaurants.models import Post, Restaurant
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.shortcuts import render
@@ -25,6 +26,7 @@ class SmallResultsSetPagination(PageNumberPagination):
 class FeedView(ListAPIView):
     serializer_class = FeedSerializer
     pagination_class = SmallResultsSetPagination
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         queryset = Post.objects.filter(restaurant__in=Restaurant.objects.filter(followers=self.request.user)).order_by('-timestamp')
