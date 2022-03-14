@@ -5,6 +5,7 @@ from django.core.validators import validate_email
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from accounts.models import User
+from restaurants.models import Restaurant
 
 class RegisterSerializer(serializers.ModelSerializer):
     username = serializers.CharField(required=True)
@@ -97,3 +98,25 @@ class ProfileSerializer(serializers.ModelSerializer):
             'phone_number',
             'avatar'
         ]
+
+class FollowedRestaurantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Restaurant
+        fields = ['followers']
+
+    def update(self, instance, validated_data):
+        instance.followers.add(self.context.get('request', None).user)
+        instance.save()
+
+        return instance
+
+class UnfollowedRestaurantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Restaurant
+        fields = ['followers']
+
+    def update(self, instance, validated_data):
+        instance.followers.remove(self.context.get('request', None).user)
+        instance.save()
+
+        return instance

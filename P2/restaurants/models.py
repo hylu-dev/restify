@@ -12,7 +12,7 @@ class Restaurant(models.Model):
     postal_code = models.CharField(max_length=7)
     phone_number = PhoneField(help_text='Account phone number', null=True, blank=True)
     owner = models.OneToOneField(User, on_delete=models.CASCADE, related_name='owner')
-    followers = models.ManyToManyField(User, related_name='followers', null=True, blank=True,)
+    followers = models.ManyToManyField(User, related_name='followers', blank=True,)
     likes = models.IntegerField(default=0)
 
     def getName(self):
