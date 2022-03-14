@@ -25,3 +25,18 @@ class LikedRestaurantSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
+class LikedPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Restaurant
+        fields = ['likes']
+
+    """
+    Instead of receiving input and updating the model instance, simply increment
+    the likes attribute by 1
+    """
+    def update(self, instance, validated_data):
+        instance.likes += 1
+        instance.save()
+
+        return instance
