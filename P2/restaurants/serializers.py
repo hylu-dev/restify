@@ -92,7 +92,7 @@ class FoodItemSerializer(serializers.ModelSerializer):
                 price=data.get('price', '')
             )
 
-            # Create a notification for followers (users) to know that the menu was 
+            # Create a notification for followers (users) to know that the menu was updated
             # Do nothing if there are no followers for this restaurant
             if restaurant.followers.first():
                 notification = Notification.objects.create(
@@ -107,6 +107,34 @@ class FoodItemSerializer(serializers.ModelSerializer):
                 notification.save()
 
             return foodItem
+
+        else:
+            raise BadRequest
+    
+    def update(self, instance, validated_data):
+        restaurant=self.context['request'].user.owner
+
+        if restaurant.owner.id == self.context['request'].user.id:
+            instance.name = validated_data.get('name')
+            instance.description = validated_data.get('description')
+            instance.price = validated_data.get('price')
+            instance.save()
+
+            # Create a notification for followers (users) to know that the menu was updated
+            # Do nothing if there are no followers for this restaurant
+            if restaurant.followers.first():
+                notification = Notification.objects.create(
+                    source=restaurant,
+
+                    target=instance,
+
+                    body=" has updated their ",
+                    type='Update',
+                )
+                notification.users.add(*restaurant.followers.all())
+                notification.save()
+
+            return instance
 
         else:
             raise BadRequest
@@ -132,17 +160,18 @@ class PostSerializer(serializers.ModelSerializer):
         )
 
         if user.id == restaurant.owner.id:
-            # Create a Notification object for any followers (users), spawned from a restaurant posting
-            notification = Notification.objects.create(
-                source=restaurant,
+            # Create a Notification object for any followers, if applicable, spawned from a restaurant posting
+            if restaurant.followers.first():
+                notification = Notification.objects.create(
+                    source=restaurant,
 
-                target=post,
+                    target=post,
 
-                body=" has made a new ",
-                type='Post',
-            )
-            notification.users.add(*restaurant.followers.all())
-            notification.save()
+                    body=" has made a new ",
+                    type='Post',
+                )
+                notification.users.add(*restaurant.followers.all())
+                notification.save()
         else:
             # Create a Notification object for the restaurant owner, spawned from users posting on
             # the restaurant page
