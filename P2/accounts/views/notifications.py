@@ -31,5 +31,5 @@ class NotificationView(ListAPIView):
     permission_classes = [IsAuthenticated]
     
     def get_queryset(self):
-        queryset = Notification.objects.filter(users=self.request.user)
+        queryset = Notification.objects.filter(users=self.request.user).order_by('-timestamp')
         return queryset
