@@ -25,7 +25,7 @@ class Photo(models.Model):
 
 class Post(models.Model):
     timestamp = models.DateTimeField(auto_now=True)
-    body = models.TextField(null=True, blank=True)
+    body = models.TextField()
     likes = models.IntegerField(default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
