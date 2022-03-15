@@ -18,7 +18,7 @@ from restaurants.models import Restaurant
 
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.pagination import LimitOffsetPagination
-from accounts.serializers import BrowsingSerializer;
+from accounts.serializers import NotificationSerializer;
 
 class SmallResultsSetPagination(PageNumberPagination):
     page_size = 5

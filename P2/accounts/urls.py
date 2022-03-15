@@ -10,7 +10,7 @@ from accounts.views.unfollow import UnfollowedRestaurantView
 from rest_framework_simplejwt.views import TokenRefreshView
 from accounts.views.feed import FeedView
 from accounts.views.browsing import BrowsingView
-from accounts.views.browsing import NotificationView
+from accounts.views.notifications import NotificationView
 
 app_name = 'accounts'
 
