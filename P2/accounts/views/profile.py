@@ -1,22 +1,29 @@
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
-from accounts.models import User
-from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
-from django.shortcuts import render
-from django.template.response import TemplateResponse
-from django.urls import reverse
-from django.views import View
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.generics import get_object_or_404, RetrieveAPIView, UpdateAPIView
+from rest_framework.generics import get_object_or_404, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from django.http import JsonResponse
-
 from accounts.serializers import ProfileSerializer;
+from rest_framework.filters import BaseFilterBackend
+import coreapi
+import coreschema
+
+class CustomFilter(BaseFilterBackend):
+    def get_schema_fields(self, view):
+        fields = [
+            coreapi.Field(
+                name="id",
+                schema=coreschema.String(description="the id of the user who's profile we are viewing"),
+                required=True,
+                location='path')
+        ]
+        return fields
+
+    def filter_queryset(self, request, queryset, view):
+        return queryset
 
 class ProfileView(RetrieveAPIView):
+    """
+    Returns the profile of a user with id of id
+    """
+    filter_backends = (CustomFilter,)
     serializer_class = ProfileSerializer
 
     def get_object(self):

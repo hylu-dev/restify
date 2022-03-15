@@ -1,21 +1,29 @@
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
-from django.shortcuts import render
-from django.template.response import TemplateResponse
-from django.urls import reverse
-from django.views import View
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.generics import get_object_or_404, RetrieveAPIView, UpdateAPIView, CreateAPIView
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
+from rest_framework.generics import CreateAPIView
+from rest_framework.permissions import IsAuthenticated
 from accounts.serializers import CommentSerializer;
+from rest_framework.filters import BaseFilterBackend
+import coreapi
+import coreschema
+
+class CustomFilter(BaseFilterBackend):
+    def get_schema_fields(self, view):
+        fields = [
+            coreapi.Field(
+                name="id",
+                schema=coreschema.String(description='the id of the restaurant that owns the post this comment belong to'),
+                required=True,
+                location='path')
+        ]
+        return fields
+
+    def filter_queryset(self, request, queryset, view):
+        return queryset
 
 class CommentView(CreateAPIView):
+    """
+    Adds a comment to restruant with id of id
+    """ 
+    filter_backends = (CustomFilter,)
     serializer_class = CommentSerializer
     permission_classes = [IsAuthenticated]
 
