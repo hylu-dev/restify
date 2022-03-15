@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
 from django.core.validators import validate_email
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from django.core.paginator import Paginator
 
 from accounts.models import User
 from restaurants.models import Restaurant, Post, Comment
@@ -130,16 +131,28 @@ class CommentSerializer(serializers.ModelSerializer):
         ]
 
 class FeedSerializer(serializers.ModelSerializer):
-    comments = CommentSerializer(source='comments')
+    # https://medium.com/dreidev/nested-pagination-md-6414a85b5501
+    comments = serializers.SerializerMethodField('paginated_comments')
+
     class Meta:
         model = Post
         fields = ['timestamp',
                     'body',
                     'likes',
                     'user',
-                    'restaurant'
+                    'restaurant',
                     'comments'
                 ]
+
+    def paginated_comments(self, obj):
+        page_size = self.context['request'].query_params.get('size') or 10
+        paginator = Paginator(obj.post.all(), page_size)
+        page_number = self.context['request'].query_params.get('set') or 1
+        comments = paginator.page(page_number)
+        serializer = CommentSerializer(comments, many=True)
+        return serializer.data
+
+    
 
 class BrowsingSerializer(serializers.ModelSerializer):
     class Meta:
