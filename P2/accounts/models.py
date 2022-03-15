@@ -47,7 +47,7 @@ class Notification(models.Model):
     target_id = models.PositiveIntegerField()
     target = GenericForeignKey('target_type', 'target_id')
 
-    timestamp = models.DateTimeField(help_text='Time of the event occurrence')
+    timestamp = models.DateTimeField(auto_now=True, help_text='Time of the event occurrence')
     body = models.CharField(max_length=200, help_text='Description of the event')
     type = models.CharField(max_length=200, choices=NotificationType.choices)
 
