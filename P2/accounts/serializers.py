@@ -4,6 +4,7 @@ from django.contrib.auth.password_validation import validate_password
 from django.core.validators import validate_email
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.core.paginator import Paginator
+from django.http import Http404
 
 from accounts.models import User
 from restaurants.models import Restaurant, Post, Comment
@@ -147,7 +148,12 @@ class FeedSerializer(serializers.ModelSerializer):
     def paginated_comments(self, obj):
         page_size = self.context['request'].query_params.get('size') or 10
         paginator = Paginator(obj.post.all(), page_size)
-        page_number = self.context['request'].query_params.get('set') or 1
+        page_number = self.context['request'].query_params.get('batch') or 1
+
+        total_results = (len(obj.post.all()))
+        if total_results - int(page_size)*int(page_number) < -int(page_number):
+            raise Http404
+
         comments = paginator.page(page_number)
         serializer = CommentSerializer(comments, many=True)
         return serializer.data
