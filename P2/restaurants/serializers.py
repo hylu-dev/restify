@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from rest_framework.generics import get_object_or_404
+from django.core.exceptions import BadRequest
 
 from restaurants.models import Restaurant, Post, FoodItem
 from accounts.models import Notification
@@ -81,27 +82,33 @@ class FoodItemSerializer(serializers.ModelSerializer):
     def create(self, data):
         restaurant = get_object_or_404(Restaurant, id=self.context['id'])
 
-        # First create the food item for the menu
-        foodItem = FoodItem.objects.create(
-            restaurant=restaurant,
-            name=data.get('name', ''),
-            description=data.get('description', ''),
-            price=data.get('price', '')
-        )
+        if restaurant.owner.id == self.context['request'].user.id:
+            # First create the food item for the menu
+            foodItem = FoodItem.objects.create(
+                restaurant=restaurant,
+                name=data.get('name', ''),
+                description=data.get('description', ''),
+                price=data.get('price', '')
+            )
 
-        # Create a notification for followers (users) to know that the menu was updated
-        notification = Notification.objects.create(
-            source=restaurant,
+            # Create a notification for followers (users) to know that the menu was 
+            # Do nothing if there are no followers for this restaurant
+            if restaurant.followers.first():
+                notification = Notification.objects.create(
+                    source=restaurant,
 
-            target=foodItem,
+                    target=foodItem,
 
-            body=" has updated their ",
-            type='Update',
-        )
-        notification.users.add(*restaurant.followers.all())
-        notification.save()
+                    body=" has updated their ",
+                    type='Update',
+                )
+                notification.users.add(*restaurant.followers.all())
+                notification.save()
 
-        return foodItem
+            return foodItem
+
+        else:
+            raise BadRequest
 
 class PostSerializer(serializers.ModelSerializer):
     user = serializers.CharField(read_only=True)
