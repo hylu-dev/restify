@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from restaurants.models import Restaurant, Post, FoodItem
+from restaurants.models import Restaurant, Post, FoodItem, Photo
 from accounts.models import Notification
 
 class RestaurantSerializer(serializers.ModelSerializer):
@@ -91,6 +91,16 @@ class FoodItemSerializer(serializers.ModelSerializer):
         model = FoodItem
         fields = ['name', 'description', 'price']
 
+class AddPhotoSerializer():
+    model = Photo
+    fields = ['image', 'restaurant']
+
+    def create(self, data):
+        photo = Photo.objects.create(
+                image=data.get('image',''),
+                restaurant=data.get('restaurant',''))
+        return photo
+
 class PostSerializer(serializers.ModelSerializer):
     user = serializers.CharField(read_only=True)
     restaurant = serializers.CharField(read_only=True)
@@ -138,3 +148,4 @@ class PostSerializer(serializers.ModelSerializer):
             notification.save()
 
         return post
+
