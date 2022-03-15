@@ -15,6 +15,7 @@ from rest_framework.views import APIView
 from django.http import JsonResponse
 
 from restaurants.models import Restaurant
+from accounts.models import Notification
 
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.pagination import LimitOffsetPagination
@@ -27,6 +28,7 @@ class SmallResultsSetPagination(PageNumberPagination):
 class NotificationView(ListAPIView):
     serializer_class = NotificationSerializer
     pagination_class = SmallResultsSetPagination
-
-    def get_object(self):
-        return self.request.user.notifications
+    
+    def get_queryset(self):
+        queryset = Notification.objects.filter(user__in=User.objects.filter(notifications=self.request.user))
+        return queryset
