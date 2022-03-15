@@ -28,7 +28,7 @@ class Notification(models.Model):
         POST = 'Post'
         UPDATE = 'Update'
 
-    users = models.ManyToManyField(User)
+    users = models.ManyToManyField(User, related_name='notifications')
 
     """
     GenericForeignKey to link to any of the models, since both a Restaurant or User can be a poster.

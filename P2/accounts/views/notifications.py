@@ -28,7 +28,8 @@ class SmallResultsSetPagination(PageNumberPagination):
 class NotificationView(ListAPIView):
     serializer_class = NotificationSerializer
     pagination_class = SmallResultsSetPagination
+    permission_classes = [IsAuthenticated]
     
     def get_queryset(self):
-        queryset = Notification.objects.filter(user__in=User.objects.filter(notifications=self.request.user))
+        queryset = Notification.objects.filter(users=self.request.user)
         return queryset
