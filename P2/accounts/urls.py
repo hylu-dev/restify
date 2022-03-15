@@ -10,6 +10,7 @@ from accounts.views.unfollow import UnfollowedRestaurantView
 from rest_framework_simplejwt.views import TokenRefreshView
 from accounts.views.feed import FeedView
 from accounts.views.browsing import BrowsingView
+from accounts.views.browsing import NotificationView
 
 app_name = 'accounts'
 
@@ -25,4 +26,5 @@ urlpatterns = [
     path('api/restaurant/<int:id>/unfollow/', UnfollowedRestaurantView.as_view(), name='unfollow-restaurant'),
     path('api/feed/', FeedView.as_view(), name='feed'),
     path('api/browse/', BrowsingView.as_view(), name='browsing'),
+    path('api/notifications/', NotificationView.as_view(), name='notifications')
 ]
