@@ -5,7 +5,7 @@ from restaurants.models import Photo
 
 from restaurants.serializers import PhotoSerializer;
 
-class DeletePostView(DestroyAPIView):
+class DeletePhotoView(DestroyAPIView):
     serializer_class = PhotoSerializer
     permission_classes = [IsAuthenticated]
 
