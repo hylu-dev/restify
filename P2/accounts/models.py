@@ -18,6 +18,9 @@ class User(AbstractUser):
     def getName(self):
         return f"{self.first_name} {self.last_name}"
 
+    def __str__(self):
+        return self.username
+
 # Omitted foreign keys in the case of creating relationship models
 class Notification(models.Model):
 

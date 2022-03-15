@@ -15,6 +15,8 @@ class Restaurant(models.Model):
     followers = models.ManyToManyField(User, related_name='followers', blank=True,)
     likes = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.name
 
     def getName(self):
         return f"{self.name}"
@@ -62,3 +64,6 @@ class FoodItem(models.Model):
     name = models.CharField(max_length=200, help_text='Name of the menu item')
     description = models.CharField(max_length=200, help_text='Description of the menu item')
     price = models.FloatField(MinValueValidator(0.0), help_text='Price of the menu item')
+
+    def __str__(self):
+        return self.name
