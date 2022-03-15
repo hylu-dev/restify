@@ -20,6 +20,7 @@ from restaurants.models import Restaurant
 from rest_framework.pagination import PageNumberPagination
 from restaurants.serializers import RestaurantSerializer;
 from functools import reduce
+import operator
 
 class SmallResultsSetPagination(PageNumberPagination):
     page_size = 8
@@ -42,7 +43,7 @@ class SearchRestaurantView(ListAPIView):
             
         query = self.request.query_params.get('query').split()
         queryset = Restaurant.objects.all().filter(
-            reduce(lambda x, y: x & y, [(
+            reduce(operator.and_, [(
                 Q(name__contains=term) | Q(address__contains=term) | Q(fooditem__name__contains=term)
             ) for term in query])
             ).order_by('-likes')
