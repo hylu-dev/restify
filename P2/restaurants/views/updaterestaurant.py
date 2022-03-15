@@ -1,5 +1,7 @@
+from django.http import Http404
 from rest_framework.generics import UpdateAPIView
 from rest_framework.permissions import IsAuthenticated
+from django.core.exceptions import ObjectDoesNotExist
 
 from restaurants.serializers import RestaurantSerializer;
 
@@ -8,4 +10,7 @@ class UpdateRestaurantView(UpdateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_object(self):
-        return self.request.user.owner
+        try:
+            return self.request.user.owner
+        except ObjectDoesNotExist:
+            raise Http404
