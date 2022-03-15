@@ -187,3 +187,28 @@ class PostSerializer(serializers.ModelSerializer):
             notification.save()
 
         return post
+
+class PhotoSerializer(serializers.ModelSerializer):
+    restaurant = serializers.CharField(read_only=True)
+    image = serializers.ImageField()
+
+    class Meta:
+        model = Photo
+        fields = ['restaurant', 'image']
+
+    def create(self, data):
+        restaurant = get_object_or_404(Restaurant, id=self.context.get('id', None))
+
+        photo = Photo.objects.create(
+            image =image,
+            restaurant=restaurant
+        )
+
+        return photo
+
+class GallerySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Photo
+        fields = ['restaurant', 'image']
+
+
