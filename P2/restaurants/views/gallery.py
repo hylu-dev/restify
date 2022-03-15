@@ -3,7 +3,7 @@ from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.pagination import LimitOffsetPagination
-from accounts.serializers import GallerySerializer
+from restaurants.serializers import GallerySerializer
 
 class SmallResultsSetPagination(PageNumberPagination):
     page_size = 6

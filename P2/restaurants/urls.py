@@ -13,7 +13,7 @@ from restaurants.views.createpost import CreatePostView
 from restaurants.views.deletepost import DeletePostView
 from restaurants.views.addphotos import AddPhotoView
 from restaurants.views.deletephoto import DeletePhotoView
-from restaurants.view.gallery import GalleryView
+from restaurants.views.gallery import GalleryView
 
 app_name = 'restaurants'
 
