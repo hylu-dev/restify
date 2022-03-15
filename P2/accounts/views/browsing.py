@@ -1,7 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from accounts.models import User
-from restaurants.models import Post, Restaurant
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.shortcuts import render
@@ -17,18 +16,16 @@ from django.http import JsonResponse
 
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.pagination import LimitOffsetPagination
-
-from accounts.serializers import FeedSerializer
+from accounts.serializers import BrowsingSerializer;
 
 class SmallResultsSetPagination(PageNumberPagination):
-    page_size = 6
+    page_size = 8
     page_size_query_param = 'page_size'
 
-class FeedView(ListAPIView):
-    serializer_class = FeedSerializer
+class BrowsingView(ListAPIView):
+    serializer_class = BrowsingSerializer
     pagination_class = SmallResultsSetPagination
-    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        queryset = Post.objects.filter(restaurant__in=Restaurant.objects.filter(followers=self.request.user)).order_by('-timestamp')
+        queryset = Restaurant.objects.all().order_by('likes')
         return queryset

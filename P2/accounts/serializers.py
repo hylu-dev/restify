@@ -130,3 +130,12 @@ class FeedSerializer(serializers.ModelSerializer):
                     'user',
                     'restaurant'
                 ]
+
+class BrowsingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Restaurant
+        fields = ['name',
+                    'address',
+                    'postal_code',
+                    'likes'
+                ]
