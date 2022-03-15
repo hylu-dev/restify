@@ -5,7 +5,7 @@ from django.core.validators import validate_email
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from accounts.models import User
-from restaurants.models import Restaurant
+from restaurants.models import Restaurant, Post
 
 class RegisterSerializer(serializers.ModelSerializer):
     username = serializers.CharField(required=True)
