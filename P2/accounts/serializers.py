@@ -6,7 +6,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.core.paginator import Paginator
 from django.http import Http404
 
-from accounts.models import User
+from accounts.models import User, Notification
 from restaurants.models import Restaurant, Post, Comment
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -158,8 +158,6 @@ class FeedSerializer(serializers.ModelSerializer):
         serializer = CommentSerializer(comments, many=True)
         return serializer.data
 
-    
-
 class BrowsingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
@@ -168,3 +166,11 @@ class BrowsingSerializer(serializers.ModelSerializer):
                     'postal_code',
                     'likes'
                 ]
+
+class NotificationView(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields = ['timestamp',
+                'body',
+                'type'
+        ]
