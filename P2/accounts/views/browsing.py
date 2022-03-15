@@ -14,6 +14,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import JsonResponse
 
+from restaurants.models import Restaurant
+
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.pagination import LimitOffsetPagination
 from accounts.serializers import BrowsingSerializer;
@@ -27,5 +29,5 @@ class BrowsingView(ListAPIView):
     pagination_class = SmallResultsSetPagination
 
     def get_queryset(self):
-        queryset = Restaurant.objects.all().order_by('likes')
+        queryset = Restaurant.objects.all().order_by('-likes')
         return queryset
