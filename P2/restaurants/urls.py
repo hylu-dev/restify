@@ -5,6 +5,8 @@ from restaurants.views.updaterestaurant import UpdateRestaurantView
 from restaurants.views.searchrestaurant import SearchRestaurantView
 from restaurants.views.like import LikeRestaurantView, LikePostView
 from restaurants.views.unlike import UnlikeRestaurantView, UnlikePostView
+from restaurants.views.restaurantposts import RestaurantPostsView
+
 from restaurants.views.createmenu import CreateFoodItemView
 from restaurants.views.updatemenu import UpdateFoodItemView
 from restaurants.views.createpost import CreatePostView
@@ -17,6 +19,7 @@ urlpatterns = [
     path('api/restaurant/<int:id>/edit/', UpdateRestaurantView.as_view(), name='edit-restaurant'),
     path('api/restaurant/search/', SearchRestaurantView.as_view(), name='search-restaurant'),
 
+    path('api/restaurant/post/<int:id>/', RestaurantPostsView.as_view(), name='post-restaurant'),
     path('api/restaurant/<int:id>/like/', LikeRestaurantView.as_view(), name='like-restaurant'),
     path('api/restaurant/post/<int:id>/like/', LikePostView.as_view(), name='like-post'),
     path('api/restaurant/<int:id>/unlike/', UnlikeRestaurantView.as_view(), name='unlike-restaurant'),
