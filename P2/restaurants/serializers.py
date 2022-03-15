@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from restaurants.models import Restaurant, Post
+from restaurants.models import Restaurant, Post, FoodItem
 
 class RestaurantSerializer(serializers.ModelSerializer):
     # Custom serializer field to show owner name instead of id
@@ -70,3 +70,9 @@ class UnlikedPostSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
+class FoodItemSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = FoodItem
+        fields = ['name', 'description', 'price']
