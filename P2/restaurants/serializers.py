@@ -206,4 +206,9 @@ class PhotoSerializer(serializers.ModelSerializer):
 
         return photo
 
+class GallerySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Photo
+        fields = ['restaurant', 'image']
+
 
