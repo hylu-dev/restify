@@ -15,8 +15,13 @@ class Restaurant(models.Model):
     followers = models.ManyToManyField(User, related_name='followers', blank=True,)
     likes = models.IntegerField(default=0)
 
+
     def getName(self):
         return f"{self.name}"
+
+class Photo(models.Model):
+    image = models.ImageField(upload_to='images', help_text='Photo for gallery')
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='photos')
 
 class Post(models.Model):
     timestamp = models.DateTimeField()

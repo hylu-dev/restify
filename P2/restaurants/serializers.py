@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from restaurants.models import Restaurant, Post, FoodItem
+from restaurants.models import Restaurant, Post, FoodItem, Photo
 
 class RestaurantSerializer(serializers.ModelSerializer):
     # Custom serializer field to show owner name instead of id
@@ -90,3 +90,13 @@ class FoodItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = FoodItem
         fields = ['name', 'description', 'price']
+
+class AddPhotoSerializer():
+    model = Photo
+    fields = ['image', 'restaurant']
+
+    def create(self, data):
+        photo = Photo.objects.create(
+                image=data.get('image',''),
+                restaurant=data.get('restaurant',''))
+        return photo
