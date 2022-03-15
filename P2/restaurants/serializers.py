@@ -1,6 +1,9 @@
 from rest_framework import serializers
 from django.shortcuts import get_object_or_404
 from restaurants.models import Restaurant, Post, FoodItem, Photo
+from django.core.exceptions import BadRequest
+
+from restaurants.models import Restaurant, Post, FoodItem
 from accounts.models import Notification
 
 class RestaurantSerializer(serializers.ModelSerializer):
@@ -11,21 +14,7 @@ class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
         fields = ['name', 'address', 'logo', 'postal_code', 'phone_number', 'owner', 'followers', 'likes']
-        read_only_fields = ('followers', 'likes')
 
-    def create(self, data):
-        if hasattr(self.context.get('request').user, 'owner'):
-            raise serializers.ValidationError("Owner already has a restaurant")
-        restaurant = Restaurant.objects.create(
-                name=data.get('name',''),
-                address=data.get('address',''),
-                logo=data.get('logo',''),
-                postal_code=data.get('postal_code',''),
-                phone_number=data.get('phone_number',''),
-                owner=self.context['request'].user
-        )
-        return restaurant
-        
 class LikedRestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
@@ -91,15 +80,36 @@ class FoodItemSerializer(serializers.ModelSerializer):
         model = FoodItem
         fields = ['name', 'description', 'price']
 
-class AddPhotoSerializer():
-    model = Photo
-    fields = ['image', 'restaurant']
-
     def create(self, data):
-        photo = Photo.objects.create(
-                image=data.get('image',''),
-                restaurant=data.get('restaurant',''))
-        return photo
+        restaurant = get_object_or_404(Restaurant, id=self.context['id'])
+
+        if restaurant.owner.id == self.context['request'].user.id:
+            # First create the food item for the menu
+            foodItem = FoodItem.objects.create(
+                restaurant=restaurant,
+                name=data.get('name', ''),
+                description=data.get('description', ''),
+                price=data.get('price', '')
+            )
+
+            # Create a notification for followers (users) to know that the menu was 
+            # Do nothing if there are no followers for this restaurant
+            if restaurant.followers.first():
+                notification = Notification.objects.create(
+                    source=restaurant,
+
+                    target=foodItem,
+
+                    body=" has updated their ",
+                    type='Update',
+                )
+                notification.users.add(*restaurant.followers.all())
+                notification.save()
+
+            return foodItem
+
+        else:
+            raise BadRequest
 
 class PostSerializer(serializers.ModelSerializer):
     user = serializers.CharField(read_only=True)
@@ -148,4 +158,3 @@ class PostSerializer(serializers.ModelSerializer):
             notification.save()
 
         return post
-
