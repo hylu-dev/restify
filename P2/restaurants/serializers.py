@@ -1,5 +1,5 @@
 from rest_framework import serializers
-
+from django.shortcuts import get_object_or_404
 from restaurants.models import Restaurant, Post, FoodItem, Photo
 from accounts.models import Notification
 
@@ -110,7 +110,7 @@ class PostSerializer(serializers.ModelSerializer):
         fields = ['timestamp', 'body', 'likes', 'user', 'restaurant']
 
     def create(self, data):
-        restaurant = Restaurant.objects.get(id=self.context['id'])
+        restaurant = get_object_or_404(Restaurant, id=self.context.get('id', None))
         user = self.context['request'].user
 
         # First, create the Post object

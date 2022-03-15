@@ -132,22 +132,36 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = ['timestamp',
                     'body',
                     'user',
-                    'post'
+                    'restaurant'
         ]
-        read_only_fields = ('timestamp', 'user', 'post')
+        read_only_fields = ('timestamp', 'user', 'restaurant')
 
     def create(self, data):
+        restaurant = get_object_or_404(Restaurant, id=self.context.get('id', None))
+        user = self.context['request'].user
+
         comment = Comment.objects.create(
-            user = self.context.get('request', None).user,
+            user = user,
             body = data.get('body', ''),
-            post = get_object_or_404(Post, id=self.context.get('id', None)),
-            
+            restaurant = restaurant,
         )
+
+        # Create a Notification for the restaurant owner
+        notification = Notification.objects.create(
+            source=user,
+
+            target=comment,
+
+            body=" has made a new ",
+            type='Comment',
+        )
+        notification.users.add(restaurant.owner)
+        notification.save()
         return comment
 
 class FeedSerializer(serializers.ModelSerializer):
     # https://medium.com/dreidev/nested-pagination-md-6414a85b5501
-    comments = serializers.SerializerMethodField('paginated_comments')
+    # comments = serializers.SerializerMethodField('paginated_comments')
 
     class Meta:
         model = Post
@@ -156,22 +170,21 @@ class FeedSerializer(serializers.ModelSerializer):
                 'body',
                 'likes',
                 'user',
-                'restaurant',
-                'comments'
+                'restaurant'
                 ]
 
-    def paginated_comments(self, obj):
-        page_size = self.context['request'].query_params.get('size') or 10
-        paginator = Paginator(obj.post.all(), page_size)
-        page_number = self.context['request'].query_params.get('batch') or 1
+    # def paginated_comments(self, obj):
+    #     page_size = self.context['request'].query_params.get('size') or 10
+    #     paginator = Paginator(obj.post.all(), page_size)
+    #     page_number = self.context['request'].query_params.get('batch') or 1
 
-        total_results = (len(obj.post.all()))
-        if total_results - int(page_size)*int(page_number) < -int(page_number):
-            raise Http404
+    #     total_results = (len(obj.post.all()))
+    #     if total_results - int(page_size)*int(page_number) < -int(page_number):
+    #         raise Http404
 
-        comments = paginator.page(page_number)
-        serializer = CommentSerializer(comments, many=True)
-        return serializer.data
+    #     comments = paginator.page(page_number)
+    #     serializer = CommentSerializer(comments, many=True)
+    #     return serializer.data
 
 class BrowsingSerializer(serializers.ModelSerializer):
     class Meta:

@@ -53,7 +53,7 @@ class LikedPost(LikedEntity):
 class Comment(models.Model):
     timestamp = models.DateTimeField(auto_now=True)
     body = models.TextField()
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post')
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='restaurant')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 # Omitted foreign keys in the case of creating relationship models
