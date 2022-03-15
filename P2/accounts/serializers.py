@@ -5,7 +5,7 @@ from django.core.validators import validate_email
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from accounts.models import User
-from restaurants.models import Restaurant, Post
+from restaurants.models import Restaurant, Post, Comment
 
 class RegisterSerializer(serializers.ModelSerializer):
     username = serializers.CharField(required=True)
@@ -121,7 +121,16 @@ class UnfollowedRestaurantSerializer(serializers.ModelSerializer):
 
         return instance
 
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['timestamp',
+                    'body',
+                    'user'
+        ]
+
 class FeedSerializer(serializers.ModelSerializer):
+    comments = CommentSerializer(source='comments')
     class Meta:
         model = Post
         fields = ['timestamp',
@@ -129,6 +138,7 @@ class FeedSerializer(serializers.ModelSerializer):
                     'likes',
                     'user',
                     'restaurant'
+                    'comments'
                 ]
 
 class BrowsingSerializer(serializers.ModelSerializer):
