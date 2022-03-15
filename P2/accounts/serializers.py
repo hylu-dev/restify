@@ -200,6 +200,8 @@ class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notification
         fields = [
+            'source_id',
+            'target_id',
             'timestamp',
             'body',
             'type'
