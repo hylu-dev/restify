@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from restaurants.models import Restaurant, Post, FoodItem
+from accounts.models import Notification
 
 class RestaurantSerializer(serializers.ModelSerializer):
     # Custom serializer field to show owner name instead of id
@@ -86,7 +87,54 @@ class UnlikedPostSerializer(serializers.ModelSerializer):
         return instance
 
 class FoodItemSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = FoodItem
         fields = ['name', 'description', 'price']
+
+class PostSerializer(serializers.ModelSerializer):
+    user = serializers.CharField(read_only=True)
+    restaurant = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = Post
+        fields = ['timestamp', 'body', 'likes', 'user', 'restaurant']
+
+    def create(self, data):
+        restaurant = Restaurant.objects.get(id=self.context['id'])
+        user = self.context['request'].user
+
+        # First, create the Post object
+        post = Post.objects.create(
+            timestamp=data.get('timestamp',''),
+            body=data.get('body',''),
+            user=user,
+            restaurant=restaurant,
+        )
+
+        if user.id == restaurant.owner.id:
+            # Create a Notification object for any followers (users), spawned from a restaurant posting
+            notification = Notification.objects.create(
+                source=restaurant,
+
+                target=post,
+
+                body=" has made a new ",
+                type='Post',
+            )
+            notification.users.add(*restaurant.followers.all())
+            notification.save()
+        else:
+            # Create a Notification object for the restaurant owner, spawned from users posting on
+            # the restaurant page
+            notification = Notification.objects.create(
+                source=user,
+
+                target=post,
+
+                body=" has made a new ",
+                type='Post',
+            )
+            notification.users.add(restaurant.owner)
+            notification.save()
+
+        return post
