@@ -160,17 +160,18 @@ class PostSerializer(serializers.ModelSerializer):
         )
 
         if user.id == restaurant.owner.id:
-            # Create a Notification object for any followers (users), spawned from a restaurant posting
-            notification = Notification.objects.create(
-                source=restaurant,
+            # Create a Notification object for any followers, if applicable, spawned from a restaurant posting
+            if restaurant.followers.first():
+                notification = Notification.objects.create(
+                    source=restaurant,
 
-                target=post,
+                    target=post,
 
-                body=" has made a new ",
-                type='Post',
-            )
-            notification.users.add(*restaurant.followers.all())
-            notification.save()
+                    body=" has made a new ",
+                    type='Post',
+                )
+                notification.users.add(*restaurant.followers.all())
+                notification.save()
         else:
             # Create a Notification object for the restaurant owner, spawned from users posting on
             # the restaurant page
