@@ -5,9 +5,11 @@ from django.core.validators import validate_email
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.core.paginator import Paginator
 from django.http import Http404
+from django.shortcuts import get_object_or_404
 
 from accounts.models import User, Notification
 from restaurants.models import Restaurant, Post, Comment
+from restaurants.serializers import PostSerializer
 
 class RegisterSerializer(serializers.ModelSerializer):
     username = serializers.CharField(required=True)
@@ -124,12 +126,24 @@ class UnfollowedRestaurantSerializer(serializers.ModelSerializer):
         return instance
 
 class CommentSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = Comment
         fields = ['timestamp',
                     'body',
-                    'user'
+                    'user',
+                    'post'
         ]
+        read_only_fields = ('timestamp', 'user', 'post')
+
+    def create(self, data):
+        comment = Comment.objects.create(
+            user = self.context.get('request', None).user,
+            body = data.get('body', ''),
+            post = get_object_or_404(Post, id=self.context.get('id', None)),
+            
+        )
+        return comment
 
 class FeedSerializer(serializers.ModelSerializer):
     # https://medium.com/dreidev/nested-pagination-md-6414a85b5501
@@ -137,12 +151,13 @@ class FeedSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['timestamp',
-                    'body',
-                    'likes',
-                    'user',
-                    'restaurant',
-                    'comments'
+        fields = [
+                'timestamp',
+                'body',
+                'likes',
+                'user',
+                'restaurant',
+                'comments'
                 ]
 
     def paginated_comments(self, obj):
@@ -161,16 +176,18 @@ class FeedSerializer(serializers.ModelSerializer):
 class BrowsingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
-        fields = ['name',
-                    'address',
-                    'postal_code',
-                    'likes'
-                ]
+        fields = [  
+            'name',
+            'address',
+            'postal_code',
+            'likes'
+            ]
 
 class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notification
-        fields = ['timestamp',
-                'body',
-                'type'
+        fields = [
+            'timestamp',
+            'body',
+            'type'
         ]

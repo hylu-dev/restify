@@ -46,8 +46,8 @@ class LikedPost(LikedEntity):
         return f"Liked {self.post}"
 
 class Comment(models.Model):
-    timestamp = models.DateTimeField()
-    body = models.TextField(null=True, blank=True)
+    timestamp = models.DateTimeField(auto_now=True)
+    body = models.TextField()
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
