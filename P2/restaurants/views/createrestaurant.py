@@ -16,6 +16,10 @@ from rest_framework.views import APIView
 from restaurants.serializers import RestaurantSerializer;
 
 class CreateRestaurantView(CreateAPIView):
+    """
+    Creates a restaurant for the current user
+    The user must not already have a restaurant
+    """
     serializer_class = RestaurantSerializer
     permission_classes = [IsAuthenticated]
 

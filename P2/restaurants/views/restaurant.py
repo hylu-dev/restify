@@ -5,6 +5,10 @@ from restaurants.models import Restaurant
 from restaurants.serializers import RestaurantSerializer;
 
 class RestaurantView(RetrieveAPIView):
+    """
+    Returns all details for a given restaurant
+    """
+    
     serializer_class = RestaurantSerializer
 
     def get_object(self):

@@ -8,6 +8,10 @@ from restaurants.models import FoodItem
 from restaurants.serializers import FoodItemSerializer
 
 class UpdateFoodItemView(UpdateAPIView):
+    """
+    Update the details for a given food item
+    """
+
     serializer_class = FoodItemSerializer
     permission_classes = [IsAuthenticated]
 

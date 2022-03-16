@@ -6,6 +6,9 @@ from restaurants.models import Photo
 from restaurants.serializers import PhotoSerializer;
 
 class DeletePhotoView(DestroyAPIView):
+    """"
+    Removes a single photo from a restaurants gallery
+    """
     serializer_class = PhotoSerializer
     permission_classes = [IsAuthenticated]
 

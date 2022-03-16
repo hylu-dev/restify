@@ -81,7 +81,9 @@ class FoodItemSerializer(serializers.ModelSerializer):
         fields = ['name', 'description', 'price']
 
     def create(self, data):
-        restaurant = get_object_or_404(Restaurant, id=self.context['id'])
+        if not hasattr(self.context.get('request').user, 'owner'):
+            raise serializers.ValidationError("User does not have a restaurant to add a food item to")
+        restaurant = self.context.get('request').user.owner
 
         if restaurant.owner.id == self.context['request'].user.id:
             # First create the food item for the menu
@@ -148,7 +150,9 @@ class PostSerializer(serializers.ModelSerializer):
         fields = ['timestamp', 'body', 'likes', 'user', 'restaurant']
 
     def create(self, data):
-        restaurant = get_object_or_404(Restaurant, id=self.context.get('id', None))
+        if not hasattr(self.context.get('request').user, 'owner'):
+            raise serializers.ValidationError("User does not have a restaurant to post on")
+        restaurant = self.context.get('request').user.owner
         user = self.context['request'].user
 
         # First, create the Post object
