@@ -201,7 +201,9 @@ class PhotoSerializer(serializers.ModelSerializer):
         fields = ['restaurant', 'image']
 
     def create(self, data):
-        restaurant = get_object_or_404(Restaurant, owner=self.context['request'].user)
+        if not hasattr(self.context.get('request').user, 'owner'):
+            raise serializers.ValidationError("User does not have a restaurant to add a photo to")
+        restaurant = self.context.get('request').user.owner
 
         photo = Photo.objects.create(
             image=data.get('image', ''),
