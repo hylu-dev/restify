@@ -201,10 +201,10 @@ class PhotoSerializer(serializers.ModelSerializer):
         fields = ['restaurant', 'image']
 
     def create(self, data):
-        restaurant = get_object_or_404(Restaurant, id=self.context.get('id', None))
+        restaurant = get_object_or_404(Restaurant, owner=self.context['request'].user)
 
         photo = Photo.objects.create(
-            image =image,
+            image=data.get('image', ''),
             restaurant=restaurant
         )
 
@@ -213,6 +213,6 @@ class PhotoSerializer(serializers.ModelSerializer):
 class GallerySerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
-        fields = ['restaurant', 'image']
+        fields = ['restaurant', 'image', 'timestamp']
 
 

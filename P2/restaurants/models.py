@@ -22,6 +22,7 @@ class Restaurant(models.Model):
         return f"{self.name}"
 
 class Photo(models.Model):
+    timestamp = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='images', help_text='Photo for gallery')
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='photos')
 
