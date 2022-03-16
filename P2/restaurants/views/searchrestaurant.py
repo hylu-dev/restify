@@ -22,8 +22,6 @@ from restaurants.serializers import RestaurantSerializer;
 from functools import reduce
 import operator
 from rest_framework.filters import BaseFilterBackend
-import coreapi
-import coreschema
 
 class CustomFilter(BaseFilterBackend):
     def get_schema_fields(self, view):

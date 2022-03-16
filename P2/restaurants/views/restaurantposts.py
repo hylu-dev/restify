@@ -19,8 +19,6 @@ from rest_framework.pagination import PageNumberPagination
 from restaurants.serializers import PostSerializer;
 
 from rest_framework.filters import BaseFilterBackend
-import coreapi
-import coreschema
 
 class CustomFilter(BaseFilterBackend):
     def get_schema_fields(self, view):
