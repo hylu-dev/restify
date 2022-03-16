@@ -9,7 +9,6 @@ class FollowedRestaurantView(UpdateAPIView):
     To create please provide:
     - Path Param - **id**: the id of the restaurant that the user wants to follow
     """
-    filter_backends = (CustomFilter,)
     serializer_class = FollowedRestaurantSerializer
     permission_classes = [IsAuthenticated]
 

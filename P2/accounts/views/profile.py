@@ -1,6 +1,7 @@
 from rest_framework.generics import get_object_or_404, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 from accounts.serializers import ProfileSerializer;
+from accounts.models import User
 
 class ProfileView(RetrieveAPIView):
     """
@@ -8,7 +9,7 @@ class ProfileView(RetrieveAPIView):
     To create please provide:
     - Path Param - **id**: the id of the user who's profile we are viewing
     """
-    filter_backends = (CustomFilter,)
+    
     serializer_class = ProfileSerializer
 
     def get_object(self):

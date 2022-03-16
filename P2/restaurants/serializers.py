@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from restaurants.models import Restaurant, Post, FoodItem, Photo
 from django.core.exceptions import BadRequest
 
-from restaurants.models import Restaurant, Post, FoodItem
+from restaurants.models import Restaurant, Post, FoodItem, Comment
 from accounts.models import Notification
 
 class RestaurantSerializer(serializers.ModelSerializer):
@@ -88,6 +88,40 @@ class UnlikedPostSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
+class CommentSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Comment
+        fields = ['timestamp',
+                    'body',
+                    'user',
+                    'restaurant'
+        ]
+        read_only_fields = ('timestamp', 'user', 'restaurant')
+
+    def create(self, data):
+        restaurant = get_object_or_404(Restaurant, id=self.context.get('id', None))
+        user = self.context['request'].user
+
+        comment = Comment.objects.create(
+            user = user,
+            body = data.get('body', ''),
+            restaurant = restaurant,
+        )
+
+        # Create a Notification for the restaurant owner
+        notification = Notification.objects.create(
+            source=user,
+
+            target=comment,
+
+            body=" has made a new ",
+            type='Comment',
+        )
+        notification.users.add(restaurant.owner)
+        notification.save()
+        return comment
 
 class FoodItemSerializer(serializers.ModelSerializer):
     class Meta:

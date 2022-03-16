@@ -26,6 +26,12 @@ class Photo(models.Model):
     image = models.ImageField(upload_to='images', help_text='Photo for gallery')
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='photos')
 
+class Comment(models.Model):
+    timestamp = models.DateTimeField(auto_now=True)
+    body = models.TextField()
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='restaurant')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
 class Post(models.Model):
     timestamp = models.DateTimeField(auto_now=True)
     body = models.TextField()
@@ -52,12 +58,6 @@ class LikedPost(LikedEntity):
 
     def getName(self):
         return f"Liked {self.post}"
-
-class Comment(models.Model):
-    timestamp = models.DateTimeField(auto_now=True)
-    body = models.TextField()
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='restaurant')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 # Omitted foreign keys in the case of creating relationship models
 class FoodItem(models.Model):

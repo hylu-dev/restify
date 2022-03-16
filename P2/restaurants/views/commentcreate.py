@@ -1,14 +1,14 @@
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
-from accounts.serializers import CommentSerializer;
+from restaurants.serializers import CommentSerializer;
 
-class CommentView(CreateAPIView):
+class CommentCreateView(CreateAPIView):
     """
-    Adds a comment to restruant with id of id
+    Adds a comment to a restaraunt
     To create please provide:
+
     - Path Param - **id**: the id of the restaurant being commented on
     """ 
-    filter_backends = (CustomFilter,)
     serializer_class = CommentSerializer
     permission_classes = [IsAuthenticated]
 
