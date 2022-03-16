@@ -6,7 +6,7 @@ class CommentView(CreateAPIView):
     """
     Adds a comment to restruant with id of id
     To create please provide:
-    - **id**: the id of the restaurant being commented on
+    - Path Param - **id**: the id of the restaurant being commented on
     """ 
     filter_backends = (CustomFilter,)
     serializer_class = CommentSerializer

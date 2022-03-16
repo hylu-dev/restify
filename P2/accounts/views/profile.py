@@ -6,7 +6,7 @@ class ProfileView(RetrieveAPIView):
     """
     Returns the profile of a user with id of id
     To create please provide:
-    - **id**: the id of the user who's profile we are viewing
+    - Path Param - **id**: the id of the user who's profile we are viewing
     """
     filter_backends = (CustomFilter,)
     serializer_class = ProfileSerializer

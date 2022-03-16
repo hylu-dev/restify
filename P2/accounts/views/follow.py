@@ -7,7 +7,7 @@ class FollowedRestaurantView(UpdateAPIView):
     """
     Adds restaurant to user's follower list, adds user to restaurant's following list
     To create please provide:
-    - **id**: the id of the restaurant that the user wants to follow
+    - Path Param - **id**: the id of the restaurant that the user wants to follow
     """
     filter_backends = (CustomFilter,)
     serializer_class = FollowedRestaurantSerializer

@@ -7,7 +7,7 @@ class UnfollowedRestaurantView(UpdateAPIView):
     """
     Removes restaurant from user's follower list, removes user from restaurant's following list
     To create please provide:
-    - **id**: the id of the restaurant that the user wants to unfollow
+    - Path Param - **id**: the id of the restaurant that the user wants to unfollow
     """
     serializer_class = UnfollowedRestaurantSerializer
     permission_classes = [IsAuthenticated]
