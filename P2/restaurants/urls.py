@@ -33,5 +33,5 @@ urlpatterns = [
     path('api/restaurant/post/<int:id>/', DeletePostView.as_view(), name='delete-post'),
     path('api/restaurant/photo/add/', AddPhotoView.as_view(), name='add-photo'),
     path('api/restaurant/photo/<int:id>/delete/', DeletePhotoView.as_view(), name='delete-photo'),
-    path('api/restaurant/<int:id>/photos', GalleryView.as_view(), name='gallery')
+    path('api/restaurant/<int:id>/photos/', GalleryView.as_view(), name='gallery')
 ]
