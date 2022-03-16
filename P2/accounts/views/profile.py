@@ -8,7 +8,7 @@ class ProfileView(RetrieveAPIView):
     To create please provide:
     - Path Param - **id**: the id of the user who's profile we are viewing
     """
-    filter_backends = (CustomFilter,)
+    
     serializer_class = ProfileSerializer
 
     def get_object(self):

@@ -8,7 +8,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404
 
 from accounts.models import User, Notification
-from restaurants.models import Restaurant, Post, Comment
+from restaurants.models import Restaurant, Post
 from restaurants.serializers import PostSerializer
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -124,40 +124,6 @@ class UnfollowedRestaurantSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
-
-class CommentSerializer(serializers.ModelSerializer):
-    
-    class Meta:
-        model = Comment
-        fields = ['timestamp',
-                    'body',
-                    'user',
-                    'restaurant'
-        ]
-        read_only_fields = ('timestamp', 'user', 'restaurant')
-
-    def create(self, data):
-        restaurant = get_object_or_404(Restaurant, id=self.context.get('id', None))
-        user = self.context['request'].user
-
-        comment = Comment.objects.create(
-            user = user,
-            body = data.get('body', ''),
-            restaurant = restaurant,
-        )
-
-        # Create a Notification for the restaurant owner
-        notification = Notification.objects.create(
-            source=user,
-
-            target=comment,
-
-            body=" has made a new ",
-            type='Comment',
-        )
-        notification.users.add(restaurant.owner)
-        notification.save()
-        return comment
 
 class FeedSerializer(serializers.ModelSerializer):
     # https://medium.com/dreidev/nested-pagination-md-6414a85b5501
