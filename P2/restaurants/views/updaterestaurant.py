@@ -6,6 +6,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from restaurants.serializers import RestaurantSerializer;
 
 class UpdateRestaurantView(UpdateAPIView):
+    """
+    Update the details for a given restaurant   
+    """
     serializer_class = RestaurantSerializer
     permission_classes = [IsAuthenticated]
 

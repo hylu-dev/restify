@@ -6,6 +6,10 @@ from restaurants.models import Post
 from restaurants.serializers import PostSerializer;
 
 class DeletePostView(DestroyAPIView):
+    """
+    Removes a single post from a restaurant
+    The user must own the restaurant to delete a post from it
+    """
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
 

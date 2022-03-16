@@ -12,11 +12,13 @@ class UnlikeRestaurantView(UpdateAPIView):
 
     Assume that a user cannot unlike a restaurant without previously liking it.
     """
+
     serializer_class = UnlikedRestaurantSerializer
     permission_classes = [IsAuthenticated]
 
+
     def get_object(self):
-        restaurant = get_object_or_404(Restaurant, id=self.kwargs['id'])
+        restaurant = get_object_or_404(Restaurant, id=self.kwargs['tetst'])
 
         # Under the assumption that the restaurant was previously liked, the LikedRestaurant object should exist
         likedRes = LikedRestaurant.objects.get(restaurant=restaurant.id)
@@ -32,6 +34,7 @@ class UnlikePostView(UpdateAPIView):
 
     Assume that a user cannot unlike a post without previously liking it.
     """
+
     serializer_class = UnlikedPostSerializer
     permission_classes = [IsAuthenticated]
 

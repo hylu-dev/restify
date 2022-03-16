@@ -4,8 +4,10 @@ from rest_framework.permissions import IsAuthenticated
 from restaurants.serializers import PostSerializer;
 
 class CreatePostView(CreateAPIView):
+    """
+    Creates a post for the restaurant
+    The user must not already have a restaurant
+    """
+
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
-
-    def get_serializer_context(self):
-        return {"id": self.kwargs['id'], "request": self.request}

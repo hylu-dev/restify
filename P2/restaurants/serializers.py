@@ -14,6 +14,20 @@ class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
         fields = ['name', 'address', 'logo', 'postal_code', 'phone_number', 'owner', 'followers', 'likes']
+        read_only_fields = ('followers', 'likes')
+
+    def create(self, data):
+        if hasattr(self.context.get('request').user, 'owner'):
+            raise serializers.ValidationError("Owner already has a restaurant")
+        restaurant = Restaurant.objects.create(
+                name=data.get('name',''),
+                address=data.get('address',''),
+                logo=data.get('logo',''),
+                postal_code=data.get('postal_code',''),
+                phone_number=data.get('phone_number',''),
+                owner=self.context['request'].user
+        )
+        return restaurant
 
 class LikedRestaurantSerializer(serializers.ModelSerializer):
     class Meta:
@@ -81,7 +95,9 @@ class FoodItemSerializer(serializers.ModelSerializer):
         fields = ['name', 'description', 'price']
 
     def create(self, data):
-        restaurant = get_object_or_404(Restaurant, id=self.context['id'])
+        if not hasattr(self.context.get('request').user, 'owner'):
+            raise serializers.ValidationError("User does not have a restaurant to add a food item to")
+        restaurant = self.context.get('request').user.owner
 
         if restaurant.owner.id == self.context['request'].user.id:
             # First create the food item for the menu
@@ -148,7 +164,9 @@ class PostSerializer(serializers.ModelSerializer):
         fields = ['timestamp', 'body', 'likes', 'user', 'restaurant']
 
     def create(self, data):
-        restaurant = get_object_or_404(Restaurant, id=self.context.get('id', None))
+        if not hasattr(self.context.get('request').user, 'owner'):
+            raise serializers.ValidationError("User does not have a restaurant to post on")
+        restaurant = self.context.get('request').user.owner
         user = self.context['request'].user
 
         # First, create the Post object
@@ -197,7 +215,9 @@ class PhotoSerializer(serializers.ModelSerializer):
         fields = ['restaurant', 'image']
 
     def create(self, data):
-        restaurant = get_object_or_404(Restaurant, owner=self.context['request'].user)
+        if not hasattr(self.context.get('request').user, 'owner'):
+            raise serializers.ValidationError("User does not have a restaurant to add a photo to")
+        restaurant = self.context.get('request').user.owner
 
         photo = Photo.objects.create(
             image=data.get('image', ''),
