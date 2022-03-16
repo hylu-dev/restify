@@ -43,6 +43,8 @@ class SmallResultsSetPagination(PageNumberPagination):
 class RestaurantPostsView(ListAPIView):
     """
     Returns all posts for a given restaurant
+
+     - Path Param - **id**: id of the restaurant to get posts from
     """ 
 
     filter_backends = (CustomFilter,)

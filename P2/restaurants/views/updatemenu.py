@@ -10,6 +10,9 @@ from restaurants.serializers import FoodItemSerializer
 class UpdateFoodItemView(UpdateAPIView):
     """
     Update the details for a given food item
+    User must own the restaurant that the food item belongs in the menu of
+
+     - Path Param - **id**: id of the food item to update
     """
 
     serializer_class = FoodItemSerializer

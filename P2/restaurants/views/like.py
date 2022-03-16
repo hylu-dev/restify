@@ -11,6 +11,8 @@ class LikeRestaurantView(UpdateAPIView):
     """
     At the click of a like button, increment the number of likes by 1 for a restaurant and create 
     a LikedRestaurant object that tracks the user information.
+
+     - Path Param - **id**: id of the restaurant to like
     """
     serializer_class = LikedRestaurantSerializer
     permission_classes = [IsAuthenticated]
@@ -57,6 +59,8 @@ class LikePostView(UpdateAPIView):
     """
     At the click of a like button, increment the number of likes by 1 for a post and create 
     a LikedPost object that tracks the user information.
+
+     - Path Param - **id**: id of the post to like
     """
     serializer_class = LikedPostSerializer
     permission_classes = [IsAuthenticated]

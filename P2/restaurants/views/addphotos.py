@@ -4,7 +4,7 @@ from restaurants.serializers import PhotoSerializer;
 
 class AddPhotoView(CreateAPIView):
     """
-    Adds a photo to gallery of the users restaurant
+    Adds a photo to the gallery of the users restaurant
     User must own a restaurant
     """
     serializer_class = PhotoSerializer

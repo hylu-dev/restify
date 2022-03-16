@@ -11,6 +11,8 @@ class UnlikeRestaurantView(UpdateAPIView):
     the user from a LikedRestaurant object that tracks the user information.
 
     Assume that a user cannot unlike a restaurant without previously liking it.
+
+     - Path Param - **id**: id of the restaurant to like
     """
 
     serializer_class = UnlikedRestaurantSerializer
@@ -33,6 +35,8 @@ class UnlikePostView(UpdateAPIView):
     the user from a LikedPost object that tracks the user information.
 
     Assume that a user cannot unlike a post without previously liking it.
+
+     - Path Param - **id**: id of the post to like
     """
 
     serializer_class = UnlikedPostSerializer

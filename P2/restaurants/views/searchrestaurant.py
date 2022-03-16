@@ -46,7 +46,11 @@ class SmallResultsSetPagination(PageNumberPagination):
 
 class SearchRestaurantView(ListAPIView):
     """
-    Queries all restaurants restaurants by a string and returns results sorted by popularity(likes)
+    Queries all restaurants by a string and returns results sorted by popularity(likes)
+    The string can contain multiple terms (space delimited). The search will filter restaurants
+    that contain the terms be either name, address, or an item in their menu
+
+     - Query Param - **query**: a string of one or more space delimited search terms
     """ 
 
     filter_backends = (CustomFilter,)

@@ -8,6 +8,7 @@ from restaurants.serializers import RestaurantSerializer;
 class UpdateRestaurantView(UpdateAPIView):
     """
     Update the details for a given restaurant
+    User must own a restaurant
     """
     serializer_class = RestaurantSerializer
     permission_classes = [IsAuthenticated]

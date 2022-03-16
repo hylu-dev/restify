@@ -30,7 +30,9 @@ class SmallResultsSetPagination(PageNumberPagination):
 
 class GalleryView(ListAPIView):
     """
-    Given a restaurant, returns all the images in it's gallery
+    Returns all the photos in its gallery of a restaurant
+
+     - Path Param - **id**: id of the restaurant to retrieve photos from
     """
     filter_backends = (CustomFilter,)
     serializer_class = GallerySerializer

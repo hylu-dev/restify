@@ -7,6 +7,8 @@ from restaurants.serializers import RestaurantSerializer;
 class RestaurantView(RetrieveAPIView):
     """
     Returns all details for a given restaurant
+
+     - Path Param - **id**: id of the restaurant to get details from
     """
     
     serializer_class = RestaurantSerializer

@@ -8,7 +8,9 @@ from restaurants.serializers import PostSerializer;
 class DeletePostView(DestroyAPIView):
     """
     Removes a single post from a restaurant
-    The user must own the restaurant to delete a post from it
+    The user must own the restaurant that the post belongs to, to delete it
+
+     - Path Param - **id**: id of the post to delete
     """
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
