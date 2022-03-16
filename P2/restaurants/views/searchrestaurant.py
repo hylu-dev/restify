@@ -21,21 +21,6 @@ from rest_framework.pagination import PageNumberPagination
 from restaurants.serializers import RestaurantSerializer;
 from functools import reduce
 import operator
-from rest_framework.filters import BaseFilterBackend
-
-class CustomFilter(BaseFilterBackend):
-    def get_schema_fields(self, view):
-        fields = [
-            coreapi.Field(
-                name='query',
-                schema=coreschema.String(description='one or more space delimited search terms'),
-                required=True,
-                location='query')
-        ]
-        return fields
-
-    def filter_queryset(self, request, queryset, view):
-        return queryset
 
 class SmallResultsSetPagination(PageNumberPagination):
     page_size = 8
@@ -51,7 +36,6 @@ class SearchRestaurantView(ListAPIView):
      - Query Param - **query**: a string of one or more space delimited search terms
     """ 
 
-    filter_backends = (CustomFilter,)
     serializer_class = RestaurantSerializer
     pagination_class = SmallResultsSetPagination
 
