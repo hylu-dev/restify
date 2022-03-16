@@ -20,7 +20,7 @@ app_name = 'restaurants'
 
 urlpatterns = [
     path('api/restaurant/<int:id>/details/', RestaurantView.as_view(), name='view-restaurant'),
-    path('api/restaurant/<int:id>/edit/', UpdateRestaurantView.as_view(), name='edit-restaurant'),
+    path('api/restaurant/edit/', UpdateRestaurantView.as_view(), name='edit-restaurant'),
     path('api/restaurant/search/', SearchRestaurantView.as_view(), name='search-restaurant'),
     path('api/restaurant/create/', CreateRestaurantView.as_view(), name='create-restaurant'),
 
