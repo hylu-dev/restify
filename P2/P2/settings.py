@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'restaurants',
     'phone_field',
     'rest_framework',
-    'drf_yasg',
 ]
 
 MIDDLEWARE = [
