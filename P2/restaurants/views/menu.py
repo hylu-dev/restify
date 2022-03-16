@@ -1,6 +1,7 @@
 from restaurants.models import FoodItem
 from rest_framework.pagination import PageNumberPagination
 from restaurants.serializers import FoodItemSerializer;
+from rest_framework.generics import  ListAPIView
 
 class SmallResultsSetPagination(PageNumberPagination):
     page_size = 8
