@@ -1,7 +1,7 @@
 echo "First Time Install"
 
 # Create the virtual environment and activate it
-virtualenv -p 'python3.9' venv
+virtualenv venv
 source venv/bin/activate
 
 # Install all requirements on the venv
