@@ -1,38 +1,88 @@
-.App {
-  text-align: center;
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
+
+body{
+	background-color: #ADFFF3;
+	min-height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#grid {
+	display: flex; 
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 25px 50px 25px 50px;
+}
+.browse-card {
+	/*min-width: 150px;*/
+	width: 300px;
+	margin: 25px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#follow-favourite-container {
+	display: flex; 
+	justify-content: space-between;
+	align-content: center;
+	border:2px solid #DDDEE4;
+	margin: 10px 5px 5px 5px;
+	border-radius: 3px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.restaurant-name {
+	font-size: 25px;
+	padding-top: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+.address {
+	font-size: 12px;
+	color: grey;
+	margin: -20px 0 0 15px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.food-styles {
+	margin: 10px 0 0 15px;
 }
+
+.follow-favourite {
+	padding: 8px;
+}
+
+
+.button:hover {
+	background-color: teal;
+	color: white;
+}
+
+.info {
+	border: 2px black;
+}
+
+.heart:hover .fa-regular,
+.heart .fa-solid {
+    display: none;
+
+}
+.heart:hover .fa-solid {
+    display: inline;
+}
+
+.heart{
+	padding-top: 8px;
+	/*z-index: ;*/
+}
+
+.reply{
+	padding:0 5px 0 5px;
+}
+
+.reply-button {
+	margin: 5px 0 0 0;
+}
+
+.comment {
+	width: 90%;
+	margin-left: 10%;
+}
+
+hr{
+	margin-top: 5px;
+}
+
