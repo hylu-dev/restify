@@ -8,7 +8,7 @@ const Layout = () => {
                     <span className="icon is-large has-text-primary-dark">
                         <i className="fas fa-store fa-2x"></i>
                     </span>
-                    <a className="navbar-burger">
+                    <a href="/" className="navbar-burger">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -80,19 +80,19 @@ const Layout = () => {
         
                             <hr className="navbar-divider"/>
         
-                            <a href="account.html" className="navbar-item">
+                            <Link to="/account" className="navbar-item">
                                 <span className="icon is-large">
                                     <i className="fas fa-edit"></i>
                                 </span>
                                 <span>Edit Profile</span>
-                            </a>
+                            </Link>
         
-                            <a href="login.html" className="navbar-item">
+                            <Link to="/login" className="navbar-item">
                                 <span className="icon is-large">
                                     <i className="fas fa-door-open"></i>
                                 </span>
                                 <span>Logout</span>
-                            </a>
+                            </Link>
                         </div>
                     </div>
 
