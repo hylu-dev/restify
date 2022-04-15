@@ -37,9 +37,9 @@ const Login = () => {
                         setErrors(err)
                     });
                 }
-            })
+            }).catch(err => setErrors([err.toString()]))
         } catch (err) {
-            errors.push("Unexpected error")
+            setErrors([err.toString()])
         }
     };
 
