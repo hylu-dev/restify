@@ -1,4 +1,9 @@
 //import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
+import { Link, Outlet } from "react-router-dom";
+import Button from "../../components/Common/button"
+import { post } from "../../utils"
+import { useNavigate } from "react-router-dom";
 
 const Restaurant = () => {
     return <>
@@ -77,13 +82,14 @@ const Restaurant = () => {
 
             <div class="tabs is-boxed is-fullwidth m-0 mx-6">
                 <ul>
-                <li class="is-active"><a href="restaurant-profile-menu.html">Menu</a></li>
-                <li><a href="restaurant-profile-photos.html">Photos</a></li>
-                <li><a href="restaurant-profile-posts.html">Posts</a></li>
+                <li class="is-active"><Link to="menu">Menu</Link></li>
+                <li><Link to="gallery">Photos</Link></li>
+                <li><Link to="posts">Posts</Link></li>
                 </ul>
             </div>
-
         </section>
+
+        <Outlet />
     </>
 }
 
