@@ -1,121 +1,171 @@
-//import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import Button from "../../components/Common/button";
+import { post } from "../../utils";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [password2, setPassword2] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [avatar, setAvatar] = useState("");
+    const [errors, setErrors] = useState([]);
+
+    const [isLoading, setIsLoading] = useState(false);
+    let navigate = useNavigate();
+
+    const submit_request = async e => {
+        e.preventDefault();
+        let payload = {
+            username: username,
+            password: password,
+            password2: password2,
+            email: email,
+            phone: phone,
+            first_name: firstName,
+            last_name: lastName,
+            avatar: avatar
+        }
+        let request = post("http://127.0.0.1:8000/accounts/api/register/", payload)
+        request.then(response => {
+            if (response.status === 200) {
+                response.json().then(data => {
+                    localStorage.setItem('access_token', data.access);
+                    navigate("/login");
+                });
+            } else if (response.status === 401) {
+                response.json().then(data => {
+                    setErrors([data.detail]);
+                });
+            } else if (response.status === 400) {
+                response.json().then(data => {
+                    let err = []
+                    for (const [key, value] of Object.entries(data)) {
+                        err.push(`${key.charAt(0).toUpperCase()+key.slice(1)}: ${value}`)
+                    }
+                    setErrors(err)
+                });
+            }
+        }).catch(err => {
+            setErrors([err.toString()])
+        }).finally(() => (setIsLoading(false)));
+    }
+
     return <>
-        <section class="section">
-            <div class="container">
-                <div class="columns is-centered">
-                    <div class="column is-4">
-                        <h1 class="title has-text-grey-dark has-text-centered">Create an Account</h1>
-                        <h2 class="subtitle has-text-centered is-size-6 is-underlined"><a href="login.html">Already have an account?</a></h2>
+        <section className="section">
+            <div className="container">
+                <div className="columns is-centered">
+                    <div className="column is-4">
+                        <h1 className="title has-text-grey-dark has-text-centered">Create an Account</h1>
+                        <h2 className="subtitle has-text-centered is-size-6 is-underlined"><a href="login.html">Already have an account?</a></h2>
                         {/* input tags referenced from https://www.w3schools.com/html/html_form_input_types.asp */}
-                        <form action="" class="box py-5">
-
-                            <div class="field is-horizontal">
-                                <div class="field-body">
-                                    <div class="field">
-                                        <label for="fname" class="label">First Name</label>
-                                        <p class="control">
-                                            <input type="text" id="fname" name="fname" class="input" placeholder="John"/>
+                        <form action="" className="box py-5">
+                            <ul className="has-text-danger">
+                                {errors.map(item => <li className='tag is-danger mb-1' key={item}>{item}</li>)}
+                            </ul>
+                            <div className="field is-horizontal">
+                                <div className="field-body">
+                                    <div className="field">
+                                        <label htmlFor="fname" className="label">First Name</label>
+                                        <p className="control">
+                                            <input type="text" id="fname" name="fname" className="input"
+                                                placeholder="John" onChange={e => setFirstName(e.target.value)} />
                                         </p>
                                     </div>
-                                    <div class="field">
-                                        <label for="lname" class="label">Last Name</label>
-                                        <p class="control">
-                                            <input type="text" id="lname" name="lname" class="input" placeholder="Doe"/>
+                                    <div className="field">
+                                        <label htmlFor="lname" className="label">Last Name</label>
+                                        <p className="control">
+                                            <input type="text" id="lname" name="lname" className="input"
+                                                placeholder="Doe" onChange={e => setLastName(e.target.value)} />
                                         </p>
                                     </div>
                                 </div>
 
                             </div>
 
-                            <div class="field">
-                                <label for="email" class="label">Email</label>
-                                <p class="control has-icons-left">
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-envelope"></i>
+                            <div className="field">
+                                <label htmlFor="email" className="label">Email</label>
+                                <p className="control has-icons-left">
+                                    <span className="icon is-small is-left">
+                                        <i className="fas fa-envelope"></i>
                                     </span>
-                                    <input type="email" id="email" name="email" class="input" placeholder="john@doe.com"/>
+                                    <input type="email" id="email" name="email" className="input"
+                                        placeholder="john@doe.com" onChange={e => setEmail(e.target.value)} />
                                 </p>
                             </div>
-                            <div class="field">
-                                <label for="phone" class="label">Phone</label>
-                                <p class="control has-icons-left">
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-phone"></i>
+                            <div className="field">
+                                <label htmlFor="phone" className="label">Phone</label>
+                                <p className="control has-icons-left">
+                                    <span className="icon is-small is-left">
+                                        <i className="fas fa-phone"></i>
                                     </span>
-                                    <input type="tel" id="phone" name="phone" class="input" placeholder="999-999-9999"/>
+                                    <input type="tel" id="phone" name="phone" className="input"
+                                        placeholder="999-999-9999" onChange={e => setPhone(e.target.value)} />
                                 </p>
                             </div>
 
-                            <hr/>
+                            <hr />
 
-                                <div class="field">
-                                    <label for="username" class="label">Username</label>
-                                    <p class="control has-icons-left">
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-user"></i>
+                            <div className="field">
+                                <label htmlFor="username" className="label">Username</label>
+                                <p className="control has-icons-left">
+                                    <span className="icon is-small is-left">
+                                        <i className="fas fa-user"></i>
+                                    </span>
+                                    <input type="text" id="username" name="username" className="input"
+                                        placeholder="Username" onChange={e => setUsername(e.target.value)} />
+                                </p>
+
+                            </div>
+                            <div className="field">
+                                <label htmlFor="password" className="label">Password</label>
+                                <p className="control has-icons-left">
+                                    <span className="icon is-small is-left">
+                                        <i className="fas fa-key"></i>
+                                    </span>
+                                    <input type="password" id="password" name="password" className="input"
+                                        placeholder="Password" onChange={e => setPassword(e.target.value)} />
+                                </p>
+                            </div>
+
+
+                            <div className="field">
+                                <label htmlFor="confirm_password" className="label">Confirm Password</label>
+                                <p className="control has-icons-left">
+                                    <span className="icon is-small is-left">
+                                        <i className="fas fa-key"></i>
+                                    </span>
+                                    <input type="password" id="confirm_password" name="confirm_password" className="input"
+                                        placeholder="Repeat Password" onChange={e => setPassword2(e.target.value)}/>
+                                </p>
+                            </div>
+
+
+                            <div className="field">
+                                <div className="level">
+                                    <label htmlFor="file" className="label">Upload a Profile Picture</label>
+                                </div>
+                                <div className="file level">
+                                    <label className="file-label">
+                                        <input className="file-input" type="file" name="file" onChange={e => setAvatar(e.target.value)}/>
+                                        <span className="file-cta">
+                                            <span className="file-icon">
+                                                <i className="fas fa-upload"></i>
+                                            </span>
+                                            <span className="file-label">
+                                                Choose a file…
+                                            </span>
                                         </span>
-                                        <input type="text" id="username" name="username" class="input" placeholder="Username"/>
-                                    </p>
-
+                                    </label>
                                 </div>
-                                <div class="field">
-                                    <label for="password" class="label">Password</label>
-                                    <p class="control has-icons-left">
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-key"></i>
-                                        </span>
-                                        <input type="password" id="password" name="password" class="input" placeholder="Password"/>
-                                    </p>
-                                </div>
+                            </div>
 
-
-                                <div class="field">
-                                    <label for="confirm_password" class="label">Confirm Password</label>
-                                    <p class="control has-icons-left">
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-key"></i>
-                                        </span>
-                                        <input type="password" id="confirm_password" name="confirm_password" class="input" placeholder="Password"/>
-                                    </p>
-                                </div>
-
-
-                                <div class="field">
-                                    <label for="avatar" class="label">Avatar</label>
-                                    <div class="buttons">
-                                        <button class="button">
-                                            <span class="icon is-large has-text-grey-dark">
-                                                <i class="fas fa-male fa-2x"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button">
-                                            <span class="icon is-large has-text-grey-dark">
-                                                <i class="fas fa-female fa-2x"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button">
-                                            <span class="icon is-large has-text-grey-dark">
-                                                <i class="fas fa-apple-alt fa-2x"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button">
-                                            <span class="icon is-large has-text-grey-dark">
-                                                <i class="fas fa-lemon fa-2x"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button">
-                                            <span class="icon is-large has-text-grey-dark">
-                                                <i class="fas fa-cookie fa-2x"></i>
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="column has-text-centered"><div class="control">
-                                    <input class="button is-primary" type="submit" value="Submit"/>
-                                </div></div>
+                            <div className="column has-text-centered"><div className="control">
+                                <Button styles={isLoading ? "is-loading" : ""} disabled={isLoading} value="Submit" handler={submit_request}></Button>
+                            </div></div>
                         </form>
                     </div>
                 </div>

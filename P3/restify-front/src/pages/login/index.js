@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import Button from "../../components/Common/button"
-import { post } from "../../utils"
+import Button from "../../components/Common/button";
+import { post } from "../../utils";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -15,12 +15,12 @@ const Login = () => {
     const login_request = async e => {
         e.preventDefault();
         setIsLoading(true);
-        let req = post("http://127.0.0.1:8000/accounts/api/login/",
+        let request = post("http://127.0.0.1:8000/accounts/api/login/",
             {
                 username: username,
                 password: password
             })
-        req.then(response => {
+        request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
                     localStorage.setItem('access_token', data.access);
@@ -58,7 +58,7 @@ const Login = () => {
                         {/* input tags referenced from https://www.w3schools.com/html/html_form_input_types.asp */}
                         <form action="" className="box py-5">
                             <ul className="has-text-danger">
-                                {errors.map(item => <li key={item}>{item}</li>)}
+                                {errors.map(item => <li className="tag is-danger mb-1" key={item}>{item}</li>)}
                             </ul>
                             <div className="field">
                                 <label htmlFor="username" className="label">Username</label>
