@@ -17,6 +17,22 @@ export async function post(url, payload, token = "") {
     });
 }
 
+export async function post_form(url, payload, token = "") {
+    let headers = {}
+    if (token) headers['Authorization'] = `Bearer ${token}`
+
+    return await fetch(url, {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: headers,
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+        body: payload
+    });
+}
+
 export async function put(url, payload, token = "") {
     let headers = {
         'Accept': 'application/json',

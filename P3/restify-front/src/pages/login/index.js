@@ -56,9 +56,9 @@ const Login = () => {
                         <h2 className="subtitle has-text-centered is-size-6 is-underlined"><Link to="/register">Not a member?
                             Sign up now</Link></h2>
                         {/* input tags referenced from https://www.w3schools.com/html/html_form_input_types.asp */}
-                        <form action="" className="box py-5">
+                        <form action="" className="box py-5" enctype="multipart/form-data">
                             <ul className="has-text-danger">
-                                {errors.map(item => <li className="tag is-danger mb-1" key={item}>{item}</li>)}
+                                {errors.map(item => <li className="tag tag__custom is-danger mb-1" key={item}>{item}</li>)}
                             </ul>
                             <div className="field">
                                 <label htmlFor="username" className="label">Username</label>
