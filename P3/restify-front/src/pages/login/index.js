@@ -15,39 +15,33 @@ const Login = () => {
     const login_request = async e => {
         e.preventDefault();
         setIsLoading(true);
-        try {
-            let req = post("http://127.0.0.1:8000/accounts/api/login/",
-                {
-                    username: username,
-                    password: password
-                })
-            req.then(response => {
-                setIsLoading(false);
-                if (response.status === 200) {
-                    response.json().then(data => {
-                        localStorage.setItem('access_token', data.access);
-                        navigate("/")
-                    });
-                } else if (response.status === 401) {
-                    response.json().then(data => {
-                        setErrors([data.detail])
-                    });
-                } else if (response.status === 400) {
-                    response.json().then(data => {
-                        let err = []
-                        for (const [key, value] of Object.entries(data)) {
-                            err.push(`${key.charAt(0).toUpperCase()+key.slice(1)}: ${value}`)
-                        }
-                        setErrors(err)
-                    });
-                }
-            }).catch(err => {
-                setIsLoading(false);
-                setErrors([err.toString()])
+        let req = post("http://127.0.0.1:8000/accounts/api/login/",
+            {
+                username: username,
+                password: password
             })
-        } catch (err) {
+        req.then(response => {
+            if (response.status === 200) {
+                response.json().then(data => {
+                    localStorage.setItem('access_token', data.access);
+                    navigate("/")
+                });
+            } else if (response.status === 401) {
+                response.json().then(data => {
+                    setErrors([data.detail])
+                });
+            } else if (response.status === 400) {
+                response.json().then(data => {
+                    let err = []
+                    for (const [key, value] of Object.entries(data)) {
+                        err.push(`${key.charAt(0).toUpperCase()+key.slice(1)}: ${value}`)
+                    }
+                    setErrors(err)
+                });
+            }
+        }).catch(err => {
             setErrors([err.toString()])
-        }
+        }).finally(() => (setIsLoading(false)));
     };
 
 
