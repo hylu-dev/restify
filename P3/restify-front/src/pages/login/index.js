@@ -7,11 +7,14 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
     let navigate = useNavigate();
 
     const login_request = async e => {
         e.preventDefault();
+        setIsLoading(true);
         try {
             let req = post("http://127.0.0.1:8000/accounts/api/login/",
                 {
@@ -19,6 +22,7 @@ const Login = () => {
                     password: password
                 })
             req.then(response => {
+                setIsLoading(false);
                 if (response.status === 200) {
                     response.json().then(data => {
                         localStorage.setItem('access_token', data.access);
@@ -37,7 +41,10 @@ const Login = () => {
                         setErrors(err)
                     });
                 }
-            }).catch(err => setErrors([err.toString()]))
+            }).catch(err => {
+                setIsLoading(false);
+                setErrors([err.toString()])
+            })
         } catch (err) {
             setErrors([err.toString()])
         }
@@ -82,7 +89,7 @@ const Login = () => {
 
                             <div className="column has-text-centered">
                                 <div className="control">
-                                    <Button value="Login" handler={login_request}></Button>
+                                    <Button styles={isLoading ? "is-loading" : ""} disabled={isLoading} value="Login" handler={login_request}></Button>
                                 </div>
                             </div>
                         </form>
