@@ -42,7 +42,7 @@ const Layout = () => {
                             <span>Browse</span>
                         </span>
                     </Link>
-                    <Link to="/restaurant/1" className="navbar-item">
+                    <Link to="/restaurant/1/menu" className="navbar-item">
                         <span className="icon-text">
                             <span className="icon">
                                 <i className="fas fa-store"></i>
