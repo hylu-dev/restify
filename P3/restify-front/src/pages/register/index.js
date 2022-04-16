@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from "../../components/Common/button";
 import { post_form } from "../../utils";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Register = () => {
     const [username, setUsername] = useState("");
@@ -64,7 +65,7 @@ const Register = () => {
                 <div className="columns is-centered">
                     <div className="column is-4">
                         <h1 className="title has-text-grey-dark has-text-centered">Create an Account</h1>
-                        <h2 className="subtitle has-text-centered is-size-6 is-underlined"><a href="login.html">Already have an account?</a></h2>
+                        <h2 className="subtitle has-text-centered is-size-6 is-underlined"><Link to="/login">Already have an account?</Link></h2>
                         {/* input tags referenced from https://www.w3schools.com/html/html_form_input_types.asp */}
                         <form action="" className="box py-5" encType="multipart/form-data">
                             <ul className="has-text-danger">
