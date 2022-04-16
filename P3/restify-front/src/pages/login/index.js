@@ -1,46 +1,47 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import Button from "../../components/Common/button"
-import { post } from "../../utils"
+import Button from "../../components/Common/button";
+import { post } from "../../utils";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
     let navigate = useNavigate();
 
     const login_request = async e => {
         e.preventDefault();
-        try {
-            let req = post("http://127.0.0.1:8000/accounts/api/login/",
-                {
-                    username: username,
-                    password: password
-                })
-            req.then(response => {
-                if (response.status === 200) {
-                    response.json().then(data => {
-                        localStorage.setItem('access_token', data.access);
-                        navigate("/")
-                    });
-                } else if (response.status === 401) {
-                    response.json().then(data => {
-                        setErrors([data.detail])
-                    });
-                } else if (response.status === 400) {
-                    response.json().then(data => {
-                        let err = []
-                        for (const [key, value] of Object.entries(data)) {
-                            err.push(`${key.charAt(0).toUpperCase()+key.slice(1)}: ${value}`)
-                        }
-                        setErrors(err)
-                    });
-                }
+        setIsLoading(true);
+        let request = post("http://127.0.0.1:8000/accounts/api/login/",
+            {
+                username: username,
+                password: password
             })
-        } catch (err) {
-            errors.push("Unexpected error")
-        }
+        request.then(response => {
+            if (response.status === 200) {
+                response.json().then(data => {
+                    localStorage.setItem('access_token', data.access);
+                    navigate("/")
+                });
+            } else if (response.status === 401) {
+                response.json().then(data => {
+                    setErrors([data.detail])
+                });
+            } else if (response.status === 400) {
+                response.json().then(data => {
+                    let err = []
+                    for (const [key, value] of Object.entries(data)) {
+                        err.push(`${key.charAt(0).toUpperCase()+key.slice(1)}: ${value}`)
+                    }
+                    setErrors(err)
+                });
+            }
+        }).catch(err => {
+            setErrors([err.toString()])
+        }).finally(() => (setIsLoading(false)));
     };
 
 
@@ -55,9 +56,9 @@ const Login = () => {
                         <h2 className="subtitle has-text-centered is-size-6 is-underlined"><Link to="/register">Not a member?
                             Sign up now</Link></h2>
                         {/* input tags referenced from https://www.w3schools.com/html/html_form_input_types.asp */}
-                        <form action="" className="box py-5">
+                        <form action="" className="box py-5" enctype="multipart/form-data">
                             <ul className="has-text-danger">
-                                {errors.map(item => <li key={item}>{item}</li>)}
+                                {errors.map(item => <li className="tag tag__custom is-danger mb-1" key={item}>{item}</li>)}
                             </ul>
                             <div className="field">
                                 <label htmlFor="username" className="label">Username</label>
@@ -82,7 +83,7 @@ const Login = () => {
 
                             <div className="column has-text-centered">
                                 <div className="control">
-                                    <Button value="Login" handler={login_request}></Button>
+                                    <Button styles={isLoading ? "is-loading" : ""} disabled={isLoading} value="Login" handler={login_request}></Button>
                                 </div>
                             </div>
                         </form>

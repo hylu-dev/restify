@@ -8,11 +8,11 @@ const Layout = () => {
                     <span className="icon is-large has-text-primary-dark">
                         <i className="fas fa-store fa-2x"></i>
                     </span>
-                    <a href="/" className="navbar-burger">
+                    <div className="navbar-burger">
                         <span></span>
                         <span></span>
                         <span></span>
-                    </a>
+                    </div>
                 </Link>
             </div> 
             
