@@ -1,6 +1,11 @@
 import {Link, Outlet} from "react-router-dom";
 
 const Layout = () => {
+
+    const logout = () => {
+        window.localStorage.removeItem("access_token");
+    }
+
     return <>
         <nav className="navbar has-shadow is-primary is-fixed-top">
             <div className="navbar-brand pl-2">
@@ -80,14 +85,14 @@ const Layout = () => {
         
                             <hr className="navbar-divider"/>
         
-                            <Link to="/account" className="navbar-item">
+                            <Link to="/profile" className="navbar-item">
                                 <span className="icon is-large">
                                     <i className="fas fa-edit"></i>
                                 </span>
                                 <span>Edit Profile</span>
                             </Link>
         
-                            <Link to="/login" className="navbar-item">
+                            <Link to="/login" className="navbar-item" onClick={logout}>
                                 <span className="icon is-large">
                                     <i className="fas fa-door-open"></i>
                                 </span>

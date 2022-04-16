@@ -44,9 +44,6 @@ const Login = () => {
         }).finally(() => (setIsLoading(false)));
     };
 
-
-
-
     return <>
         <section className="section">
             <div className="container">
