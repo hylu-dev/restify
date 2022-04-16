@@ -1,5 +1,5 @@
-const MenuItem = ({ name, price, description }) => {
-    return <div>
+const MenuItem = ({ key, name, price, description }) => {
+    return <div key={ key }>
         <div class="columns" style={{marginLeft: "5%", marginRight: "5%"}}>
             <div class="column is-narrow">
                 <h3 class="title is-4 has-text-grey-lighter">{ name }</h3>
