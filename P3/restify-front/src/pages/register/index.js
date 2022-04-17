@@ -63,7 +63,7 @@ const Register = () => {
             <div className="container">
                 <div className="columns is-centered">
                     <div className="column is-3">
-                        <h1 className="box title has-text-grey-dark has-text-centered is-size-1 has-text-weight-light has-background-primary">RESTIFY</h1>
+                        <h1 className="box title has-text-dark has-text-centered is-size-1 has-text-weight-light has-background-primary">RESTIFY</h1>
                     </div>
                 </div>
                 <div className="columns is-centered">
