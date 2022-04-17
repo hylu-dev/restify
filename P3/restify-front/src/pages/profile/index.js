@@ -16,7 +16,7 @@ const Profile = () => {
 
     const [owner, setOwner] = useState("");
     const [logo, setLogo] = useState("");
-    const [rName, setRName] = useState("");
+    const [name, setName] = useState("");
 
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -36,18 +36,20 @@ const Profile = () => {
                     setPhone(data.phone_number);
                     setOldAvatar(data.avatar);
                     setAvatar(data.avatar);
-                    setOwner(data.owner);
+                    if (data.owner) {
+                        setOwner(data.owner);
+                        get_restaurant(data.owner);
+                    }
                 })
             }
         })
     }, [])
 
-    const get_restaurant = async e => {
+    const get_restaurant = async owner => {
         let request = get(`http://127.0.0.1:8000/restaurants/api/restaurant/${owner}/details/`)
-        request.then(response => {
-            response.json()
-        }).then(data => {
-            console.log(data);
+        request.then(response => response.json()).then(data => {
+            setLogo(data.logo);
+            setName(data.name);
         })
     }
 
@@ -59,14 +61,13 @@ const Profile = () => {
         payload.append('password', password);
         payload.append('password2', password2);
         payload.append('email', email);
-        payload.append('phone', phone);
+        payload.append('phone_number', phone);
         payload.append('first_name', firstName);
         payload.append('last_name', lastName);
         if (oldAvatar !== avatar) payload.append('avatar', avatar);
 
         let request = put_form("http://127.0.0.1:8000/accounts/api/profile/edit/", payload, window.localStorage.getItem("access_token"))
         request.then(response => {
-            console.log(response)
             if (response.status === 201) {
                 response.json().then(data => {
 
@@ -106,9 +107,10 @@ const Profile = () => {
                     </div>
                     <div className="column is-9">
                         <h2 className="subtitle is-size-3">My Restaurant</h2>
-                        <figure className="image is-128x128">
-                            <img className='preview-image' src={
-                                avatar ? (typeof avatar === 'string' ? avatar : URL.createObjectURL(avatar)) : ""
+                        <h2 className="is-underlined is-size-4">{name}</h2>
+                        <figure className="image is-128x128 box p-2">
+                            <img className='preview-image' src= {
+                                logo ? logo : ""
                             } alt="" />
                         </figure>
                         <h3>{owner ? "" : 'You do not currently have a restaurant set up.'}</h3>

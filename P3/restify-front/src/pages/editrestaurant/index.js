@@ -1,29 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import { get, post_form } from "../../utils";
+import { get, post_form, put_form } from "../../utils";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Common/button";
 
-const CreateRestaurant = () => {
-    const [userID, setUserID] = useState("");
+const EditRestaurant = () => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [address, setAddress] = useState("");
     const [postal, setPostal] = useState("");
     const [phone, setPhone] = useState("");
+    const [oldLogo, setOldLogo] = useState("");
     const [logo, setLogo] = useState("");
+    const [owner, setOwner] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         let request = get("http://127.0.0.1:8000/accounts/api/user/auth/", window.localStorage.getItem("access_token"))
-        request.then(response => {
-            if (response.status === 200) {
-                response.json().then(data => {
-                    setUserID(data.id);
+        request.then(response => response.json()).then(data => {
+            if (data.owner) {
+                setOwner(data.owner);
+                get(`http://127.0.0.1:8000/restaurants/api/restaurant/${data.owner}/details/`).then(response => response.json()).then(data => {
+                    setName(data.name);
+                    setDescription(data.description);
+                    setAddress(data.address);
+                    setPostal(data.postal_code);
+                    setPhone(data.phone_number);
+                    setOldLogo(data.logo);
+                    setLogo(data.logo);
                 })
             }
+            return
         })
     }, [])
 
@@ -37,9 +46,16 @@ const CreateRestaurant = () => {
         payload.append('address', address);
         payload.append('postal_code', postal);
         payload.append('phone_number', phone);
-        payload.append('logo', logo);
+        if (oldLogo !== logo) payload.append('logo', logo);
 
-        let request = post_form("http://127.0.0.1:8000/restaurants/api/restaurant/create/", payload, window.localStorage.getItem("access_token"))
+        let url = "http://127.0.0.1:8000/restaurants/api/restaurant/create/";
+        let req_func = post_form;
+        if (owner) {
+            url = "http://127.0.0.1:8000/restaurants/api/restaurant/edit/"
+            req_func = put_form;
+        }
+
+        let request = req_func(url, payload, window.localStorage.getItem("access_token"))
         request.then(response => {
             console.log(response)
             if (response.status === 201) {
@@ -131,7 +147,8 @@ const CreateRestaurant = () => {
 
                                 </div>
                                 <figure className="image is-128x128 box p-2">
-                                    <img className='preview-image' src={logo ? URL.createObjectURL(logo) : ""} alt="" />
+                                    <img className='preview-image'
+                                        src={logo ? (typeof logo === 'string' ? logo : URL.createObjectURL(logo)) : ""} alt="" />
                                 </figure>
                                 <div className="file level">
                                     <label className="file-label">
@@ -168,4 +185,4 @@ const CreateRestaurant = () => {
     </>
 }
 
-export default CreateRestaurant
+export default EditRestaurant
