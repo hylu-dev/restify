@@ -111,7 +111,8 @@ class ProfileSerializer(serializers.ModelSerializer):
             'username',
             'email',
             'phone_number',
-            'avatar'
+            'avatar',
+            'owner'
         ]
 
 class FollowedRestaurantSerializer(serializers.ModelSerializer):
