@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import Button from "../../components/Common/button";
-import { post } from "../../utils";
+import { get, post } from "../../utils";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -11,6 +11,17 @@ const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     let navigate = useNavigate();
+
+    useEffect(() => {
+        let request = get("http://127.0.0.1:8000/accounts/api/user/auth/", window.localStorage.getItem("access_token"))
+        request.then(response => {
+            if (response.status === 200) {
+                response.json().then(data => {
+                    navigate("/");
+                })
+            }
+        })
+    }, [navigate])
 
     const login_request = async e => {
         e.preventDefault();

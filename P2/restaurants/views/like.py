@@ -47,10 +47,11 @@ class LikeRestaurantView(UpdateAPIView):
 
                 target=restaurant,
 
-                body=" has liked your ",
+                body=" has liked your post",
                 type='Like',
             )
             notification.users.add(restaurant.owner)
+            
             notification.save()
 
         return restaurant
@@ -95,7 +96,7 @@ class LikePostView(UpdateAPIView):
 
                 target=post,
 
-                body=" has liked your ",
+                body="has liked your restaurant",
                 type='Like',
             )
             notification.users.add(post.user)

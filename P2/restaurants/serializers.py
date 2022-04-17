@@ -116,7 +116,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
             target=comment,
 
-            body=" has made a new ",
+            body=" has made a new comment",
             type='Comment',
         )
         notification.users.add(restaurant.owner)
@@ -150,7 +150,7 @@ class FoodItemSerializer(serializers.ModelSerializer):
 
                     target=foodItem,
 
-                    body=" has updated their ",
+                    body=" has updated their menu",
                     type='Update',
                 )
                 notification.users.add(*restaurant.followers.all())
@@ -178,7 +178,7 @@ class FoodItemSerializer(serializers.ModelSerializer):
 
                     target=instance,
 
-                    body=" has updated their ",
+                    body=" has updated their menu",
                     type='Update',
                 )
                 notification.users.add(*restaurant.followers.all())
@@ -219,7 +219,7 @@ class PostSerializer(serializers.ModelSerializer):
 
                     target=post,
 
-                    body=" has made a new ",
+                    body=" has made a new post",
                     type='Post',
                 )
                 notification.users.add(*restaurant.followers.all())
@@ -232,7 +232,7 @@ class PostSerializer(serializers.ModelSerializer):
 
                 target=post,
 
-                body=" has made a new ",
+                body=" has made a new post",
                 type='Post',
             )
             notification.users.add(restaurant.owner)

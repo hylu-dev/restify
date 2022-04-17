@@ -126,7 +126,15 @@ const Layout = () => {
                         </div>
                     </div>
 
-                    <div className="dropdown is-right is-hoverable">
+                    <Link to="/notifications" className="navbar-item">
+                        <span className="icon-text px-5">
+                            <span className="icon">
+                                <i className="fas fa-bell fa-2x"></i>
+                            </span>
+                        </span>
+                    </Link>
+
+                    {/* <div className="dropdown is-right is-hoverable">
                         <div className="dropdown-trigger">
                             <Link to="/notifications" className="navbar-item">
                                 <span className="icon is-large has-text-light">
@@ -139,7 +147,7 @@ const Layout = () => {
                                 <div className="dropdown-item">Placeholder</div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
             </div>
