@@ -246,7 +246,7 @@ class PhotoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Photo
-        fields = ['restaurant', 'image']
+        fields = ['restaurant', 'image', 'name']
 
     def create(self, data):
         if not hasattr(self.context.get('request').user, 'owner'):
@@ -255,6 +255,7 @@ class PhotoSerializer(serializers.ModelSerializer):
 
         photo = Photo.objects.create(
             image=data.get('image', ''),
+            name=data.get('name', ''),
             restaurant=restaurant
         )
 

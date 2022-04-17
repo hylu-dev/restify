@@ -1,7 +1,10 @@
-//import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import PhotoCard from "../../../components/Common/photo-card"
+import Modal from "../photo-modal";
 
 const Gallery = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
     return <>
         <div id="Photos-list" style={{backgroundColor: "white"}}>
             <br></br>
@@ -41,16 +44,19 @@ const Gallery = () => {
                 </div>
             </div>
 
-            <div class="columns my-6">
-                <section class="container has-text-centered">
-                    <a class="button is-medium is-success">
-                        <span class="icon">
-                            <i class="fas fa-plus-circle"></i>
-                        </span>
-                        <span>Add Photo</span>
-                    </a>
-                </section>
+            <div className="columns mt-4" style={{ marginLeft: "10%", marginRight: "5%" }}>
+                    <section className="container has-text-centered">
+                        <button className="button is-success js-modal-trigger" data-target="add-item-modal" onClick={() => setIsOpen(true)}>
+                            <span className="icon" style={{ marginRight: "10px"}}>
+                                <i className="fas fa-plus-circle fa-2x"></i>
+                            </span>
+                            <span> Add Item</span>
+                        </button>
+                        {isOpen ? <Modal setIsOpen={setIsOpen} /> : <div></div>}
+                    </section>
             </div>
+
+            <br/>
         </div>
     </>
 }
