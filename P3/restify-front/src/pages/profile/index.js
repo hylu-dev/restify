@@ -92,7 +92,7 @@ const Profile = () => {
                     <div className="column is-9">
                         <h2 className="subtitle is-size-3">My Restaurant</h2>
                         <h3>You do not currently have a restaurant set up</h3>
-                        <a href="restaurant-create.html"><button className="button is-info my-5">Create a Restaurant</button></a>
+                        <Link to="/restaurant/create"><button className="button is-info my-5">Create a Restaurant</button></Link>
 
                         <form action="" encType="multipart/form-data">
                             <h2 className="subtitle is-size-3">Personal Information</h2>
