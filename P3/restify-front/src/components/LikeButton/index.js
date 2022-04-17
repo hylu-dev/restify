@@ -1,3 +1,5 @@
+import { put } from "../../utils";
+
 const LikeButton = ({postID}) => {
 
     const like_request = async e => {
