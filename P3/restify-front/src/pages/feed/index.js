@@ -64,7 +64,7 @@ const Feed = () => {
                     <div id="grid">
                         {
                             results.map(result => {
-                                return <PostBox key={result.id} userID={result.user} restaurant={result.restaurant} timestamp={result.timestamp} text={result.body} />
+                                return <PostBox key={result.id} userID={result.user} restaurant={result.restaurant} timestamp={result.timestamp} text={result.body} postID={result.id} />
                             })
                         }
                     </div>
