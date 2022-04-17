@@ -143,6 +143,7 @@ class FeedSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = [
+                'id',
                 'timestamp',
                 'body',
                 'likes',

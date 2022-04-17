@@ -11,9 +11,6 @@ const Feed = () => {
     const [next, setNext] = useState("");
     const [previous, setPrevious] = useState("");
     const [results, setResults] = useState([]);
-    const [username, setUsername] = userState("");
-    const [avatar, setAvatar] = useState("");
-    const [restaurant, setRestaurant] = useState("");
 
     const logout = () => {
         window.localStorage.removeItem("access_token");
@@ -31,33 +28,45 @@ const Feed = () => {
                 })
             }
         })
+
+
     }, [])
+
+    // const request_posts = async results => {
+    //     results.forEach(result => {
+    //         let feed_request = get(`http://127.0.0.1:8000/accounts/api/profile/${result.user}/`)
+    //         feed_request.then(response => {
+    //             if (response.status === 200) {
+    //                 response.json().then(data => {
+    //                     setPosts([...posts, {
+    //                         'id': data.id,
+    //                         'username': data.username,
+    //                         'avatar': data.avatar,
+    //                         'restaurant': data.restaurant,
+    //                         'timestamp': result.timestamp,
+    //                         'body': result.body
+    //                     }])
+    //                     console.log(posts);
+    //                 })
+    //             }
+
+    //         })
+    //     })
+
+    // }
 
 
     return <>
-        <section class="section">
-            <div class="container">
-                <div class="columns is-centered">
-                    <div class="column is-6"></div>
+        <section className="section">
+            <div className="container">
+                <div className="columns is-centered">
+                    <div className="column is-6"></div>
                     <div id="grid">
-                        {results.map(result => (
-                            { const function () => {
-                                let request = get("http://127.0.0.1:8000/accounts/api/profile/"+result.user, window.localStorage.getItem("access_token"))
-                                request.then(response => {
-                                if (response.status === 200) {
-                                    response.json().then(data => {
-                                        setUsername(data.username);
-                                        setAvatar(data.avatar);
-                                        setRestaurant(data.owner)
-                                    })
-                                }
-                            }
-                            } 
-                            <PostBox key={0} username={username} restaurant={restaurant} icon={avatar}
-                                timestamp={result.timestamp} text={result.body} />
-                        ))}
-
-
+                        {
+                            results.map(result => {
+                                return <PostBox key={result.id} userID={result.user} restaurant={result.restaurant} timestamp={result.timestamp} text={result.body} />
+                            })
+                        }
                     </div>
                 </div>
             </div>
