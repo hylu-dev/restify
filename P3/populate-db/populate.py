@@ -5,10 +5,6 @@ from faker import Faker  # Dependency: pip install faker
 
 #Icons sourced from <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/bomsymbols" title="BomSymbols">BomSymbols</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/narak0rn" title="narak0rn">narak0rn</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/stellalunart" title="Stellalunart">Stellalunart</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/whitevector" title="Whitevector">Whitevector</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/vitaly-gorbachev" title="Vitaly Gorbachev">Vitaly Gorbachev</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
-def random_phone_num():
-    n = 10
-    return ''.join(["{}".format(randint(0, 9)) for num in range(0, n)])
-
 
 def create_users(count):
     users = []
@@ -23,19 +19,14 @@ def create_users(count):
             "password2": f"{fname}123456789",
             "username": fname+lname,
             "email": f"{fname}.{lname}@domain.com",
-            "phone_number": random_phone_num()
+            "phone_number": Faker().msisdn()
         })
     for user in users:
         path = choice(os.listdir("./icons"))
         icon = open(f'icons/{path}', 'rb')
         res = requests.post(
             'http://127.0.0.1:8000/accounts/api/register/', data=user, files={'avatar': icon})
-        if res.status_code == 201:
-            print(
-                f"{res.status_code}: Created user {user['first_name']} {user['last_name']}")
-        else:
-            print(
-                f"{res.status_code}: Failed to create {user['first_name']} {user['last_name']}")
+        print(f"{res.status_code}: User Create {user['username']}")
 
 
 def create_owners(count):
@@ -51,14 +42,14 @@ def create_owners(count):
             "password2": f"{fname}123456789",
             "username": fname+lname,
             "email": f"{fname}.{lname}@domain.com",
-            "phone_number": random_phone_num()
+            "phone_number": Faker().msisdn()
         })
     for user in users:
         path = choice(os.listdir("./icons"))
         icon = open(f'icons/{path}', 'rb')
         res = requests.post(
             'http://127.0.0.1:8000/accounts/api/register/', data=user, files={'avatar': icon})
-        print(f"{res.status_code}: User Create {name}")
+        print(f"{res.status_code}: User Create {user['username']}")
         if res.status_code == 201:
             create_restaurant(login(user['username'], user['password']))
 
@@ -79,7 +70,7 @@ def create_restaurant(token):
         "name": name,
         "address": Faker().street_address(),
         "postal_code": Faker().postcode(),
-        "phone_number": random_phone_num()
+        "phone_number": Faker().msisdn()
     }
     res = requests.post('http://127.0.0.1:8000/restaurants/api/restaurant/create/', data=data,
                         headers={"Authorization": f"Bearer {token}"}, files={'logo': logo})
@@ -125,8 +116,8 @@ def add_posts(token):
 def main():
     # Make sure you're current working directory is inside populate-db
     # Ensure django server is running
-    create_users(25)
-    create_owners(25)
+    create_users(1)
+    create_owners(1)
 
 
 if __name__ == "__main__":
