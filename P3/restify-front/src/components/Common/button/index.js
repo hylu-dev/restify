@@ -1,7 +1,8 @@
-const Button = ({ colorClass, value, handler }) => {
+const Button = ({ colorClass, value, handler, styles }) => {
     var color = colorClass ? colorClass : "is-primary"
+    var customStyles = styles ? styles : ""
     return <button
-        className={`button ${color}`}
+        className={`button ${color} ${customStyles}`}
         onClick={handler}
     >
         {value}
