@@ -13,8 +13,11 @@ const Profile = () => {
     const [avatar, setAvatar] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
+
     const [owner, setOwner] = useState("");
     const [logo, setLogo] = useState("");
+    const [rName, setRName] = useState("");
+
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const logout = () => {
@@ -39,8 +42,13 @@ const Profile = () => {
         })
     }, [])
 
-    const check_owner = async e => {
-
+    const get_restaurant = async e => {
+        let request = get(`http://127.0.0.1:8000/restaurants/api/restaurant/${owner}/details/`)
+        request.then(response => {
+            response.json()
+        }).then(data => {
+            console.log(data);
+        })
     }
 
     const submit_request = async e => {
