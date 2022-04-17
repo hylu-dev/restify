@@ -11,7 +11,7 @@ const Feed = () => {
     const [next, setNext] = useState("");
     const [previous, setPrevious] = useState("");
     const [results, setResults] = useState([]);
-    const [username, setUsername] = userState("");
+    const [username, setUsername] = useState("");
     const [avatar, setAvatar] = useState("");
     const [restaurant, setRestaurant] = useState("");
 
@@ -41,21 +41,21 @@ const Feed = () => {
                     <div class="column is-6"></div>
                     <div id="grid">
                         {results.map(result => (
-                            { const function () => {
+                            () => {
                                 let request = get("http://127.0.0.1:8000/accounts/api/profile/"+result.user, window.localStorage.getItem("access_token"))
                                 request.then(response => {
-                                if (response.status === 200) {
-                                    response.json().then(data => {
-                                        setUsername(data.username);
-                                        setAvatar(data.avatar);
-                                        setRestaurant(data.owner)
-                                    })
-                                }
-                            }
-                            } 
+                                    if (response.status === 200) {
+                                        response.json().then(data => {
+                                            setUsername(data.username);
+                                            setAvatar(data.avatar);
+                                            setRestaurant(data.owner)
+                                        })
+                                    }
+                                });
+                             
                             <PostBox key={0} username={username} restaurant={restaurant} icon={avatar}
                                 timestamp={result.timestamp} text={result.body} />
-                        ))}
+                        }))}
 
 
                     </div>
