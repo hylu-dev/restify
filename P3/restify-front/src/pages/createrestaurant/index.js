@@ -42,7 +42,7 @@ const CreateRestaurant = () => {
         let request = post_form("http://127.0.0.1:8000/restaurants/api/restaurant/create/", payload, window.localStorage.getItem("access_token"))
         request.then(response => {
             console.log(response)
-            if (response.status === 200) {
+            if (response.status === 201) {
                 response.json().then(data => {
                     navigate("/profile");
                 });
@@ -131,12 +131,12 @@ const CreateRestaurant = () => {
 
                                 </div>
                                 <figure className="image is-128x128 box p-2">
-                                    <img className='preview-image' src={"https://bulma.io/images/placeholders/128x128.png"} alt="" />
+                                    <img className='preview-image' src={logo ? URL.createObjectURL(logo) : ""} alt="" />
                                 </figure>
                                 <div className="file level">
                                     <label className="file-label">
                                         <input className="file-input" type="file" name="resume"
-                                            defaultValue={logo} onChange={e => setLogo(e.target.value)}
+                                            defaultValue={logo} onChange={e => setLogo(e.target.files[0])}
                                         />
                                         <span className="file-cta">
                                             <span className="file-icon">
