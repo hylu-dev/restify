@@ -1,26 +1,27 @@
 //import React, {useEffect, useState} from 'react';
 import React, { useEffect, useState } from 'react';
 import MenuItem from "../../../components/Common/menu-item"
-import { useParams } from 'react-router-dom';
-import { Link } from "react-router-dom";
+import { useParams, useNavigate } from 'react-router-dom';
 
 const Menu = () => {
     const { id } = useParams();
     const [menu, setMenu] = useState([]);
+    let navigate = useNavigate();
 
     useEffect(() => {
         fetch("http://127.0.0.1:8000/restaurants/api/restaurant/" + id + "/menu/", {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(json => setMenu(json.data))
+            .then(data => setMenu(data.results))
     }, [id])
 
     const menu_list = menu ? 
-        <div class="box p-auto mx-6 has-shadow" style={{backgroundColor: "rgb(214, 159, 135)"}}>
-            <div class="container box has-text-grey-lighter" style={{backgroundColor: "rgb(59, 59, 63)"}}>
+        <div className="box p-auto mx-6 has-shadow" style={{backgroundColor: "rgb(214, 159, 135)"}}>
+            <div className="container box has-text-grey-lighter" style={{backgroundColor: "rgb(59, 59, 63)"}}>
+                <br></br>
                 {menu.map(item => (
-                    <MenuItem key={item.id} name={item.name} price={item.price} description={item.description}/>
+                    <MenuItem id={item.id} name={item.name} price={item.price} description={item.description} edit="false"/>
                 ))}
             </div>
         </div>
@@ -30,23 +31,27 @@ const Menu = () => {
             <button>Add item</button>
         </div>
 
+    const edit_menu = () => {
+        navigate("/restaurant/" + id + "/edit-menu")
+    };
+
     return <>
-        <div class="section" id="Menu-list" style={{backgroundColor: "white"}}>
-            <div class="container">
-                <nav class="level">
-                    <div class="level-left">
+        <div className="section" id="Menu-list" style={{backgroundColor: "white"}}>
+            <div className="container">
+                <nav className="level">
+                    <div className="level-left">
                     </div>
                 
-                    <div class="level-right">
-                        <p class="level-item">
-                            <Link to="/edit-menu" class="button is-primary" style={{width: "100px"}}>
-                                <span class="icon-text">
-                                    <span class="icon">
-                                        <i class="fas fa-edit"></i>
+                    <div className="level-right">
+                        <p className="level-item">
+                            <button className={`button is-primary`} onClick={ edit_menu } style={{width: "100px"}}>
+                                <span className="icon-text">
+                                    <span className="icon">
+                                        <i className="fas fa-edit"></i>
                                     </span>
                                     <span>Edit</span>
                                 </span>
-                            </Link>
+                            </button>
                         </p>
                     </div>
                 </nav>

@@ -8,6 +8,7 @@ const Layout = () => {
     const [lastName, setLastName] = useState("");
     const [username, setUsername] = useState("");
     const [avatar, setAvatar] = useState("");
+    const [restaurant, setRestaurant] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,6 +20,7 @@ const Layout = () => {
                     setLastName(data.last_name);
                     setUsername(data.username);
                     setAvatar(data.avatar);
+                    setRestaurant(data.restaurant);
                 })
             } else {
                 logout();

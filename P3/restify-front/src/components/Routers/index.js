@@ -4,6 +4,7 @@ import Browse from "../../pages/browse";
 import Feed from "../../pages/feed";
 import Restaurant from "../../pages/restaurant";
 import Menu from "../../pages/restaurant/menu";
+import EditMenu from "../../pages/restaurant/edit-menu";
 import Gallery from "../../pages/restaurant/photos";
 import Posts from "../../pages/restaurant/posts";
 import Profile from "../../pages/profile";
@@ -22,6 +23,7 @@ const Router = () => {
                     <Route path="browse" element={<Browse />} />
                     <Route path="restaurant/:id/" element={<Restaurant />}>
                         <Route path="menu" element={<Menu />}/>
+                        <Route path="edit-menu" element={<EditMenu />}/>
                         <Route path="gallery" element={<Gallery />}/>
                         <Route path="posts" element={<Posts />}/>
                     </Route>

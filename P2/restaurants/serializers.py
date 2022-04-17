@@ -126,7 +126,7 @@ class CommentSerializer(serializers.ModelSerializer):
 class FoodItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = FoodItem
-        fields = ['name', 'description', 'price']
+        fields = ['id', 'name', 'description', 'price']
 
     def create(self, data):
         if not hasattr(self.context.get('request').user, 'owner'):
