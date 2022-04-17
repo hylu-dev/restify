@@ -51,7 +51,6 @@ const Modal = ({ setIsOpen }) => {
                     <button class="delete" aria-label="close" onClick={() => setIsOpen(false)}></button>
                     </header>
                     <section class="modal-card-body">
-                        {/* input tags referenced from https://www.w3schools.com/html/html_form_input_types.asp */}
                         <form action="" encType="multipart/form-data">
                             <ul className="has-text-danger">
                                 {errors.map(item => <li className="tag tag__custom is-danger mb-1" key={item}>{item}</li>)}

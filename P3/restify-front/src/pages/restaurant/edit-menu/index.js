@@ -1,4 +1,3 @@
-import ReactDOM from 'react-dom';
 import React, { useEffect, useState } from 'react';
 import MenuItem from "../../../components/Common/menu-item";
 import Button from "../../../components/Common/button";
@@ -9,15 +8,20 @@ const Menu = () => {
     const { id } = useParams();
     const [menu, setMenu] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
+    const [query, setQuery] = useState({search: '', page: 1});
+    const [totalPages, setTotalPages] = useState(1);
     let navigate = useNavigate();
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/restaurants/api/restaurant/" + id + "/menu/", {
+        fetch(`http://127.0.0.1:8000/restaurants/api/restaurant/` + id + `/menu/?search=${query.search}&page=${query.page}`, {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(data => setMenu(data.results))
-    }, [isOpen, id])
+            .then(data => {
+                setMenu(data.results)
+                setTotalPages(Math.ceil(data.count / 8))
+            })
+    }, [isOpen, id, query])
 
     const menu_list = menu ? 
         <div id="menu-list">
@@ -55,9 +59,25 @@ const Menu = () => {
 
                 <div className="box p-auto mx-6 has-shadow" style={{backgroundColor: "rgb(214, 159, 135)"}}>
                     <div className="container box has-text-grey-lighter" style={{backgroundColor: "rgb(59, 59, 63)"}}>
-                        <br></br>
+                        <div className="columns is-centered" style={{marginLeft: "5%", marginRight: "5%"}}>
+                            <div className="column is-centered">
+                                <h1 className="title is-4 has-text-grey-lighter">Page {query.page} of {totalPages}</h1>
+                            </div>
+                        </div>
+                        <br/>
                         { menu_list }
                     </div>
+                </div>
+
+                <div className="columns mt-4" style={{ marginLeft: "10%", marginRight: "5%" }}>
+                    <section className="container has-text-centered">
+                        <div className="column is-narrow">
+                            {query.page > 1 ? <Button styles="" value="Previous" handler={() => setQuery({...query, page: query.page - 1})} /> : <></>}
+                        </div>
+                        <div className="column is-narrow">
+                            {query.page < totalPages ? <Button styles="" value="Next" handler={() => setQuery({...query, page: query.page + 1})} /> : <></>}
+                        </div>
+                    </section>
                 </div>
 
                 <div className="columns mt-4" style={{ marginLeft: "10%", marginRight: "5%" }}>
