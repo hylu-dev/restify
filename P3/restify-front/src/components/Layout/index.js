@@ -8,6 +8,7 @@ const Layout = () => {
     const [lastName, setLastName] = useState("");
     const [username, setUsername] = useState("");
     const [avatar, setAvatar] = useState("");
+    const [owner, setOwner] = useState("")
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,6 +20,7 @@ const Layout = () => {
                     setLastName(data.last_name);
                     setUsername(data.username);
                     setAvatar(data.avatar);
+                    setOwner(data.owner);
                 })
             } else {
                 logout();
@@ -104,7 +106,11 @@ const Layout = () => {
                                     </div>
                                 </div>
                                 <div className="media-right pr-5 pt-4">
-                                    <div className="box has-background-grey-lighter has-text-centered p-2" style={{width: '80px'}}>Owner</div>
+                                    <div className="box has-background-info-light has-text-centered p-2" style={{width: '80px'}}>
+                                        {
+                                            owner ? "Owner" : "User"
+                                        }
+                                    </div>
                                 </div>
                             </article>
         
