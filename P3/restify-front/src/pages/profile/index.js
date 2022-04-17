@@ -13,6 +13,8 @@ const Profile = () => {
     const [avatar, setAvatar] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
+    const [owner, setOwner] = useState("");
+    const [logo, setLogo] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const logout = () => {
@@ -31,14 +33,19 @@ const Profile = () => {
                     setPhone(data.phone_number);
                     setOldAvatar(data.avatar);
                     setAvatar(data.avatar);
+                    setOwner(data.owner);
                 })
             }
         })
     }, [])
 
+    const check_owner = async e => {
+
+    }
+
     const submit_request = async e => {
         e.preventDefault();
-        setErrors([])
+        setErrors([]);
         setIsLoading(true);
         let payload = new FormData();
         payload.append('password', password);
@@ -91,8 +98,14 @@ const Profile = () => {
                     </div>
                     <div className="column is-9">
                         <h2 className="subtitle is-size-3">My Restaurant</h2>
-                        <h3>You do not currently have a restaurant set up</h3>
-                        <Link to="/restaurant/create"><button className="button is-info my-5">Create a Restaurant</button></Link>
+                        <figure className="image is-128x128">
+                            <img className='preview-image' src={
+                                avatar ? (typeof avatar === 'string' ? avatar : URL.createObjectURL(avatar)) : ""
+                            } alt="" />
+                        </figure>
+                        <h3>{owner ? "" : 'You do not currently have a restaurant set up.'}</h3>
+                        <Link to="/restaurant/create"><button className="button is-info my-5">
+                            {owner ? "Edit Restaurant" : 'Create Restaurant'}</button></Link>
 
                         <form action="" encType="multipart/form-data">
                             <h2 className="subtitle is-size-3">Personal Information</h2>
