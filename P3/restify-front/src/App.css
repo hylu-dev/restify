@@ -1,16 +1,28 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
 
-body{
+html {
 	background-color: #ADFFF3;
-	min-height: 100vh;
 }
 
 #grid {
-	display: flex; 
+	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	padding: 25px 50px 25px 50px;
 }
+
+.tag__custom {
+	height: auto !important;
+	padding: .5ch;
+	white-space: normal !important;
+}
+
+.preview-image {
+	height: 100% !important;
+	object-fit: cover;
+	background-position: center;
+}
+
 .browse-card {
 	/*min-width: 150px;*/
 	width: 300px;
@@ -18,10 +30,10 @@ body{
 }
 
 #follow-favourite-container {
-	display: flex; 
+	display: flex;
 	justify-content: space-between;
 	align-content: center;
-	border:2px solid #DDDEE4;
+	border: 2px solid #DDDEE4;
 	margin: 10px 5px 5px 5px;
 	border-radius: 3px;
 }
@@ -57,20 +69,21 @@ body{
 
 .heart:hover .fa-regular,
 .heart .fa-solid {
-    display: none;
+	display: none;
 
 }
+
 .heart:hover .fa-solid {
-    display: inline;
+	display: inline;
 }
 
-.heart{
+.heart {
 	padding-top: 8px;
 	/*z-index: ;*/
 }
 
-.reply{
-	padding:0 5px 0 5px;
+.reply {
+	padding: 0 5px 0 5px;
 }
 
 .reply-button {
@@ -82,7 +95,6 @@ body{
 	margin-left: 10%;
 }
 
-hr{
+hr {
 	margin-top: 5px;
 }
-
