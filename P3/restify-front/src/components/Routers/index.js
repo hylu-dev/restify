@@ -7,6 +7,7 @@ import Profile from "../../pages/profile";
 import Notifications from "../../pages/notifications";
 import Login from "../../pages/login"
 import Register from "../../pages/register"
+import EditRestaurant from "../../pages/editrestaurant"
 
 const Router = () => {
     return (
@@ -19,6 +20,7 @@ const Router = () => {
                     <Route path="browse" element={<Browse />} />
                     <Route path="restaurant/:id" element={<Restaurant />} />
                     <Route path="profile" element={<Profile />} />
+                    <Route path="restaurant/create" element={<EditRestaurant />} />
                     <Route path="notifications" element={<Notifications />} />
                 </Route>
             </Routes>
