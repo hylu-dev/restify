@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { post } from "../../../utils";
-import Button from "../button";
+import Button from "../../../components/Common/button";
 
 const Modal = ({ setIsOpen }) => {
     const [name, setName] = useState("");

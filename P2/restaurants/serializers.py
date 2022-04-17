@@ -264,6 +264,6 @@ class PhotoSerializer(serializers.ModelSerializer):
 class GallerySerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
-        fields = ['restaurant', 'image', 'name', 'timestamp']
+        fields = ['id', 'restaurant', 'image', 'name', 'timestamp']
 
 

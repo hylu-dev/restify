@@ -10,6 +10,7 @@ const Gallery = () => {
     const [query, setQuery] = useState({search: '', page: 1})
     const [totalPages, setTotalPages] = useState(1)
     const [isOpen, setIsOpen] = useState(false);
+    const [isDelete, setIsDelete] = useState(false);
 
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/restaurants/api/restaurant/` + id + `/photos/?search=${query.search}&page=${query.page}`, {
@@ -20,13 +21,15 @@ const Gallery = () => {
                 setGallery(data.results)
                 setTotalPages(Math.ceil(data.count / 8))
             })
-    }, [id, query])
+    }, [id, query, isOpen, isDelete])
+
+    console.log(gallery);
 
     const photo_list = gallery ? <>
             <div class="columns mx-3">
                 {gallery.slice(0, 3).map(photo => (
                     <div class="column is-one-third">
-                        <PhotoCard id={photo.id} name={photo.name} photo={photo.image}/>
+                        <PhotoCard id={photo.id} name={photo.name} photo={photo.image} state={ setIsDelete }/>
                     </div>
                 ))}
             </div>

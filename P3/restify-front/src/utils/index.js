@@ -85,3 +85,21 @@ export async function get(url, token = "") {
         referrerPolicy: 'no-referrer'
     });
 }
+
+export async function del(url, token = "") {
+    let headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+    if (token) headers['Authorization'] = `Bearer ${token}`
+
+    return await fetch(url, {
+        method: 'DELETE',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: headers,
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+    });
+}
