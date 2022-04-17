@@ -10,7 +10,10 @@ const Feed = () => {
     const [count, setCount] = useState("");
     const [next, setNext] = useState("");
     const [previous, setPrevious] = useState("");
-    const [results, setResults] = useState("");
+    const [results, setResults] = useState([]);
+    const [username, setUsername] = useState("");
+    const [avatar, setAvatar] = useState("");
+    const [restaurant, setRestaurant] = useState("");
 
     const logout = () => {
         window.localStorage.removeItem("access_token");
@@ -21,7 +24,6 @@ const Feed = () => {
         request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
-                    console.log(data);
                     setCount(data.count);
                     setNext(data.next);
                     setPrevious(data.previous);
@@ -33,15 +35,34 @@ const Feed = () => {
 
 
     return <>
-        <div id="grid">
-        {results.map(result => (
-            <PostBox key={0} username={result.user} restaurant={result.restaurant} icon={null} 
-        timestamp={result.timestamp} text={result.body}/>
-            ))}
+        <section class="section">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-6"></div>
+                    <div id="grid">
+                        {results.map(result => (
+                            () => {
+                                let request = get("http://127.0.0.1:8000/accounts/api/profile/"+result.user, window.localStorage.getItem("access_token"))
+                                request.then(response => {
+                                    if (response.status === 200) {
+                                        response.json().then(data => {
+                                            setUsername(data.username);
+                                            setAvatar(data.avatar);
+                                            setRestaurant(data.owner)
+                                        })
+                                    }
+                                });
+                             
+                            <PostBox key={0} username={username} restaurant={restaurant} icon={avatar}
+                                timestamp={result.timestamp} text={result.body} />
+                        }))}
 
-            
-        </div>
-    </>   
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </>
 }
 
 export default Feed
