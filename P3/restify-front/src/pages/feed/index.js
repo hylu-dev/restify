@@ -41,15 +41,17 @@ const Feed = () => {
                     <div class="column is-6"></div>
                     <div id="grid">
                         {results.map(result => (
-                            { useEffect(() => {
+                            { const function () => {
                                 let request = get("http://127.0.0.1:8000/accounts/api/profile/"+result.user, window.localStorage.getItem("access_token"))
                                 request.then(response => {
                                 if (response.status === 200) {
                                     response.json().then(data => {
-                                    setUsername(data.username);
-                                    setAvatar(data.avatar);
-                                    setRestaurant(data.owner)
-                                     })}})}, [])
+                                        setUsername(data.username);
+                                        setAvatar(data.avatar);
+                                        setRestaurant(data.owner)
+                                    })
+                                }
+                            }
                             } 
                             <PostBox key={0} username={username} restaurant={restaurant} icon={avatar}
                                 timestamp={result.timestamp} text={result.body} />
