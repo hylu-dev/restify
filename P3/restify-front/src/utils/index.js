@@ -52,6 +52,22 @@ export async function put(url, payload, token = "") {
     });
 }
 
+export async function put_form(url, payload, token = "") {
+    let headers = {}
+    if (token) headers['Authorization'] = `Bearer ${token}`
+
+    return await fetch(url, {
+        method: 'PUT',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: headers,
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+        body: payload
+    });
+}
+
 export async function get(url, token = "") {
     let headers = {
         'Accept': 'application/json',

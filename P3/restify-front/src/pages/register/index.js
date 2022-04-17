@@ -14,9 +14,8 @@ const Register = () => {
     const [phone, setPhone] = useState("");
     const [avatar, setAvatar] = useState(null);
     const [errors, setErrors] = useState([]);
-
     const [isLoading, setIsLoading] = useState(false);
-    let navigate = useNavigate();
+    const navigate = useNavigate();
 
     const submit_request = async e => {
         e.preventDefault();
@@ -62,6 +61,11 @@ const Register = () => {
     return <>
         <section className="section">
             <div className="container">
+                <div className="columns is-centered">
+                    <div className="column is-3">
+                        <h1 className="box title has-text-grey-dark has-text-centered is-size-1 has-text-weight-light has-background-primary">RESTIFY</h1>
+                    </div>
+                </div>
                 <div className="columns is-centered">
                     <div className="column is-4">
                         <h1 className="title has-text-grey-dark has-text-centered">Create an Account</h1>

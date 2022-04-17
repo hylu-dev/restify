@@ -1,8 +1,7 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
 
-body {
+html {
 	background-color: #ADFFF3;
-	min-height: 100vh;
 }
 
 #grid {
