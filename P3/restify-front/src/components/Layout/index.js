@@ -1,6 +1,31 @@
 import {Link, Outlet} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { get } from "../../utils";
 
 const Layout = () => {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [username, setUsername] = useState("");
+    const [avatar, setAvatar] = useState("");
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        let request = get("http://127.0.0.1:8000/accounts/api/user/auth/", window.localStorage.getItem("access_token"))
+        request.then(response => {
+            if (response.status === 200) {
+                response.json().then(data => {
+                    setFirstName(data.first_name);
+                    setLastName(data.last_name);
+                    setUsername(data.username);
+                    setAvatar(data.avatar);
+                })
+            } else {
+                logout();
+                navigate("/login");
+            }
+        })
+    }, [navigate])
 
     const logout = () => {
         window.localStorage.removeItem("access_token");
@@ -68,13 +93,13 @@ const Layout = () => {
                         <div className="navbar-dropdown is-right" style={{width: '380px'}}>
                             <article className="media">
                                 <div className="media-left pt-5 pl-5">
-                                    <img className="is-64x64 is-rounded" src={'https://vistapointe.net/images/stick-man-1.jpg'} alt="Person"/>
+                                    <img className="is-64x64 is-rounded" src={avatar} alt="Person"/>
                                 </div>
                                 <div className="media-content py-2">
                                     <div className="content mt-1">
                                     <div className="media-content">
-                                        <p className="title is-4">John Doe</p>
-                                        <p className="subtitle is-6">@megabillionaire</p>
+                                        <p className="title is-4">{`${firstName} ${lastName}`}</p>
+                                        <p className="subtitle is-6">{`@${username}`}</p>
                                     </div>
                                     </div>
                                 </div>

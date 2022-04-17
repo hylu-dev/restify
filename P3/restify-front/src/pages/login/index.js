@@ -34,7 +34,7 @@ const Login = () => {
                 response.json().then(data => {
                     let err = []
                     for (const [key, value] of Object.entries(data)) {
-                        err.push(`${key.charAt(0).toUpperCase()+key.slice(1)}: ${value}`)
+                        err.push(`${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}`)
                     }
                     setErrors(err)
                 });
@@ -47,6 +47,11 @@ const Login = () => {
     return <>
         <section className="section">
             <div className="container">
+                <div className="columns is-centered">
+                    <div className="column is-3">
+                        <h1 className="box title has-text-grey-dark has-text-centered is-size-1 has-text-weight-light has-background-primary">RESTIFY</h1>
+                    </div>
+                </div>
                 <div className="columns is-centered">
                     <div className="column is-3">
                         <h1 className="title has-text-grey-dark has-text-centered">Login</h1>
