@@ -56,7 +56,7 @@ class LikedPostSerializer(serializers.ModelSerializer):
     """
     def update(self, instance, validated_data):
         instance.likes += 1
-        instance.likers.add(self.context.get('request', None).user)
+        instance.userlikers.add(self.context.get('request', None).user)
         instance.save()
 
         return instance
@@ -88,7 +88,7 @@ class UnlikedPostSerializer(serializers.ModelSerializer):
     """
     def update(self, instance, validated_data):
         instance.likes -= 1
-        instance.likers.remove(self.context.get('request', None).user)
+        instance.userlikers.remove(self.context.get('request', None).user)
         instance.save()
 
         return instance
