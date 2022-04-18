@@ -60,8 +60,7 @@ const Feed = () => {
         <section className="section">
             <div className="container">
                 <div className="columns is-centered">
-                    <div className="column is-6"></div>
-                    <div id="grid">
+                    <div id="grid column is-8">
                         {
                             results.map(result => {
                                 return <PostBox key={result.id} userID={result.user} restaurant={result.restaurant} timestamp={result.timestamp} text={result.body} postID={result.id} />

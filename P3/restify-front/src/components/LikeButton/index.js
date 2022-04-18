@@ -1,14 +1,14 @@
 import { put } from "../../utils";
 
-const LikeButton = ({postID}) => {
+const LikeButton = ({ postID }) => {
 
     const like_request = async e => {
         e.preventDefault();
-        let request = put("http://127.0.0.1:8000/restaurants/api/restaurant/post/" + {postID} +"/like/", window.localStorage.getItem("access_token"))
+        let request = put("http://127.0.0.1:8000/restaurants/api/restaurant/post/" + postID + "/like/", {}, window.localStorage.getItem("access_token"))
         request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
-                    localStorage.setItem('access_token', data.access);
+                    console.log(data);
                 });
             }
         })
@@ -16,11 +16,11 @@ const LikeButton = ({postID}) => {
 
     const unlike_request = async e => {
         e.preventDefault();
-        let request = put("http://127.0.0.1:8000/restaurants/api/restaurant/post/" + {postID} +"/unlike/", window.localStorage.getItem("access_token"))
+        let request = put("http://127.0.0.1:8000/restaurants/api/restaurant/post/" + postID + "/unlike/", {}, window.localStorage.getItem("access_token"))
         request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
-                    localStorage.setItem('access_token', data.access);
+                    console.log(data);
                 });
             }
         })
