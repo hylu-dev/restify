@@ -119,8 +119,8 @@ def add_posts(token):
 def main():
     # Make sure you're current working directory is inside populate-db
     # Ensure django server is running
-    create_users(10)
-    create_owners(10)
+    create_users(30)
+    create_owners(30)
 
 
 if __name__ == "__main__":
