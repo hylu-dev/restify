@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import MenuItem from "../../../components/Common/menu-item"
 import Button from "../../../components/Common/button";
-import { useParams, useNavigate, useOutletContext } from 'react-router-dom';
+import { useParams, useOutletContext } from 'react-router-dom';
 import Modal from "../menu-modal";
 
 const Menu = () => {

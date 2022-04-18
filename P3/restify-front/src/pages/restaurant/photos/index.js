@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import PhotoCard from "../../../components/Common/photo-card"
 import Button from "../../../components/Common/button";
 import Modal from "../photo-modal";
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useOutletContext } from 'react-router-dom';
 
 const Gallery = () => {
+    const does_own = useOutletContext();
+
     const { id } = useParams();
     const [gallery, setGallery] = useState([]);
     const [query, setQuery] = useState({search: '', page: 1})
@@ -23,27 +25,25 @@ const Gallery = () => {
             })
     }, [id, query, isOpen, isDelete])
 
-    console.log(gallery);
-
     const photo_list = gallery ? <>
             <div class="columns mx-3">
                 {gallery.slice(0, 3).map(photo => (
                     <div class="column is-one-third">
-                        <PhotoCard id={photo.id} name={photo.name} photo={photo.image} state={ setIsDelete }/>
+                        <PhotoCard id={photo.id} name={photo.name} photo={photo.image} edit={ does_own } state={ setIsDelete }/>
                     </div>
                 ))}
             </div>
             <div class="columns mx-3">
                 {gallery.slice(3, 6).map(photo => (
                     <div class="column is-one-third">
-                        <PhotoCard id={photo.id} name={photo.name} photo={photo.image}/>
+                        <PhotoCard id={photo.id} name={photo.name} photo={photo.image} edit={ does_own } state={ setIsDelete }/>
                     </div>
                 ))}
             </div>
             <div class="columns mx-3">
                 {gallery.slice(6).map(photo => (
                     <div class="column is-one-third">
-                        <PhotoCard id={photo.id} name={photo.name} photo={photo.image}/>
+                        <PhotoCard id={photo.id} name={photo.name} photo={photo.image} edit={ does_own } state={ setIsDelete }/>
                     </div>
                 ))}
             </div>
@@ -77,7 +77,7 @@ const Gallery = () => {
                 </section>
             </div>
 
-            <div className="columns mt-4" style={{ marginLeft: "10%", marginRight: "5%" }}>
+            {does_own ? <div className="columns mt-4" style={{ marginLeft: "10%", marginRight: "5%" }}>
                 <section className="container has-text-centered">
                     <button className="button is-success js-modal-trigger" data-target="add-item-modal" onClick={() => setIsOpen(true)}>
                         <span className="icon" style={{ marginRight: "10px"}}>
@@ -87,7 +87,7 @@ const Gallery = () => {
                     </button>
                     {isOpen ? <Modal setIsOpen={setIsOpen} /> : <div></div>}
                 </section>
-            </div>
+            </div> : ""}
 
             <br/>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { del } from "../../../utils";
 
-const PhotoCard = ({ id, name, photo, state }) => {
+const PhotoCard = ({ id, name, photo, edit, state }) => {
     const [errors, setErrors] = useState([]);
 
     const delete_photo = () => {
@@ -45,7 +45,7 @@ const PhotoCard = ({ id, name, photo, state }) => {
             </div>
         </div>
 
-        <footer class="card-footer">
+        {edit ? <footer class="card-footer">
             <a class="card-footer-item" onClick={ delete_photo }>
                 <span class="icon-text">
                     <span class="icon">
@@ -54,7 +54,7 @@ const PhotoCard = ({ id, name, photo, state }) => {
                     <span>Delete</span>
                 </span>
             </a>
-        </footer>
+        </footer> : ""}
     </div>
 }
 
