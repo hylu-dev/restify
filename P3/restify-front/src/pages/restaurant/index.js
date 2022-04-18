@@ -17,6 +17,7 @@ const Restaurant = () => {
     const { id } = useParams();
 
     let does_own = (user.restaurant == id);
+    let does_follow = (followers.includes(user.id));
 
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/restaurants/api/restaurant/` + id + `/details/`, {
@@ -63,12 +64,19 @@ const Restaurant = () => {
             <nav className="navbar is-primary is-transparent" style={{backgroundColor: "#02b196", height: "10px", zIndex: "0"}}>  
                 <div className="navbar-menu">
                     {does_own ? "" : <div className="navbar-item pl-6 ml-3">
-                        <a className="button is-light my-1">
+                        {does_follow ? <a className="button is-info my-1">
+                            <span className="icon">
+                                <i className="fas fa-heart"></i>
+                            </span>
+                            <span>Unfollow</span>
+                        </a>
+                        : <a className="button is-light my-1">
                             <span className="icon">
                                 <i className="fas fa-heart"></i>
                             </span>
                             <span>Follow</span>
                         </a>
+                    }
                     </div>}
 
                     <a className="navbar-item has-text-light ml-6">

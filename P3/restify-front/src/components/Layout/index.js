@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { get } from "../../utils";
 
 const Layout = () => {
+    const [id, setId] = useState(1);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [username, setUsername] = useState("");
@@ -16,6 +17,7 @@ const Layout = () => {
         request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
+                    setId(data.id);
                     setFirstName(data.first_name);
                     setLastName(data.last_name);
                     setUsername(data.username);
@@ -147,7 +149,7 @@ const Layout = () => {
             </div>
         </nav>
 
-        <Outlet context={{username, avatar, restaurant}} />
+        <Outlet context={{id, username, avatar, restaurant}} />
     </>
 }
 
