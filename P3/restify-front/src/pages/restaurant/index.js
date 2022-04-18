@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Outlet } from "react-router-dom";
+import { Link, Navigate, Outlet } from "react-router-dom";
 import Button from "../../components/Common/button"
-import { post } from "../../utils"
+import { del } from "../../utils"
 import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 
 const Restaurant = () => {
@@ -87,21 +87,14 @@ const Restaurant = () => {
                     </a>
 
                     {does_own ? <div className="navbar-item pr-4">
-                        <label className="button is-light my-1">
-                            <span className="icon">
-                                <i className="fas fa-edit"></i>
-                            </span>
-                            <span>Edit</span>
-                        </label>
-                    </div> : ""}
-
-                    {does_own ? <div className="navbar-item pr-6 mr-3">
-                        <a className="button is-danger my-1">
-                            <span className="icon">
-                                <i className="fas fa-trash-alt"></i>
-                            </span>
-                            <span>Delete Restaurant</span>
-                        </a>
+                        <Link to="/restaurant/create" className="navbar-item">
+                            <label className="button is-light my-1">
+                                <span className="icon">
+                                    <i className="fas fa-edit"></i>
+                                </span>
+                                <span>Edit</span>
+                            </label>
+                        </Link>
                     </div> : ""}
                 </div>
             </nav>
