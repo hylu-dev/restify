@@ -29,7 +29,7 @@ const Menu = () => {
             <div className="container box has-text-grey-lighter" style={{ backgroundColor: "rgb(59, 59, 63)" }}>
                 <div className="columns is-centered" style={{ marginLeft: "5%", marginRight: "5%" }}>
                     <div className="column is-centered">
-                        <h1 className="title is-4 has-text-grey-lighter">Page {query.page} of {totalPages}</h1>
+                        {totalPages == 0 ? "" : <h1 className="title is-4">Page {query.page} of {totalPages}</h1>}
                     </div>
                 </div>
 

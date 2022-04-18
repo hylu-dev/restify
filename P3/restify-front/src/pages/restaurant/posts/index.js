@@ -90,7 +90,7 @@ const Posts = () => {
                     </section>
                     <div className="columns is-centered" style={{ marginLeft: "5%", marginRight: "5%" }}>
                         <div className="column is-centered">
-                            <h1 className="title is-4">Page {query1.page} of {totalPages1}</h1>
+                            {totalPages1 == 0 ? "" : <h1 className="title is-4">Page {query1.page} of {totalPages1}</h1>}
                         </div>
                     </div>
                     {does_own ? <div className="box blog-post">
@@ -162,7 +162,7 @@ const Posts = () => {
                     </section>
                     <div className="columns is-centered" style={{ marginLeft: "5%", marginRight: "5%" }}>
                         <div className="column is-centered">
-                            <h1 className="title is-4">Page {query2.page} of {totalPages2}</h1>
+                            {totalPages2 == 0 ? "" : <h1 className="title is-4">Page {query2.page} of {totalPages2}</h1>}
                         </div>
                     </div>
                     {does_own ? "" : <div className="box blog-post">
