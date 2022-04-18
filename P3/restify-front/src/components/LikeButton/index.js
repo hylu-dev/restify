@@ -1,10 +1,11 @@
 import { put } from "../../utils";
+import React, { useEffect, useState } from 'react';
 
 const LikeButton = ({ postID }) => {
     const [liked, setLiked] = useState(false);
 
     const like_request = async e => {
-        if (!liked) {
+        if (liked) {
             e.preventDefault();
             let request = put("http://127.0.0.1:8000/restaurants/api/restaurant/post/" + postID + "/like/", {}, window.localStorage.getItem("access_token"))
              request.then(response => {
@@ -36,8 +37,8 @@ const LikeButton = ({ postID }) => {
 
 
     return <div className="heart reply">
-        <i className="fa-regular fa-hover-hidden fa-heart fa-2xl" onClick={like_request}></i>
-        <i className="fa-solid fa-hover-show fa-heart fa-2xl" onClick={unlike_request}></i>
+        {!liked ? <i className="fa-regular fa-hover-hidden fa-heart fa-2xl" onClick={like_request}></i> : <i className="fa-solid fa-hover-show fa-heart fa-2xl" onClick={unlike_request}></i>}
+        
     </div>
 }
 
