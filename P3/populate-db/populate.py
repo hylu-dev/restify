@@ -97,7 +97,10 @@ def add_photos(token):
     for i in range(randint(5, 10)):
         path = choice(os.listdir("./foods"))
         image = open(f'foods/{path}', 'rb')
-        res = requests.post("http://127.0.0.1:8000/restaurants/api/restaurant/photo/add/",
+        data = {
+            "name": Faker().text(max_nb_chars=10) 
+        }
+        res = requests.post("http://127.0.0.1:8000/restaurants/api/restaurant/photo/add/", data=data,
                             headers={"Authorization": f"Bearer {token}"},
                             files={'image': image})
         print(f"{res.status_code}: Add photo {path}")
@@ -116,8 +119,8 @@ def add_posts(token):
 def main():
     # Make sure you're current working directory is inside populate-db
     # Ensure django server is running
-    create_users(1)
-    create_owners(1)
+    create_users(10)
+    create_owners(10)
 
 
 if __name__ == "__main__":
