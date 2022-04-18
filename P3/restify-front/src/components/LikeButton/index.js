@@ -1,5 +1,5 @@
 import { put } from "../../utils";
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Button from "../../components/Common/button";
 
 

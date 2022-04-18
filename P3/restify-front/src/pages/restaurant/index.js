@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Navigate, Outlet } from "react-router-dom";
-import Button from "../../components/Common/button"
+import { Link, Outlet } from "react-router-dom";
 import { put } from "../../utils"
-import { useParams, useNavigate, useOutletContext } from "react-router-dom";
+import { useParams, useOutletContext } from "react-router-dom";
 
 const Restaurant = () => {
     const user = useOutletContext();
@@ -18,7 +17,7 @@ const Restaurant = () => {
     const [likes, setLikes] = useState(1);
     const { id } = useParams();
 
-    let does_own = (user.restaurant == id);
+    let does_own = (user.restaurant === id);
     let does_follow = (followers.includes(user.id));
 
     useEffect(() => {
@@ -121,7 +120,7 @@ const Restaurant = () => {
                     }
                     </div>}
 
-                    <a className="navbar-item has-text-light ml-6">
+                    <a className="navbar-item has-text-light ml-6" href='/'>
                         <span className="icon is-large">
                             <i className="fas fa-thumbs-up"></i>
                         </span>

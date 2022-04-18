@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { post } from "../../../utils";
 import Button from "../../../components/Common/button";
 

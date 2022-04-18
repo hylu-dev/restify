@@ -224,7 +224,7 @@ const Profile = () => {
 
                             <div className="column p-0">
                                 <ul className="has-text-danger">
-                                    {errors.map(item => <li className="tag tag__custom is-danger mb-1" key={item}>{item}</li>)}
+                                    {errors.map(item => <li className="tag tag__custom is-danger m-1" key={item}>{item}</li>)}
                                 </ul>
                             </div>
 

@@ -1,15 +1,10 @@
 //import React, {useEffect, useState} from 'react';
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
-import { get, put_form } from "../../utils";
+import { get } from "../../utils";
 import Button from "../../components/Common/button";
-import LikeButton from "../../components/LikeButton";
-import PostBox from "../../components/PostBox";
 import RestaurantCard from "../../components/RestaurantCard";
 
 const Browse = () => {
-
-    const [count, setCount] = useState("");
     const [next, setNext] = useState("");
     const [previous, setPrevious] = useState("");
     const [results, setResults] = useState([]);
@@ -23,8 +18,6 @@ const Browse = () => {
         request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
-                    console.log(data);
-                    setCount(data.count);
                     setNext(data.next);
                     setPrevious(data.previous);
                     setResults(data.results);
@@ -41,7 +34,6 @@ const Browse = () => {
          request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
-                    setCount(data.count);
                     setNext(data.next);
                     setPrevious(data.previous);
                     setResults(data.results)
@@ -57,7 +49,6 @@ const Browse = () => {
          request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
-                    setCount(data.count);
                     setNext(data.next);
                     setPrevious(data.previous);
                     setResults(data.results)

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
 import { put } from "../../../utils";
-import { useNavigate } from "react-router-dom";
 
 const MenuItem = ({ id, name, price, description, edit }) => {
     const [new_name, setName] = useState(name);
@@ -9,7 +7,6 @@ const MenuItem = ({ id, name, price, description, edit }) => {
     const [new_description, setDescription] = useState(description);
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    let navigate = useNavigate();
 
     const save_item = async e => {
         // First check if the user is the owner before allowing them to change the menu

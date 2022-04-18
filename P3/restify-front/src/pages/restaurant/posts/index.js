@@ -50,7 +50,7 @@ const Posts = () => {
                         <div class="media-content">
                             <div class="content">
                                 <p>
-                                <strong>@unlimitedsoupsaladandbreadstickz</strong> <a href="#"><small>Olive Garden</small></a> <small>31m</small>
+                                <strong>@unlimitedsoupsaladandbreadstickz</strong> <a href="/"><small>Olive Garden</small></a> <small>31m</small>
                                     <br></br>
                                     Come try our unlimited soup, salad, and breadsticks for just <strong>$5</strong>! This deal lasts until 2/27.
                                 </p>
@@ -59,7 +59,7 @@ const Posts = () => {
                     </article>
                     <nav class="level is-mobile">
                         <div class="level-left pt-3">
-                            <a class="button is-danger my-1">
+                            <a class="button is-danger my-1" href="/">
                             <span class="icon">
                                 <i class="fas fa-trash-alt"></i>
                             </span>
@@ -89,7 +89,7 @@ const Posts = () => {
                         <div class="media-content">
                             <div class="content">
                             <p>
-                                <strong>@unlimitedsoupsaladandbreadstickz</strong> <a href="#"><small>Olive Garden</small></a> <small>1mo</small>
+                                <strong>@unlimitedsoupsaladandbreadstickz</strong> <a href="/"><small>Olive Garden</small></a> <small>1mo</small>
                                 <br></br>
                                 Try our all new Dinner Selections, such as the <strong>Osso Buco</strong> and <strong>Linguine Vongole</strong> starting at just <strong>$22.99</strong> for a limited time only! Deals last until 1/16!
                             </p>
@@ -98,7 +98,7 @@ const Posts = () => {
                     </article>
                     <nav class="level is-mobile">
                         <div class="level-left pt-3">
-                            <a class="button is-danger my-1">
+                            <a class="button is-danger my-1" href="/">
                             <span class="icon">
                                 <i class="fas fa-trash-alt"></i>
                             </span>
@@ -126,7 +126,7 @@ const Posts = () => {
                         <div class="media-content">
                             <div class="content">
                                 <p>
-                                <strong>@humbleman1212</strong> <a href="#"></a> <small>20m</small>
+                                <strong>@humbleman1212</strong> <small>20m</small>
                                     <br></br>
                                     Your pasta is terrible!!!
                                 </p>

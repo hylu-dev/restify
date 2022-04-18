@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import Button from "../../components/Common/button";
-import { get, post } from "../../utils";
-import { useNavigate } from "react-router-dom";
+import { get } from "../../utils";
 
 const Notification = ({ sourceID, targetID, type, timestamp, body, owner }) => {
     const [name, setName] = useState("")
@@ -13,26 +11,27 @@ const Notification = ({ sourceID, targetID, type, timestamp, body, owner }) => {
         switch (type) {
             case 'Comment':
                 request_user(sourceID);
-                setLink(`/restaurant/${owner}`);
+                setLink(`/restaurant/${owner}/menu/`);
                 break;
             case 'Follow':
                 request_user(sourceID);
-                setLink(`/restaurant/${owner}`);
+                setLink(`/restaurant/${owner}/menu/`);
                 break;
             case 'Like':
                 request_user(sourceID);
-                setLink(`/restaurant/${owner}`);
+                setLink(`/restaurant/${owner}/menu/`);
                 break;
             case 'Post':
                 request_restaurant(sourceID);
-                setLink(`/restaurant/${sourceID}`);
+                setLink(`/restaurant/${sourceID}/menu/`);
                 break;
             case 'Update':
                 request_restaurant(sourceID);
-                setLink(`/restaurant/${sourceID}`);
+                setLink(`/restaurant/${sourceID}/menu/`);
                 break;
+            default:
         }
-    }, [])
+    }, [owner, sourceID, type])
 
     const request_user = async id => {
         let request = get(`http://127.0.0.1:8000/accounts/api/profile/${id}/`)

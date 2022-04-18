@@ -1,7 +1,6 @@
 import LikeButton from "../../components/LikeButton";
-import Button from "../../components/Common/button";
 import React, { useEffect, useState } from 'react';
-import { get, put_form } from "../../utils";
+import { get } from "../../utils";
 
 const PostBox = ({ userID, restaurant, timestamp, text, postID, likes}) => {
 
@@ -27,20 +26,20 @@ const PostBox = ({ userID, restaurant, timestamp, text, postID, likes}) => {
                 })
             }
         })
-    }, [])
+    }, [restaurant, userID])
 
     return <>
         <div className="box blog-post">
             <article className="media">
                 <div className="media-left">
                     <figure className="image is-64x64">
-                        <img src={avatar} alt="Image"></img>
+                        <img src={avatar} alt=""></img>
                     </figure>
                 </div>
                 <div className="media-content">
                     <div className="content">
                         <p>
-                            <strong>{username}</strong> <a href="#"><small>{restaurantname}</small></a> <small>{timestamp}</small>
+                            <strong>{username}</strong> <a href="/"><small>{restaurantname}</small></a> <small>{timestamp}</small>
                             <br></br>
                             {text}
                         </p>
