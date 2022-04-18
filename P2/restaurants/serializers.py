@@ -124,6 +124,8 @@ class CommentSerializer(serializers.ModelSerializer):
         return comment
 
 class FoodItemSerializer(serializers.ModelSerializer):
+    price = serializers.IntegerField(min_value=0)
+
     class Meta:
         model = FoodItem
         fields = ['id', 'name', 'description', 'price']

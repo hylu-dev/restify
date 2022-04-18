@@ -4,9 +4,9 @@ import { put } from "../../../utils";
 import { useNavigate } from "react-router-dom";
 
 const MenuItem = ({ id, name, price, description, edit }) => {
-    const [new_name, setName] = useState("");
-    const [new_price, setPrice] = useState("");
-    const [new_description, setDescription] = useState([]);
+    const [new_name, setName] = useState(name);
+    const [new_price, setPrice] = useState(price);
+    const [new_description, setDescription] = useState(description);
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     let navigate = useNavigate();
@@ -40,59 +40,66 @@ const MenuItem = ({ id, name, price, description, edit }) => {
 
     if (edit === "false") {
         return <div key={id}>
-            <div className="columns" style={{marginLeft: "5%", marginRight: "5%"}}>
+            <div className="columns" style={{ marginLeft: "5%", marginRight: "5%" }}>
                 <div className="column is-narrow">
-                    <h3 className="title is-4 has-text-grey-lighter">{ name }</h3>
+                    <h3 className="title is-4 has-text-grey-lighter">{name}</h3>
                 </div>
 
                 <div className="column is-paddingless">
-                    <div style={{borderBottom: "1px dashed #b2b2b2", paddingTop: "3%"}}>
+                    <div style={{ borderBottom: "1px dashed #b2b2b2", paddingTop: "3%" }}>
                     </div>
                 </div>
 
                 <div className="column is-narrow has-pb-0">
-                    <h3 className="title is-4 has-text-grey-lighter">${ price }</h3>
+                    <h3 className="title is-4 has-text-grey-lighter">${price}</h3>
                 </div>
             </div>
 
-            <div className="columns" style={{marginLeft: "10%", marginRight: "5%"}}>
-                <p>{ description }</p>
+            <div className="columns" style={{ marginLeft: "10%", marginRight: "5%" }}>
+                <p>{description}</p>
             </div>
 
             <br></br>
         </div>
     } else {
         return <form key={id}>
-            <div className="columns" style={{marginLeft: "5%", marginRight: "5%"}}>
-                    <div className="column is-narrow">
-                        <input className="title is-4" type="text" placeholder={ name } onChange={e => setName(e.target.value)} ></input>
-                    </div>
-                    <div className="column is-paddingless">
-                        <div style={{borderBottom: "1px dashed #b2b2b2", paddingTop: "3%"}}>
-                        </div>
-                    </div>
-                    <div className="column is-narrow has-pb-0" style={{marginRight: "12%"}}>
-                        <h3 className="title is-4 has-text-grey-lighter">$
-                            <input className="title is-4" type="text" placeholder={ price } style={{width: "40px"}} onChange={e => setPrice(e.target.value)} ></input>
-                        </h3>
+            <div className='column is-centered'>
+                <div className="column is-flex is-justify-content-center">
+                    <ul className="has-text-danger">
+                        {errors.map(item => <li className="tag tag__custom is-danger m-1" key={item}>{item}</li>)}
+                    </ul>
+                </div>
+            </div>
+            <div className="columns" style={{ marginLeft: "5%", marginRight: "5%" }}>
+                <div className="column is-narrow">
+                    <input className="title is-4" type="text" defaultValue={new_name} onChange={e => setName(e.target.value)} ></input>
+                </div>
+                <div className="column is-paddingless">
+                    <div style={{ borderBottom: "1px dashed #b2b2b2", paddingTop: "3%" }}>
                     </div>
                 </div>
-            
-                <div className="columns is-two-thirds" style={{marginLeft: "10%", marginRight: "5%"}}>
-                    <textarea className="subtitle is-6" placeholder={ description } style={{ width: "1000px", height: "100px"}} onChange={e => setDescription(e.target.value)} ></textarea>
-                    <div className="column is-narrow" style={{ marginLeft: "12%"}}>
-                            <button className={`button is-primary ${isLoading ? "is-loading" : ""}`} onClick={ save_item } disabled={isLoading}>
-                                <span className="icon-text">
-                                    <span className="icon">
-                                        <i className="far fa-save"></i>
-                                    </span>
-                                    <span>Save</span>
-                                </span>
-                            </button>
-                    </div>
+                <div className="column is-narrow has-pb-0" style={{ marginRight: "12%" }}>
+                    <h3 className="title is-4 has-text-grey-lighter">$
+                        <input className="title is-4" type="text" defaultValue={new_price} style={{ width: "40px" }} onChange={e => setPrice(e.target.value)} ></input>
+                    </h3>
                 </div>
+            </div>
 
-                <br/>
+            <div className="columns is-two-thirds" style={{ marginLeft: "10%", marginRight: "5%" }}>
+                <textarea className="subtitle is-6" defaultValue={new_description} style={{ width: "1000px", height: "100px" }} onChange={e => setDescription(e.target.value)} ></textarea>
+                <div className="column is-narrow" style={{ marginLeft: "12%" }}>
+                    <button className={`button is-primary ${isLoading ? "is-loading" : ""}`} onClick={save_item} disabled={isLoading}>
+                        <span className="icon-text">
+                            <span className="icon">
+                                <i className="far fa-save"></i>
+                            </span>
+                            <span>Save</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <br />
         </form>
     }
 }
