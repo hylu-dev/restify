@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
 import Button from "../../components/Common/button";
-import { get, post } from "../../utils";
-import { useNavigate } from "react-router-dom";
+import { get } from "../../utils";
 import Notification from "../../components/notification"
 
 const Notifications = () => {

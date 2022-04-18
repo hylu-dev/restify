@@ -2,6 +2,7 @@ import {Link, Outlet} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import { get } from "../../utils";
+import Search from "../search";
 
 const Layout = () => {
     const [firstName, setFirstName] = useState("");
@@ -50,12 +51,7 @@ const Layout = () => {
             
             <div className="navbar-menu">
                 <div className="navbar-item">
-                    <div className="field">
-                        <p className="control is-expanded has-icons-right">
-                            <input className="input" type="search" placeholder="Search..."/>
-                            <span className="icon is-small is-right"><i className="fas fa-search"></i></span>
-                        </p>
-                    </div>
+                    <Search></Search>
                 </div>
                 <div className="navbar-end pr-2">
                     <Link to="/" className="navbar-item">
