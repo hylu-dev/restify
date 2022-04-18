@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { put } from "../../utils";
 
 
-const FollowLikeBox = ({ restaurantID }) => {
+const FollowLikeBox = ({ restaurantID, likes }) => {
 	const [followed, setFollowed] = useState(false);
 
 	const follow_request = async e => {
@@ -41,7 +41,7 @@ const FollowLikeBox = ({ restaurantID }) => {
                 	<Button styles="" value="Follow" handler={follow_request}></Button> 
             		: <Button styles="" value="Unfollow" handler={unfollow_request}></Button>
             	} 
-				<LikeButton id={restaurantID} post={false}/>
+				<LikeButton id={restaurantID} post={false} likes={likes}/>
 			</div>
 		</div>
 	</>
