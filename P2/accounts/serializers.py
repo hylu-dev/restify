@@ -144,6 +144,7 @@ class FeedSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = [
+                'id',
                 'timestamp',
                 'body',
                 'likes',
@@ -171,7 +172,9 @@ class BrowsingSerializer(serializers.ModelSerializer):
             'name',
             'address',
             'postal_code',
-            'likes'
+            'likes',
+            'id',
+            'logo'
             ]
 
 class NotificationSerializer(serializers.ModelSerializer):
