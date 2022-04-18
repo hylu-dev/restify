@@ -199,7 +199,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['timestamp', 'body', 'likes', 'user', 'restaurant', 'likers']
+        fields = ['timestamp', 'body', 'likes', 'user', 'restaurant', 'userlikers']
 
     def create(self, data):
         if not hasattr(self.context.get('request').user, 'owner'):
