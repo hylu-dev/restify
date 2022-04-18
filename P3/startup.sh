@@ -12,3 +12,5 @@ pip install -r requirements.txt
 # Run all migrations
 ./manage.py makemigrations
 ./manage.py migrate
+
+cd ../P3
