@@ -37,7 +37,7 @@ const FollowLikeBox = ({ restaurantID, likes, state, following }) => {
 	return <>
 		<div id="follow-favourite-container">
 			<div className="follow-favourite navigation">
-				{ restaurantID !== user.restaurantID ?
+				{ restaurantID !== user.restaurant ?
 					!followed ?
                 		<Button styles="" value="Follow" handler={follow_request}></Button> 
             			: <Button styles="" value="Unfollow" handler={unfollow_request}></Button> 

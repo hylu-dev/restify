@@ -2,7 +2,7 @@
 
 cd ../P2
 
-./manage.py runserver
+./manage.py runserver &
 
 cd ../P3/restify-front
 
