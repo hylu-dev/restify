@@ -51,7 +51,7 @@ const Feed = () => {
 
     const prev_request = async e => {
         e.preventDefault();
-        let request = get(previou, window.localStorage.getItem("access_token"))
+        let request = get(previous, window.localStorage.getItem("access_token"))
          request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
