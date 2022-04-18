@@ -32,7 +32,7 @@ class RestaurantSerializer(serializers.ModelSerializer):
 class LikedRestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
-        fields = ['likes', 'userlikers']
+        fields = ['likes', 'likers']
 
     """
     Instead of receiving input and updating the model instance, simply increment
@@ -48,7 +48,7 @@ class LikedRestaurantSerializer(serializers.ModelSerializer):
 class LikedPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ['likes', 'likers']
+        fields = ['likes', 'userlikers']
 
     """
     Instead of receiving input and updating the model instance, simply increment
@@ -192,11 +192,6 @@ class FoodItemSerializer(serializers.ModelSerializer):
 
         else:
             raise BadRequest
-
-class PostRetrieveSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Post
-        fields = ['timestamp', 'body', 'likes', 'user', 'restaurant']
 
 class PostSerializer(serializers.ModelSerializer):
     user = serializers.CharField(read_only=True)
