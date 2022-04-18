@@ -40,6 +40,7 @@ class Post(models.Model):
     likes = models.IntegerField(default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    likers = models.ManyToManyField(User, related_name='likers', blank=True)
 
     def getName(self):
         return f"Post {self.id} of {self.restaurant}"

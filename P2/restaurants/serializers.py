@@ -88,6 +88,7 @@ class UnlikedPostSerializer(serializers.ModelSerializer):
     """
     def update(self, instance, validated_data):
         instance.likes -= 1
+        instance.likers.remove(self.context.get('request', None).user)
         instance.save()
 
         return instance
@@ -198,7 +199,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['timestamp', 'body', 'likes', 'user', 'restaurant']
+        fields = ['timestamp', 'body', 'likes', 'user', 'restaurant', 'likers']
 
     def create(self, data):
         if not hasattr(self.context.get('request').user, 'owner'):
