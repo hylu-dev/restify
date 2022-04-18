@@ -107,3 +107,9 @@ hr {
 	justify-content: center;
 	font-size: 15px;
 }
+
+.pagination {
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+}

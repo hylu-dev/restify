@@ -58,7 +58,6 @@ const Feed = () => {
         
     };
 
-
     return <>
         <section className="section">
             <div className="container">
@@ -70,7 +69,7 @@ const Feed = () => {
                                 return <PostBox key={result.id} userID={result.user} restaurant={result.restaurant} timestamp={result.timestamp} text={result.body} postID={result.id} likes={result.likes} state={state} />
                             })
                         }
-                        <div className="navigation">
+                        <div className="pagination">
                             {previous ? <Button styles="" value="Previous" handler={prev_request}></Button> : <></>}
                             {next ? <Button styles="" value="Next" handler={next_request}></Button> : <></>}
                         </div>

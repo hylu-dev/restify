@@ -77,7 +77,7 @@ const Browse = () => {
                     }
                 </div>
                 <div className='columns is-centered'>
-                    <div className='column'>
+                    <div className='pagination'>
                         {previous ? <Button styles="" value="Previous" handler={prev_request}></Button> : <></>}
                         {next ? <Button styles="" value="Next" handler={next_request}></Button> : <></>}
                     </div>

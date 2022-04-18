@@ -58,6 +58,7 @@ class LikedPostSerializer(serializers.ModelSerializer):
         instance.likes += 1
         instance.userlikers.add(self.context.get('request', None).user)
         instance.save()
+        print(instance.userlikers)
 
         return instance
 
@@ -90,7 +91,7 @@ class UnlikedPostSerializer(serializers.ModelSerializer):
         instance.likes -= 1
         instance.userlikers.remove(self.context.get('request', None).user)
         instance.save()
-
+        print(instance.userlikers)
         return instance
 
 class CommentSerializer(serializers.ModelSerializer):
