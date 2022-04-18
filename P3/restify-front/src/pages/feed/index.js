@@ -16,6 +16,7 @@ const Feed = () => {
         request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
+                    console.log(data.results);
                     setNext(data.next);
                     setPrevious(data.previous);
                     setResults(data.results);

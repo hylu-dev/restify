@@ -149,7 +149,8 @@ class FeedSerializer(serializers.ModelSerializer):
                 'body',
                 'likes',
                 'user',
-                'restaurant'
+                'restaurant',
+                'userlikers'
                 ]
 
     # def paginated_comments(self, obj):
