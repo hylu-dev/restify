@@ -96,12 +96,7 @@ hr {
 
 .navigation {
 	display: flex;
-<<<<<<< HEAD
-	justify-content: space-evenly;
 	padding-bottom: 8px;
-
-=======
 	justify-content: space-between;
 	width: 100%;
->>>>>>> a4c42c4ce0aa4fbbe1dfcae091ef2ee0cb2fb1a5
 }
