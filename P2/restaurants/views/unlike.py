@@ -20,7 +20,7 @@ class UnlikeRestaurantView(UpdateAPIView):
 
 
     def get_object(self):
-        restaurant = get_object_or_404(Restaurant, id=self.kwargs['tetst'])
+        restaurant = get_object_or_404(Restaurant, id=self.kwargs['id'])
 
         # Under the assumption that the restaurant was previously liked, the LikedRestaurant object should exist
         likedRes = LikedRestaurant.objects.get(restaurant=restaurant.id)
