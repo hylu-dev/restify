@@ -39,6 +39,9 @@ const Feed = () => {
          request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
+                    setCount(data.count);
+                    setNext(data.next);
+                    setPrevious(data.previous);
                     setResults(data.results)
                 });
             }
@@ -48,10 +51,14 @@ const Feed = () => {
 
     const prev_request = async e => {
         e.preventDefault();
-        let request = get(next, window.localStorage.getItem("access_token"))
+        let request = get(previou, window.localStorage.getItem("access_token"))
          request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
+                    setCount(data.count);
+                    setNext(data.next);
+                    setPrevious(data.previous);
+                    setResults(data.results)
 
                 });
             }
@@ -70,9 +77,10 @@ const Feed = () => {
                                 return <PostBox key={result.id} userID={result.user} restaurant={result.restaurant} timestamp={result.timestamp} text={result.body} postID={result.id} />
                             })
                         }
+                        {previous ? <Button styles="" value="Previous" handler={prev_request}></Button> : <></>}
+                        {next ? <Button styles="" value="Next" handler={next_request}></Button> : <></>}
                     </div>
-                    {previous ? <Button styles="" value="Previous" handler={prev_request}></Button> : <></>}
-                    {next ? <Button styles="" value="Next" handler={next_request}></Button> : <></>}
+                    
                 </div>
             </div>
         </section>
