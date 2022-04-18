@@ -81,7 +81,7 @@ const PostBox = ({ userID, restaurant, timestamp, text, postID, likes, deleted=f
                 </div>
                 <div className="level-right">
                     <div className="heart reply">
-                        <LikeButton id={postID} post={true} likes={likes}
+                        <LikeButton id={postID} post={true} likes={likes} original={userID}
                         />
                     </div>
                 </div>

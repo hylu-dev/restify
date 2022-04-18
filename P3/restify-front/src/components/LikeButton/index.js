@@ -1,12 +1,13 @@
 import { put } from "../../utils";
 import React, { useState } from 'react';
 import Button from "../../components/Common/button";
+import { useOutletContext } from "react-router-dom";
 
 
-const LikeButton = ({ id, post, likes, state }) => {
+const LikeButton = ({ id, post, likes, state, original}) => {
     const [liked, setLiked] = useState(state);
     const [likesDisplay, setLikesDisplay] = useState(likes);
-
+    const user = useOutletContext();
     const like_restaurant_request = async e => {
         e.preventDefault();
         let request = put("http://127.0.0.1:8000/restaurants/api/restaurant/" + id + "/like/", {}, window.localStorage.getItem("access_token"))
@@ -76,10 +77,16 @@ const LikeButton = ({ id, post, likes, state }) => {
                 </div>
                 <div className="column">
                     {post ?
-                        !liked ? <Button styles="" value="Like" handler={like_post_request}></Button> : <Button styles="" value="Unike" handler={unlike_post_request}></Button>
-                        : !liked ? <Button styles="" value="Like" handler={like_restaurant_request}></Button> : <Button styles="" value="Unike" handler={unlike_restaurant_request}></Button>
-
-                    }
+                        original !== user.id ?
+                            !liked ? 
+                                <Button styles="" value="Like" handler={like_post_request}></Button> 
+                            : <Button styles="" value="Unlike" handler={unlike_post_request}></Button>
+                        : <></>
+                    : original !== user.restaurant ?  
+                        !liked ? 
+                            <Button styles="" value="Like" handler={like_restaurant_request}></Button> 
+                        : <Button styles="" value="Unlike" handler={unlike_restaurant_request}></Button>
+                    : <></>}
                 </div>
             </div>
         </div>

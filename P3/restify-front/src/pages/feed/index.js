@@ -63,7 +63,8 @@ const Feed = () => {
                     <div id="grid column is-8">
                         {
                             results.map(result => {
-                                return <PostBox key={result.id} userID={result.user} restaurant={result.restaurant} timestamp={result.timestamp} text={result.body} postID={result.id} likes={result.likes} />
+                                { var state = result.userlikers.includes(user.id) ? state = true : state = false; }
+                                return <PostBox key={result.id} userID={result.user} restaurant={result.restaurant} timestamp={result.timestamp} text={result.body} postID={result.id} likes={result.likes} state= />
                             })
                         }
                         <div className="navigation">

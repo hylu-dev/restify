@@ -35,7 +35,7 @@ const Browse = () => {
     const next_request = async e => {
         e.preventDefault();
         let request = get(next, window.localStorage.getItem("access_token"))
-         request.then(response => {
+        request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
                     setNext(data.next);
@@ -44,13 +44,13 @@ const Browse = () => {
                 });
             }
         })
-        
+
     };
 
     const prev_request = async e => {
         e.preventDefault();
         let request = get(previous, window.localStorage.getItem("access_token"))
-         request.then(response => {
+        request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
                     setNext(data.next);
@@ -60,22 +60,28 @@ const Browse = () => {
                 });
             }
         })
-        
+
     };
 
     return <>
         <section className="section">
             <div className="container">
+                <div className='columns is-centered is-multiline'>
                     {
                         results.map(result => {
-                            {var state = result.likers.includes(user.id) ? state=true : state=false;}
-                            {var following = result.followers.includes(user.id) ? state=true : state=false;}
-                            return <RestaurantCard key={result.id} name={result.name} address={result.address} 
-                            postal_code={result.postal_code} likes={result.likes} id={result.id} logo={result.logo} state={state} following={following}/>
+                            { var state = result.likers.includes(user.id) ? state = true : state = false; }
+                            { var following = result.followers.includes(user.id) ? following = true : following = false; }
+                            return <RestaurantCard key={result.id} name={result.name} address={result.address}
+                                postal_code={result.postal_code} likes={result.likes} id={result.id} logo={result.logo} state={state} following={following} />
                         })
                     }
-                    {previous ? <Button styles="" value="Previous" handler={prev_request}></Button> : <></>}
-                    {next ? <Button styles="" value="Next" handler={next_request}></Button> : <></>}
+                </div>
+                <div className='columns is-centered'>
+                    <div className='column'>
+                        {previous ? <Button styles="" value="Previous" handler={prev_request}></Button> : <></>}
+                        {next ? <Button styles="" value="Next" handler={next_request}></Button> : <></>}
+                    </div>
+                </div>
             </div>
         </section>
     </>

@@ -32,7 +32,7 @@ class RestaurantSerializer(serializers.ModelSerializer):
 class LikedRestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
-        fields = ['likes', 'likers']
+        fields = ['likes', 'userlikers']
 
     """
     Instead of receiving input and updating the model instance, simply increment
@@ -56,7 +56,7 @@ class LikedPostSerializer(serializers.ModelSerializer):
     """
     def update(self, instance, validated_data):
         instance.likes += 1
-        instance.likers.remove(self.context.get('request', None).user)
+        instance.userlikers.add(self.context.get('request', None).user)
         instance.save()
 
         return instance
@@ -72,6 +72,7 @@ class UnlikedRestaurantSerializer(serializers.ModelSerializer):
     """
     def update(self, instance, validated_data):
         instance.likes -= 1
+        instance.likers.remove(self.context.get('request', None).user)
         instance.save()
 
         return instance
@@ -87,6 +88,7 @@ class UnlikedPostSerializer(serializers.ModelSerializer):
     """
     def update(self, instance, validated_data):
         instance.likes -= 1
+        instance.userlikers.remove(self.context.get('request', None).user)
         instance.save()
 
         return instance
@@ -202,7 +204,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['timestamp', 'body', 'likes', 'user', 'restaurant']
+        fields = ['timestamp', 'body', 'likes', 'user', 'restaurant', 'userlikers']
 
     def create(self, data):
         if not hasattr(self.context.get('request').user, 'owner'):
