@@ -25,7 +25,7 @@ const LikeButton = ({ id, post, likes }) => {
         request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
-                    setLiked(true);
+                    setLiked(false);
                 });
             }
         })
@@ -64,13 +64,9 @@ const LikeButton = ({ id, post, likes }) => {
     return <> <div className="heart reply">
         <div className="likecount">
         {likes} 
-        {{post} ? 
-            !liked ?
-                <Button styles="" value="Like" handler={like_post_request}></Button> 
-            : <Button styles="" value="Unike" handler={unlike_post_request}></Button> 
-        : !liked ?
-                <Button styles="" value="Like" handler={like_restaurant_request}></Button> 
-            : <Button styles="" value="Unike" handler={unlike_restaurant_request}></Button> 
+        {post ? 
+            !liked ? <Button styles="" value="Like" handler={like_post_request}></Button> : <Button styles="" value="Unike" handler={unlike_post_request}></Button> 
+        : !liked ? <Button styles="" value="Like" handler={like_restaurant_request}></Button> : <Button styles="" value="Unike" handler={unlike_restaurant_request}></Button> 
 
         }
         </div>
