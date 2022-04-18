@@ -6,6 +6,7 @@ import { get, put_form } from "../../utils";
 const PostBox = ({ userID, restaurant, timestamp, text, postID }) => {
 
     const [username, setUsername] = useState("");
+    const [restaurantname, setRestaurant] = useState("");
     const [avatar, setAvatar] = useState("");
 
     useEffect(() => {
@@ -14,6 +15,7 @@ const PostBox = ({ userID, restaurant, timestamp, text, postID }) => {
             if (response.status === 200) {
                 response.json().then(data => {
                     setUsername(data.username);
+                    setRestaurant(data.restaurant)
                     setAvatar(data.avatar);
                 })
             }
@@ -31,7 +33,7 @@ const PostBox = ({ userID, restaurant, timestamp, text, postID }) => {
                 <div className="media-content">
                     <div className="content">
                         <p>
-                            <strong>{username}</strong> <a href="#"><small>{restaurant}</small></a> <small>{timestamp}</small>
+                            <strong>{username}</strong> <a href="#"><small>{restaurantname}</small></a> <small>{timestamp}</small>
                             <br></br>
                             {text}
                         </p>
