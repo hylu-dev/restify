@@ -2,7 +2,7 @@ import LikeButton from "../../components/LikeButton";
 import React, { useEffect, useState } from 'react';
 import { del, get } from "../../utils";
 
-const PostBox = ({ userID, restaurant, timestamp, text, postID, likes, deleted = false, state = false }) => {
+const PostBox = ({ userID, restaurant, timestamp, text, postID, likes, deleted=false, state=false }) => {
     const [username, setUsername] = useState("");
     const [restaurantname, setRestaurant] = useState("");
     const [avatar, setAvatar] = useState("");
@@ -31,7 +31,7 @@ const PostBox = ({ userID, restaurant, timestamp, text, postID, likes, deleted =
         let request = del(`http://127.0.0.1:8000/restaurants/api/restaurant/post/${postID}/delete/`, window.localStorage.getItem("access_token"))
         request.then(response => {
             if (response.status === 204) {
-                state(true);
+                state(true)
             }
         })
     };
@@ -65,7 +65,7 @@ const PostBox = ({ userID, restaurant, timestamp, text, postID, likes, deleted =
                 </div>
                 <div className="level-right">
                     <div className="heart reply">
-                        <LikeButton id={postID} post={true} likes={likes} original={userID}
+                        <LikeButton id={postID} post={true} likes={likes} original={userID} state={state}
                         />
                     </div>
                 </div>

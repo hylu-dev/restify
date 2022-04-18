@@ -30,7 +30,7 @@ const Feed = () => {
     const next_request = async e => {
         e.preventDefault();
         let request = get(next, window.localStorage.getItem("access_token"))
-         request.then(response => {
+        request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
                     setNext(data.next);
@@ -39,13 +39,13 @@ const Feed = () => {
                 });
             }
         })
-        
+
     };
 
     const prev_request = async e => {
         e.preventDefault();
         let request = get(previous, window.localStorage.getItem("access_token"))
-         request.then(response => {
+        request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
                     setNext(data.next);
@@ -55,7 +55,7 @@ const Feed = () => {
                 });
             }
         })
-        
+
     };
 
     return <>
@@ -65,7 +65,7 @@ const Feed = () => {
                     <div id="grid column is-8">
                         {
                             results.map(result => {
-                                { var state = result.userlikers.includes(user.id) ? state = true : state = false; }
+                                var state = result.userlikers.includes(user.id) ? state = true : state = false;
                                 return <PostBox key={result.id} userID={result.user} restaurant={result.restaurant} timestamp={result.timestamp} text={result.body} postID={result.id} likes={result.likes} state={state} />
                             })
                         }
@@ -74,7 +74,7 @@ const Feed = () => {
                             {next ? <Button styles="" value="Next" handler={next_request}></Button> : <></>}
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </section>

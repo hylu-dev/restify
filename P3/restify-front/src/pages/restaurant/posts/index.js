@@ -58,7 +58,7 @@ const Posts = () => {
                             <h1 className="title is-4">Page {query1.page} of {totalPages1}</h1>
                         </div>
                     </div>
-                    {!does_own ? <div className="box blog-post">
+                    {does_own ? <div className="box blog-post">
                         <article className="media">
                             <div className="media-left">
                                 <figure className="image is-square is-96x96" style={{border: "2px dotted black", borderRadius: "55px"}}>
@@ -131,7 +131,7 @@ const Posts = () => {
                             <h1 className="title is-4">Page {query2.page} of {totalPages2}</h1>
                         </div>
                     </div>
-                    {!does_own ? "" : <div className="box blog-post">
+                    {does_own ? "" : <div className="box blog-post">
                         <article className="media">
                             <div className="media-left">
                                 <figure className="image is-square is-96x96" style={{border: "2px dotted black", borderRadius: "55px"}}>
