@@ -46,7 +46,7 @@ const PhotoCard = ({ id, name, photo, edit, state }) => {
         </div>
 
         {edit ? <footer class="card-footer">
-            <a class="card-footer-item" href="/" onClick={ delete_photo }>
+            <a class="card-footer-item" href="#!" onClick={ delete_photo }>
                 <span class="icon-text">
                     <span class="icon">
                         <i class="fas fa-trash-alt"></i>

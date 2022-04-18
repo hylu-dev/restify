@@ -17,7 +17,7 @@ const Restaurant = () => {
     const [likes, setLikes] = useState(1);
     const { id } = useParams();
 
-    let does_own = (user.restaurant === id);
+    let does_own = (user.restaurant == id);
     let does_follow = (followers.includes(user.id));
 
     useEffect(() => {

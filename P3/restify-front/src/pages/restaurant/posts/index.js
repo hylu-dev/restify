@@ -24,7 +24,6 @@ const Posts = () => {
             if (response.status === 200) {
                 response.json().then(data => {
                     setPosts(data.results);
-                    console.log(data.results);
                     setTotalPages1(Math.ceil(data.count / 8));
                 })
             }
@@ -39,13 +38,13 @@ const Posts = () => {
                 })
             }
         })
-
-    }, [id, query1, query2])
+        setIsDeleted(false);
+    }, [id, query1, query2, isDeleted])
 
     return <>
         <div id="Posts-list" style={{backgroundColor: "white"}}>
-            <div class="container">
-                <div class="pt-6">
+            <div className="container">
+                <div className="pt-6">
                     <section>
                         <div className="columns is-centered" style={{marginLeft: "5%", marginRight: "5%"}}>
                             <div className="column is-centered">
@@ -59,34 +58,34 @@ const Posts = () => {
                             <h1 className="title is-4">Page {query1.page} of {totalPages1}</h1>
                         </div>
                     </div>
-                    {!does_own ? <div class="box blog-post">
-                        <article class="media">
-                            <div class="media-left">
-                                <figure class="image is-square is-96x96" style={{border: "2px dotted black", borderRadius: "55px"}}>
-                                    <img class="is-rounded" src="https://th.bing.com/th/id/R.23bce0ee3759a2d1f406aaeb0592ffea?rik=Huo25KyrLKlNGw&riu=http%3a%2f%2fcdn.abclocal.go.com%2fcontent%2fwpvi%2fimages%2fcms%2f306462_1280x720.jpg&ehk=usR8dR5UJvUM7sIxlatLasT0uW%2bsz41KQkRFgP8VwWc%3d&risl=&pid=ImgRaw&r=0" alt="Olive Garden"></img>
+                    {!does_own ? <div className="box blog-post">
+                        <article className="media">
+                            <div className="media-left">
+                                <figure className="image is-square is-96x96" style={{border: "2px dotted black", borderRadius: "55px"}}>
+                                    <img className="is-rounded" src="https://th.bing.com/th/id/R.23bce0ee3759a2d1f406aaeb0592ffea?rik=Huo25KyrLKlNGw&riu=http%3a%2f%2fcdn.abclocal.go.com%2fcontent%2fwpvi%2fimages%2fcms%2f306462_1280x720.jpg&ehk=usR8dR5UJvUM7sIxlatLasT0uW%2bsz41KQkRFgP8VwWc%3d&risl=&pid=ImgRaw&r=0" alt="Olive Garden"></img>
                                 </figure>
                             </div>
-                            <div class="media-content">
-                                <div class="content my-5">
-                                    <div class="media-content">
-                                        <p class="title is-4">Olive Garden</p>
-                                        <p class="subtitle is-6">@unlimitedsoupsaladandbreadstickz</p>
+                            <div className="media-content">
+                                <div className="content my-5">
+                                    <div className="media-content">
+                                        <p className="title is-4">Olive Garden</p>
+                                        <p className="subtitle is-6">@unlimitedsoupsaladandbreadstickz</p>
                                     </div>
                                 </div>
                             </div>
                         </article>
-                        <nav class="level is-mobile">
-                            <div class="level-left"></div>
-                            <div class="level-right"></div>
+                        <nav className="level is-mobile">
+                            <div className="level-left"></div>
+                            <div className="level-right"></div>
                         </nav>
                         <form method="POST">
-                            <div class="comment-box">
-                                <textarea class="textarea" placeholder="What's on your mind?" rows="4"></textarea>
+                            <div className="comment-box">
+                                <textarea className="textarea" placeholder="What's on your mind?" rows="4"></textarea>
                             </div>
-                            <nav class="level is-mobile">
-                                <div class="level-left"></div>
-                                <div class="level-right pt-3">
-                                    <input type="submit" class="button is-medium is-primary" value="Create Post"></input>
+                            <nav className="level is-mobile">
+                                <div className="level-left"></div>
+                                <div className="level-right pt-3">
+                                    <input type="submit" className="button is-medium is-primary" value="Create Post"></input>
                                 </div>
                             </nav>
                         </form>  
@@ -95,10 +94,10 @@ const Posts = () => {
 
                 <br/>
             
-                <div id="Sub-posts" class="mx-6 pb-6">
+                <div id="Sub-posts" className="mx-6 pb-6">
                     <div>
                         {posts.map(post => {
-                            return <PostBox key={post.id} userID={post.user} restaurant={post.restaurant} timestamp={post.timestamp} text={post.body} postID={post.id} likes={post.likes} deleted={!does_own} state={ setIsDeleted }/>
+                            return <PostBox key={post.id} userID={post.user} restaurant={post.restaurant} timestamp={post.timestamp} text={post.body} postID={post.id} likes={post.likes} deleted={does_own} state={ setIsDeleted }/>
                         })}
                     </div>
                 </div>
@@ -117,8 +116,8 @@ const Posts = () => {
         </div>
 
         <div id="Comments-list" style={{backgroundColor: "white"}}>
-            <div class="container">
-                <div class="pt-6">
+            <div className="container">
+                <div className="pt-6">
                     <section>
                         <div className="columns is-centered" style={{marginLeft: "5%", marginRight: "5%"}}>
                             <div className="column is-centered">
@@ -132,34 +131,34 @@ const Posts = () => {
                             <h1 className="title is-4">Page {query2.page} of {totalPages2}</h1>
                         </div>
                     </div>
-                    {!does_own ? "" : <div class="box blog-post">
-                        <article class="media">
-                            <div class="media-left">
-                                <figure class="image is-square is-96x96" style={{border: "2px dotted black", borderRadius: "55px"}}>
-                                    <img class="is-rounded" src="https://th.bing.com/th/id/R.23bce0ee3759a2d1f406aaeb0592ffea?rik=Huo25KyrLKlNGw&riu=http%3a%2f%2fcdn.abclocal.go.com%2fcontent%2fwpvi%2fimages%2fcms%2f306462_1280x720.jpg&ehk=usR8dR5UJvUM7sIxlatLasT0uW%2bsz41KQkRFgP8VwWc%3d&risl=&pid=ImgRaw&r=0" alt="Olive Garden"></img>
+                    {!does_own ? "" : <div className="box blog-post">
+                        <article className="media">
+                            <div className="media-left">
+                                <figure className="image is-square is-96x96" style={{border: "2px dotted black", borderRadius: "55px"}}>
+                                    <img className="is-rounded" src="https://th.bing.com/th/id/R.23bce0ee3759a2d1f406aaeb0592ffea?rik=Huo25KyrLKlNGw&riu=http%3a%2f%2fcdn.abclocal.go.com%2fcontent%2fwpvi%2fimages%2fcms%2f306462_1280x720.jpg&ehk=usR8dR5UJvUM7sIxlatLasT0uW%2bsz41KQkRFgP8VwWc%3d&risl=&pid=ImgRaw&r=0" alt="Olive Garden"></img>
                                 </figure>
                             </div>
-                            <div class="media-content">
-                                <div class="content my-5">
-                                    <div class="media-content">
-                                        <p class="title is-4">Olive Garden</p>
-                                        <p class="subtitle is-6">@unlimitedsoupsaladandbreadstickz</p>
+                            <div className="media-content">
+                                <div className="content my-5">
+                                    <div className="media-content">
+                                        <p className="title is-4">Olive Garden</p>
+                                        <p className="subtitle is-6">@unlimitedsoupsaladandbreadstickz</p>
                                     </div>
                                 </div>
                             </div>
                         </article>
-                        <nav class="level is-mobile">
-                            <div class="level-left"></div>
-                            <div class="level-right"></div>
+                        <nav className="level is-mobile">
+                            <div className="level-left"></div>
+                            <div className="level-right"></div>
                         </nav>
                         <form method="POST">
-                            <div class="comment-box">
-                                <textarea class="textarea" placeholder="What's on your mind?" rows="4"></textarea>
+                            <div className="comment-box">
+                                <textarea className="textarea" placeholder="What's on your mind?" rows="4"></textarea>
                             </div>
-                            <nav class="level is-mobile">
-                                <div class="level-left"></div>
-                                <div class="level-right pt-3">
-                                    <input type="submit" class="button is-medium is-primary" value="Create Post"></input>
+                            <nav className="level is-mobile">
+                                <div className="level-left"></div>
+                                <div className="level-right pt-3">
+                                    <input type="submit" className="button is-medium is-primary" value="Create Post"></input>
                                 </div>
                             </nav>
                         </form>  
@@ -168,7 +167,7 @@ const Posts = () => {
 
                 <br/>
             
-                <div id="Sub-comments" class="mx-6 pb-6">
+                <div id="Sub-comments" className="mx-6 pb-6">
                     <div>
                         {comments.map(post => {
                             return <PostBox key={post.id} userID={post.user} restaurant={post.restaurant} timestamp={post.timestamp} text={post.body} postID={post.id} likes={post.likes} deleted="false" state={ setIsDeleted }/>

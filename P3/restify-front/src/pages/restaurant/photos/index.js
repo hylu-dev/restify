@@ -26,23 +26,23 @@ const Gallery = () => {
     }, [id, query, isOpen, isDelete])
 
     const photo_list = gallery ? <>
-            <div class="columns mx-3">
+            <div className="columns mx-3">
                 {gallery.slice(0, 3).map(photo => (
-                    <div class="column is-one-third">
+                    <div className="column is-one-third">
                         <PhotoCard id={photo.id} name={photo.name} photo={photo.image} edit={ does_own } state={ setIsDelete }/>
                     </div>
                 ))}
             </div>
-            <div class="columns mx-3">
+            <div className="columns mx-3">
                 {gallery.slice(3, 6).map(photo => (
-                    <div class="column is-one-third">
+                    <div className="column is-one-third">
                         <PhotoCard id={photo.id} name={photo.name} photo={photo.image} edit={ does_own } state={ setIsDelete }/>
                     </div>
                 ))}
             </div>
-            <div class="columns mx-3">
+            <div className="columns mx-3">
                 {gallery.slice(6).map(photo => (
-                    <div class="column is-one-third">
+                    <div className="column is-one-third">
                         <PhotoCard id={photo.id} name={photo.name} photo={photo.image} edit={ does_own } state={ setIsDelete }/>
                     </div>
                 ))}
