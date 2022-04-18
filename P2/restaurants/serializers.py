@@ -57,8 +57,8 @@ class LikedPostSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         instance.likes += 1
         instance.userlikers.add(self.context.get('request', None).user)
-        instance.save()
         print(instance.userlikers)
+        instance.save()
 
         return instance
 
@@ -81,7 +81,7 @@ class UnlikedRestaurantSerializer(serializers.ModelSerializer):
 class UnlikedPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ['likes']
+        fields = ['likes', 'userlikers']
 
     """
     Instead of receiving input and updating the model instance, simply decrement
@@ -90,8 +90,8 @@ class UnlikedPostSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         instance.likes -= 1
         instance.userlikers.remove(self.context.get('request', None).user)
-        instance.save()
         print(instance.userlikers)
+        instance.save()
         return instance
 
 class CommentSerializer(serializers.ModelSerializer):
