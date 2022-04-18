@@ -8,8 +8,6 @@ const LikeButton = ({ id, post, likes, state, original}) => {
     const [liked, setLiked] = useState(state);
     const [likesDisplay, setLikesDisplay] = useState(likes);
     const user = useOutletContext();
-    console.log("original:", original, user.restaurant, original !== user.id);
-    console.log("rest", user.restaurant);
     const like_restaurant_request = async e => {
         e.preventDefault();
         let request = put("http://127.0.0.1:8000/restaurants/api/restaurant/" + id + "/like/", {}, window.localStorage.getItem("access_token"))
@@ -79,14 +77,16 @@ const LikeButton = ({ id, post, likes, state, original}) => {
                 </div>
                 <div className="column">
                     {post ?
-                        !liked ? 
-                            <Button styles="" value="Like" handler={like_post_request}></Button> : <Button styles="" value="Unike" handler={unlike_post_request}></Button>
-                        : original !== user.restaurant ?  
+                        original !== user.id ?
                             !liked ? 
-                                <Button styles="" value="Like" handler={like_restaurant_request}></Button> 
-                            : <Button styles="" value="Unike" handler={unlike_restaurant_request}></Button>
+                                <Button styles="" value="Like" handler={like_post_request}></Button> 
+                            : <Button styles="" value="Unlike" handler={unlike_post_request}></Button>
                         : <></>
-                    }
+                    : original !== user.restaurant ?  
+                        !liked ? 
+                            <Button styles="" value="Like" handler={like_restaurant_request}></Button> 
+                        : <Button styles="" value="Unlike" handler={unlike_restaurant_request}></Button>
+                    : <></>}
                 </div>
             </div>
         </div>
