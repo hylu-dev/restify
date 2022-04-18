@@ -1,5 +1,7 @@
 import { put } from "../../utils";
 import React, { useEffect, useState } from 'react';
+import Button from "../../components/Common/button";
+
 
 const LikeButton = ({ postID }) => {
     const [liked, setLiked] = useState(false);
@@ -38,7 +40,7 @@ const LikeButton = ({ postID }) => {
 
     return <div className="heart reply">
         {!liked ? 
-            <Button styles="" value="Like" handler={like_request}></Button> : <Button styles="" value="Unike" handler={unlike_request}></Button></i>}
+            <Button styles="" value="Like" handler={like_request}></Button> : <Button styles="" value="Unike" handler={unlike_request}></Button>}
         
     </div>
 }
