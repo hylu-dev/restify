@@ -111,7 +111,7 @@ const Restaurant = () => {
             </div>
         </section>
 
-        <Outlet />
+        <Outlet context={ does_own }/>
     </>
 }
 

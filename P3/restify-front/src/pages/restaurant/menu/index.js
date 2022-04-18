@@ -2,14 +2,17 @@
 import React, { useEffect, useState } from 'react';
 import MenuItem from "../../../components/Common/menu-item"
 import Button from "../../../components/Common/button";
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useOutletContext } from 'react-router-dom';
+import Modal from "../menu-modal";
 
 const Menu = () => {
+    const does_own = useOutletContext();
+
     const { id } = useParams();
     const [menu, setMenu] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
     const [query, setQuery] = useState({search: '', page: 1})
     const [totalPages, setTotalPages] = useState(1)
-    let navigate = useNavigate();
 
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/restaurants/api/restaurant/` + id + `/menu/?search=${query.search}&page=${query.page}`, {
@@ -33,7 +36,8 @@ const Menu = () => {
 
                 <br/>
                 {menu.map(item => (
-                    <MenuItem id={item.id} name={item.name} price={item.price} description={item.description} edit="false"/>
+                    does_own ? <MenuItem id={item.id} name={item.name} price={item.price} description={item.description} edit="true"/>
+                    : <MenuItem id={item.id} name={item.name} price={item.price} description={item.description} edit="false"/>
                 ))}
             </div>
         </div>
@@ -42,31 +46,9 @@ const Menu = () => {
             <p>There are no items in the menu yet</p>
         </div>
 
-    const edit_menu = () => {
-        navigate("/restaurant/" + id + "/edit-menu")
-    };
-
     return <>
         <div className="section" id="Menu-list" style={{backgroundColor: "white"}}>
             <div className="container">
-                <nav className="level">
-                    <div className="level-left">
-                    </div>
-                
-                    <div className="level-right">
-                        <p className="level-item">
-                            <button className={`button is-primary`} onClick={ edit_menu } style={{width: "100px"}}>
-                                <span className="icon-text">
-                                    <span className="icon">
-                                        <i className="fas fa-edit"></i>
-                                    </span>
-                                    <span>Edit</span>
-                                </span>
-                            </button>
-                        </p>
-                    </div>
-                </nav>
-            
                 { menu_list }
 
                 <div className="columns mt-4" style={{ marginLeft: "10%", marginRight: "5%" }}>
@@ -79,6 +61,18 @@ const Menu = () => {
                         </div>
                     </section>
                 </div>
+
+                {does_own ? <div className="columns mt-4" style={{ marginLeft: "10%", marginRight: "5%" }}>
+                    <section className="container has-text-centered">
+                        <button className="button is-success js-modal-trigger" data-target="add-item-modal" onClick={() => setIsOpen(true)}>
+                            <span className="icon" style={{ marginRight: "10px"}}>
+                                <i className="fas fa-plus-circle fa-2x"></i>
+                            </span>
+                            <span> Add Item</span>
+                        </button>
+                        {isOpen ? <Modal setIsOpen={setIsOpen} /> : <div></div>}
+                    </section>
+                </div> : ""}
             </div>
         </div>
     </>
