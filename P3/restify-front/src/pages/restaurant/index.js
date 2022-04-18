@@ -77,54 +77,54 @@ const Restaurant = () => {
     }
 
     return <>
-        <section className="section" style={{ padding: "0px" }}>
+        <section className="section" style={{padding: "0px"}}>
             <section className="hero is-primary is-halfheight">
                 <div className="hero-body">
                     <div className="columns my-6">
                         <div className="column is-full">
-                            <figure className="image is-square is-128x128" style={{ border: "2px dashed white", borderRadius: "90px" }}>
-                                <img className="is-rounded" src={logo} alt=""></img>
+                            <figure className="image is-square is-128x128" style={{border: "2px dashed white", borderRadius: "90px"}}>
+                                <img className="is-rounded" src={ logo } alt=""></img>
                             </figure>
                         </div>
                     </div>
 
-                    <div className="column is-four-fifths" style={{ marginLeft: "80px" }}>
-                        <p className="title ml-6">{name}</p>
-                        <hr className="navbar-divider" style={{ width: "300px" }}></hr>
+                    <div className="column is-four-fifths" style={{marginLeft: "80px"}}>
+                        <p className="title ml-6">{ name }</p>
+                        <hr className="navbar-divider" style={{width: "300px"}}></hr>
 
                         <p className="subtitle mt-5 ml-6">
-                            {address} {postal}
+                            { address } { postal }
                         </p>
                         <p className="subtitle mt-5 ml-6">
-                            {phone}
+                            { phone }
                         </p>
                     </div>
                 </div>
             </section>
 
-            <nav className="navbar is-primary is-transparent" style={{ backgroundColor: "#02b196", height: "10px", zIndex: "0" }}>
+            <nav className="navbar is-primary is-transparent" style={{backgroundColor: "#02b196", height: "10px", zIndex: "0"}}>  
                 <div className="navbar-menu">
                     {does_own ? "" : <div className="navbar-item pl-6 ml-3">
-                        {does_follow ? <button className="button is-info my-1" onClick={unfollow_request}>
+                        {does_follow ? <button className="button is-info my-1" onClick={ unfollow_request }>
                             <span className="icon">
                                 <i className="fas fa-heart"></i>
                             </span>
                             <span>Unfollow</span>
                         </button>
-                            : <button className="button is-light my-1" onClick={follow_request}>
-                                <span className="icon">
-                                    <i className="fas fa-heart"></i>
-                                </span>
-                                <span>Follow</span>
-                            </button>
-                        }
+                        : <button className="button is-light my-1" onClick={ follow_request }>
+                            <span className="icon">
+                                <i className="fas fa-heart"></i>
+                            </span>
+                            <span>Follow</span>
+                        </button>
+                    }
                     </div>}
 
                     <a className="navbar-item has-text-light ml-6" href='/'>
                         <span className="icon is-large">
                             <i className="fas fa-thumbs-up"></i>
                         </span>
-                        <span>{likes}</span>
+                        <span>{ likes }</span>
                     </a>
 
                     {does_own ? <div className="navbar-item pr-4">
@@ -146,14 +146,14 @@ const Restaurant = () => {
 
             <div className="tabs is-boxed is-fullwidth m-0 mx-6">
                 <ul>
-                    <li className={tab === 0 ? "is-active" : ""} onClick={set_tab1}><Link to="menu">Menu</Link></li>
-                    <li className={tab === 1 ? "is-active" : ""} onClick={set_tab2}><Link to="gallery">Photos</Link></li>
-                    <li className={tab === 2 ? "is-active" : ""} onClick={set_tab3}><Link to="posts">Posts</Link></li>
+                <li className={tab === 0 ? "is-active" : ""} onClick={ set_tab1 }><Link to="menu">Menu</Link></li>
+                <li className={tab === 1 ? "is-active" : ""} onClick={ set_tab2 }><Link to="gallery">Photos</Link></li>
+                <li className={tab === 2 ? "is-active" : ""} onClick={ set_tab3 }><Link to="posts">Posts</Link></li>
                 </ul>
             </div>
         </section>
 
-        <Outlet context={{ user, name, logo, does_own }} />
+        <Outlet context={{ user, name, logo, does_own  }}/>
     </>
 }
 
