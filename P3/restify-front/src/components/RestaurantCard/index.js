@@ -9,7 +9,7 @@ const RestaurantCard = ({ id, name, address, postal_code, likes, logo }) => {
 
     return <>
     <Link to={"/restaurant/" + id + "/menu/"}>
-        <div className="card browse-card">
+        <div className="card browse-card p-1">
             <div className="card-image p-5">
                 <figure className="image is-4by3">
                     <img src={logo} alt="Logo image"/>
