@@ -50,7 +50,7 @@ const Gallery = () => {
         </>
         : 
         <div>
-            <p>There are no items in the menu yet</p>
+            <p>There are no photos yet</p>
         </div>
 
     return <>
@@ -60,7 +60,7 @@ const Gallery = () => {
 
             <div className="columns is-centered" style={{marginLeft: "5%", marginRight: "5%"}}>
                 <div className="column is-centered">
-                    <h1 className="title is-4">Page {query.page} of {totalPages}</h1>
+                    {totalPages == 0 ? "" : <h1 className="title is-4">Page {query.page} of {totalPages}</h1>}
                 </div>
             </div>
 
