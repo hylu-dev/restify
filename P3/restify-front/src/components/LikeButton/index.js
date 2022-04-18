@@ -37,7 +37,8 @@ const LikeButton = ({ postID }) => {
 
 
     return <div className="heart reply">
-        {!liked ? <i className="fa-regular fa-hover-hidden fa-heart fa-2xl" onClick={like_request}></i> : <i className="fa-solid fa-hover-show fa-heart fa-2xl" onClick={unlike_request}></i>}
+        {!liked ? 
+            <Button styles="" value="Like" handler={like_request}></Button> : <Button styles="" value="Unike" handler={unlike_request}></Button></i>}
         
     </div>
 }

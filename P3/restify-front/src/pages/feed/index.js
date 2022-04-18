@@ -32,28 +32,31 @@ const Feed = () => {
 
     }, [])
 
-    // const request_posts = async results => {
-    //     results.forEach(result => {
-    //         let feed_request = get(`http://127.0.0.1:8000/accounts/api/profile/${result.user}/`)
-    //         feed_request.then(response => {
-    //             if (response.status === 200) {
-    //                 response.json().then(data => {
-    //                     setPosts([...posts, {
-    //                         'id': data.id,
-    //                         'username': data.username,
-    //                         'avatar': data.avatar,
-    //                         'restaurant': data.restaurant,
-    //                         'timestamp': result.timestamp,
-    //                         'body': result.body
-    //                     }])
-    //                     console.log(posts);
-    //                 })
-    //             }
+    const next_request = async e => {
+        e.preventDefault();
+        let request = get(next, window.localStorage.getItem("access_token"))
+         request.then(response => {
+            if (response.status === 200) {
+                response.json().then(data => {
 
-    //         })
-    //     })
+                });
+            }
+        })
+        
+    };
 
-    // }
+    const prev_request = async e => {
+        e.preventDefault();
+        let request = get(next, window.localStorage.getItem("access_token"))
+         request.then(response => {
+            if (response.status === 200) {
+                response.json().then(data => {
+
+                });
+            }
+        })
+        
+    };
 
 
     return <>
@@ -67,6 +70,8 @@ const Feed = () => {
                             })
                         }
                     </div>
+                    {previous ? <Button styles="" value="Previous" handler={prev_request}></Button> : <></>}
+                    {next ? <Button styles="" value="Next" handler={next_request}></Button> : <></>}
                 </div>
             </div>
         </section>
