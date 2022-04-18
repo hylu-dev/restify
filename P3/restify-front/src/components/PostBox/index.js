@@ -3,7 +3,7 @@ import Button from "../../components/Common/button";
 import React, { useEffect, useState } from 'react';
 import { get, put_form } from "../../utils";
 
-const PostBox = ({ userID, restaurant, timestamp, text, postID }) => {
+const PostBox = ({ userID, restaurant, timestamp, text, postID, likes}) => {
 
     const [username, setUsername] = useState("");
     const [restaurantname, setRestaurant] = useState("");
@@ -51,7 +51,7 @@ const PostBox = ({ userID, restaurant, timestamp, text, postID }) => {
                 <div className="level-left"></div>
                 <div className="level-right">
                     <div className="heart reply">
-                        <LikeButton id={postID} post={true}
+                        <LikeButton id={postID} post={true} likes={likes}
                         />
                     </div>
                 </div>
