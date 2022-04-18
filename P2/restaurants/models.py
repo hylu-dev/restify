@@ -13,6 +13,7 @@ class Restaurant(models.Model):
     phone_number = PhoneField(help_text='Account phone number', null=True, blank=True)
     owner = models.OneToOneField(User, on_delete=models.CASCADE, related_name='owner')
     followers = models.ManyToManyField(User, related_name='followers', blank=True,)
+    likers = models.ManyToManyField(User, related_name='likers', blank=True)
     likes = models.IntegerField(default=0)
 
     def __str__(self):

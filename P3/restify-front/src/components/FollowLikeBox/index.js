@@ -2,11 +2,12 @@ import LikeButton from "../../components/LikeButton";
 import Button from "../../components/Common/button";
 import React, { useEffect, useState } from 'react';
 import { put } from "../../utils";
+import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 
-
-const FollowLikeBox = ({ restaurantID, likes }) => {
-	const [followed, setFollowed] = useState(false);
-
+const FollowLikeBox = ({ restaurantID, likes, state }) => {
+	const user = useOutletContext();
+	const follower = user.followers.includes(user.id);
+	const [followed, setFollowed] = useState(follower);
 	const follow_request = async e => {
         e.preventDefault();
         let request = put("http://127.0.0.1:8000/accounts/api/restaurant/" + restaurantID + "/follow/", {}, window.localStorage.getItem("access_token"))
@@ -41,7 +42,7 @@ const FollowLikeBox = ({ restaurantID, likes }) => {
                 	<Button styles="" value="Follow" handler={follow_request}></Button> 
             		: <Button styles="" value="Unfollow" handler={unfollow_request}></Button>
             	} 
-				<LikeButton id={restaurantID} post={false} likes={likes}/>
+				<LikeButton id={restaurantID} post={false} likes={likes} state={state}/>
 			</div>
 		</div>
 	</>

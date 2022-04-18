@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import Button from "../../components/Common/button";
 
 
-const LikeButton = ({ id, post, likes }) => {
-    const [liked, setLiked] = useState(false);
+const LikeButton = ({ id, post, likes, state }) => {
+    const [liked, setLiked] = useState(state);
     const [likesDisplay, setLikesDisplay] = useState(likes);
 
     const like_restaurant_request = async e => {

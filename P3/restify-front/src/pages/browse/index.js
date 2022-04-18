@@ -6,8 +6,10 @@ import Button from "../../components/Common/button";
 import LikeButton from "../../components/LikeButton";
 import PostBox from "../../components/PostBox";
 import RestaurantCard from "../../components/RestaurantCard";
+import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 
 const Browse = () => {
+    const user = useOutletContext();
 
     const [count, setCount] = useState("");
     const [next, setNext] = useState("");
@@ -74,7 +76,7 @@ const Browse = () => {
                     {
                         results.map(result => {
                             return <RestaurantCard key={result.id} name={result.name} address={result.address} 
-                            postal_code={result.postal_code} likes={result.likes} id={result.id} logo={result.logo}/>
+                            postal_code={result.postal_code} likes={result.likes} id={result.id} logo={result.logo} result.likers.includes(user.id) ? state=true : state=false/>
                         })
                     }
                     {previous ? <Button styles="" value="Previous" handler={prev_request}></Button> : <></>}

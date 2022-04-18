@@ -13,8 +13,8 @@ class RestaurantSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Restaurant
-        fields = ['id', 'name', 'address', 'logo', 'postal_code', 'phone_number', 'owner', 'followers', 'likes']
-        read_only_fields = ('followers', 'likes')
+        fields = ['id', 'name', 'address', 'logo', 'postal_code', 'phone_number', 'owner', 'followers', 'likers', 'likes']
+        read_only_fields = ('followers', 'likers', 'likes')
 
     def create(self, data):
         if hasattr(self.context.get('request').user, 'owner'):
@@ -32,13 +32,14 @@ class RestaurantSerializer(serializers.ModelSerializer):
 class LikedRestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
-        fields = ['likes']
+        fields = ['likes', 'likers']
 
     """
     Instead of receiving input and updating the model instance, simply increment
     the likes attribute by 1
     """
     def update(self, instance, validated_data):
+        instance.likers.add(self.context.get('request', None).user)
         instance.likes += 1
         instance.save()
 
@@ -47,7 +48,7 @@ class LikedRestaurantSerializer(serializers.ModelSerializer):
 class LikedPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ['likes']
+        fields = ['likes', 'likers']
 
     """
     Instead of receiving input and updating the model instance, simply increment
@@ -55,6 +56,7 @@ class LikedPostSerializer(serializers.ModelSerializer):
     """
     def update(self, instance, validated_data):
         instance.likes += 1
+        instance.likers.remove(self.context.get('request', None).user)
         instance.save()
 
         return instance
@@ -124,8 +126,6 @@ class CommentSerializer(serializers.ModelSerializer):
         return comment
 
 class FoodItemSerializer(serializers.ModelSerializer):
-    price = serializers.IntegerField(min_value=0)
-
     class Meta:
         model = FoodItem
         fields = ['id', 'name', 'description', 'price']
@@ -267,5 +267,3 @@ class GallerySerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
         fields = ['id', 'restaurant', 'image', 'name', 'timestamp']
-
-
