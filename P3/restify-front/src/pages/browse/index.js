@@ -69,7 +69,7 @@ const Browse = () => {
                     {
                         results.map(result => {
                             {var state = result.likers.includes(user.id) ? state=true : state=false;}
-                            {var following = result.followers.includes(user.id) ? state=true : state=false;}
+                            {var following = result.followers.includes(user.id) ? following=true : following=false;}
                             return <RestaurantCard key={result.id} name={result.name} address={result.address} 
                             postal_code={result.postal_code} likes={result.likes} id={result.id} logo={result.logo} state={state} following={following}/>
                         })
