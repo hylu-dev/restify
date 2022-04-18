@@ -202,7 +202,7 @@ const Posts = () => {
                 <div id="Sub-comments" className="mx-6 pb-6">
                     <div>
                         {comments.map(post => {
-                            return <PostBox key={post.id} postID={post.id} userID={post.user} restaurant={post.restaurant} timestamp={post.timestamp} text={post.body} likes={post.likes} deleted="false" state={setIsDeleted} />
+                            return <Comment key={post.id} postID={post.id} userID={post.user} restaurant={post.restaurant} timestamp={post.timestamp} text={post.body} likes={post.likes} deleted="false" state={setIsDeleted} />
                         })}
                     </div>
                 </div>
