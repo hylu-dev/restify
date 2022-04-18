@@ -71,7 +71,6 @@ const Browse = () => {
     return <>
         <section className="section">
             <div className="container">
-                <div className="columns is-centered">
                     {
                         results.map(result => {
                             return <RestaurantCard key={result.id} name={result.name} address={result.address} 
@@ -80,7 +79,6 @@ const Browse = () => {
                     }
                     {previous ? <Button styles="" value="Previous" handler={prev_request}></Button> : <></>}
                     {next ? <Button styles="" value="Next" handler={next_request}></Button> : <></>}
-                </div>
             </div>
         </section>
     </>

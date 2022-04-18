@@ -62,6 +62,7 @@ const LikeButton = ({ id, post, likes }) => {
 
 
     return <> <div className="heart reply">
+        <div className="likecount">
         {likes} 
         {{post} ? 
             !liked ?
@@ -72,6 +73,7 @@ const LikeButton = ({ id, post, likes }) => {
             : <Button styles="" value="Unike" handler={unlike_restaurant_request}></Button> 
 
         }
+        </div>
 
     </div></>
 }
