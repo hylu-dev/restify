@@ -126,7 +126,7 @@ class CommentSerializer(serializers.ModelSerializer):
 class FoodItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = FoodItem
-        fields = ['name', 'description', 'price']
+        fields = ['id', 'name', 'description', 'price']
 
     def create(self, data):
         if not hasattr(self.context.get('request').user, 'owner'):
@@ -246,7 +246,7 @@ class PhotoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Photo
-        fields = ['restaurant', 'image']
+        fields = ['restaurant', 'image', 'name']
 
     def create(self, data):
         if not hasattr(self.context.get('request').user, 'owner'):
@@ -255,6 +255,7 @@ class PhotoSerializer(serializers.ModelSerializer):
 
         photo = Photo.objects.create(
             image=data.get('image', ''),
+            name=data.get('name', ''),
             restaurant=restaurant
         )
 
@@ -263,6 +264,6 @@ class PhotoSerializer(serializers.ModelSerializer):
 class GallerySerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
-        fields = ['restaurant', 'image', 'timestamp']
+        fields = ['id', 'restaurant', 'image', 'name', 'timestamp']
 
 

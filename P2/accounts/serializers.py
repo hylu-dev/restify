@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
+from django.contrib.auth.hashers import check_password
 from django.core.validators import validate_email
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.core.paginator import Paginator
@@ -58,7 +59,7 @@ class LoginSerializer(TokenObtainPairSerializer):
 class ProfileUpdateSerializer(serializers.ModelSerializer):
     avatar = serializers.ImageField(required=False)
     password = serializers.CharField(required=False, validators=[validate_password])
-    password2 = serializers.CharField(required=False, write_only= True)
+    password2 = serializers.CharField(required=False, validators=[validate_password], write_only= True)
     id = serializers.CharField(read_only= True)
     
     class Meta:
@@ -76,15 +77,25 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         super().update(instance, validated_data)
-        if validated_data.get('password'):
-            instance.set_password(validated_data['password'])
+        if validated_data.get('password2'):
+            instance.set_password(validated_data['password2'])
             instance.save()
         return instance
 
     def validate(self, data):
         errors = {}
-        if data.get('password', '') != data.get('password2', ''):
-            errors['password'] = 'Passwords do not match'
+        currentpassword = self.context.get('request', None).user.password
+        if data.get('password', ''):
+            if check_password(data.get('password', ''), currentpassword):
+                if not data.get('password2', ''):
+                    errors['password'] = 'Your new password cannot be empty'
+                if data.get('password', '') == data.get('password2', ''):
+                    errors['password'] = 'Your new password must be different'
+            else:
+                errors['password'] = 'Current password is incorrect'
+        if not data.get('password', '') and data.get('password2', ''):
+            errors['password'] = 'You must enter your current password to set a new one'
+        
         if errors:
             raise serializers.ValidationError(errors)
         return data
@@ -100,7 +111,8 @@ class ProfileSerializer(serializers.ModelSerializer):
             'username',
             'email',
             'phone_number',
-            'avatar'
+            'avatar',
+            'owner'
         ]
 
 class FollowedRestaurantSerializer(serializers.ModelSerializer):
