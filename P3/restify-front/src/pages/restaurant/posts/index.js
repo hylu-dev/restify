@@ -3,6 +3,7 @@ import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 import Button from "../../../components/Common/button";
 import { get, post } from "../../../utils";
 import PostBox from "../../../components/PostBox";
+import Comment from "../../../components/Comment";
 
 const Posts = () => {
     const does_own = useOutletContext().does_own;
