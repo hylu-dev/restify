@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Outlet } from "react-router-dom";
+import { Link, Navigate, Outlet } from "react-router-dom";
 import Button from "../../components/Common/button"
-import { post } from "../../utils"
+import { put } from "../../utils"
 import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 
 const Restaurant = () => {
     const user = useOutletContext();
 
+    const [followed, setFollowed] = useState(false);
+    const [tab, setTab] = useState(0);
     const [name, setName] = useState("");
     const [logo, setLogo] = useState(null);
     const [address, setAddress] = useState("");
@@ -33,7 +35,47 @@ const Restaurant = () => {
                 setFollowers(data.followers)
                 setLikes(data.likes)
             })
-    }, [id, likes])
+    }, [id, likes, followed, tab])
+
+    const follow_request = async e => {
+        e.preventDefault();
+        let request = put("http://127.0.0.1:8000/accounts/api/restaurant/" + id + "/follow/", {}, window.localStorage.getItem("access_token"))
+        request.then(response => {
+            if (response.status === 200) {
+                response.json().then(data => {
+                    setFollowed(true);
+                });
+                does_follow = true;
+            }
+        })
+
+    };
+
+    const unfollow_request = async e => {
+        e.preventDefault();
+        let request = put("http://127.0.0.1:8000/accounts/api/restaurant/" + id + "/unfollow/", {}, window.localStorage.getItem("access_token"))
+        request.then(response => {
+            if (response.status === 200) {
+                response.json().then(data => {
+                    setFollowed(false);
+                });
+                does_follow = false;
+            }
+        })
+
+    };
+
+    const set_tab1 = () => {
+        setTab(0);
+    }
+
+    const set_tab2 = () => {
+        setTab(1);
+    }
+
+    const set_tab3 = () => {
+        setTab(2);
+    }
 
     return <>
         <section className="section" style={{padding: "0px"}}>
@@ -64,18 +106,18 @@ const Restaurant = () => {
             <nav className="navbar is-primary is-transparent" style={{backgroundColor: "#02b196", height: "10px", zIndex: "0"}}>  
                 <div className="navbar-menu">
                     {does_own ? "" : <div className="navbar-item pl-6 ml-3">
-                        {does_follow ? <a className="button is-info my-1">
+                        {does_follow ? <button className="button is-info my-1" onClick={ unfollow_request }>
                             <span className="icon">
                                 <i className="fas fa-heart"></i>
                             </span>
                             <span>Unfollow</span>
-                        </a>
-                        : <a className="button is-light my-1">
+                        </button>
+                        : <button className="button is-light my-1" onClick={ follow_request }>
                             <span className="icon">
                                 <i className="fas fa-heart"></i>
                             </span>
                             <span>Follow</span>
-                        </a>
+                        </button>
                     }
                     </div>}
 
@@ -87,21 +129,14 @@ const Restaurant = () => {
                     </a>
 
                     {does_own ? <div className="navbar-item pr-4">
-                        <label className="button is-light my-1">
-                            <span className="icon">
-                                <i className="fas fa-edit"></i>
-                            </span>
-                            <span>Edit</span>
-                        </label>
-                    </div> : ""}
-
-                    {does_own ? <div className="navbar-item pr-6 mr-3">
-                        <a className="button is-danger my-1">
-                            <span className="icon">
-                                <i className="fas fa-trash-alt"></i>
-                            </span>
-                            <span>Delete Restaurant</span>
-                        </a>
+                        <Link to="/restaurant/create" className="navbar-item">
+                            <label className="button is-light my-1">
+                                <span className="icon">
+                                    <i className="fas fa-edit"></i>
+                                </span>
+                                <span>Edit</span>
+                            </label>
+                        </Link>
                     </div> : ""}
                 </div>
             </nav>
@@ -112,9 +147,9 @@ const Restaurant = () => {
 
             <div className="tabs is-boxed is-fullwidth m-0 mx-6">
                 <ul>
-                <li className="is-active"><Link to="menu">Menu</Link></li>
-                <li><Link to="gallery">Photos</Link></li>
-                <li><Link to="posts">Posts</Link></li>
+                <li className={tab === 0 ? "is-active" : ""} onClick={ set_tab1 }><Link to="menu">Menu</Link></li>
+                <li className={tab === 1 ? "is-active" : ""} onClick={ set_tab2 }><Link to="gallery">Photos</Link></li>
+                <li className={tab === 2 ? "is-active" : ""} onClick={ set_tab3 }><Link to="posts">Posts</Link></li>
                 </ul>
             </div>
         </section>
