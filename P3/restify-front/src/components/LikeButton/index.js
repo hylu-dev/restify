@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Button from "../../components/Common/button";
 
 
-const LikeButton = ({ id, post }) => {
+const LikeButton = ({ id, post, likes }) => {
     const [liked, setLiked] = useState(false);
 
     const like_restaurant_request = async e => {
@@ -61,8 +61,8 @@ const LikeButton = ({ id, post }) => {
     };
 
 
-    return <div className="heart reply">
-
+    return <> <div className="heart reply">
+        {likes} 
         {{post} ? 
             !liked ?
                 <Button styles="" value="Like" handler={like_post_request}></Button> 
@@ -71,11 +71,9 @@ const LikeButton = ({ id, post }) => {
                 <Button styles="" value="Like" handler={like_restaurant_request}></Button> 
             : <Button styles="" value="Unike" handler={unlike_restaurant_request}></Button> 
 
-
-
         }
 
-    </div>
+    </div></>
 }
 
 export default LikeButton;
