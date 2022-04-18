@@ -1,4 +1,4 @@
-import {Link, Outlet} from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import { get } from "../../utils";
@@ -49,8 +49,8 @@ const Layout = () => {
                         <span></span>
                     </div>
                 </Link>
-            </div> 
-            
+            </div>
+
             <div className="navbar-menu">
                 <div className="navbar-item">
                     <Search></Search>
@@ -72,14 +72,17 @@ const Layout = () => {
                             <span>Browse</span>
                         </span>
                     </Link>
-                    <Link to={`/restaurant/${restaurant}/menu`} className="navbar-item">
-                        <span className="icon-text">
-                            <span className="icon">
-                                <i className="fas fa-store"></i>
+                    {restaurant &&
+                        <Link to={`/restaurant/${restaurant}/menu`} className="navbar-item">
+                            <span className="icon-text">
+                                <span className="icon">
+                                    <i className="fas fa-store"></i>
+                                </span>
+                                <span>My Restaurant</span>
                             </span>
-                            <span>My Restaurant</span>
-                        </span>
-                    </Link>
+                        </Link>
+                    }
+
                     <div className="navbar-item has-dropdown is-hoverable">
                         <Link to="/profile" className="navbar-link">
                             <span className="icon-text">
@@ -89,38 +92,38 @@ const Layout = () => {
                                 <span>Profile</span>
                             </span>
                         </Link>
-        
-                        <div className="navbar-dropdown is-right" style={{width: '380px'}}>
+
+                        <div className="navbar-dropdown is-right" style={{ width: '380px' }}>
                             <article className="media">
                                 <div className="media-left pt-5 pl-5">
-                                    <img className="is-64x64 is-rounded" src={avatar} alt="Person"/>
+                                    <img className="is-64x64 is-rounded" src={avatar} alt="Person" />
                                 </div>
                                 <div className="media-content py-2">
                                     <div className="content mt-1">
-                                    <div className="media-content">
-                                        <p className="title is-4">{`${firstName} ${lastName}`}</p>
-                                        <p className="subtitle is-6">{`@${username}`}</p>
-                                    </div>
+                                        <div className="media-content">
+                                            <p className="title is-4">{`${firstName} ${lastName}`}</p>
+                                            <p className="subtitle is-6">{`@${username}`}</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="media-right pr-5 pt-4">
-                                    <div className="box has-background-info-light has-text-centered p-2" style={{width: '80px'}}>
+                                    <div className="box has-background-info-light has-text-centered p-2" style={{ width: '80px' }}>
                                         {
                                             restaurant ? "Owner" : "User"
                                         }
                                     </div>
                                 </div>
                             </article>
-        
-                            <hr className="navbar-divider"/>
-        
+
+                            <hr className="navbar-divider" />
+
                             <Link to="/profile" className="navbar-item">
                                 <span className="icon is-large">
                                     <i className="fas fa-edit"></i>
                                 </span>
                                 <span>Edit Profile</span>
                             </Link>
-        
+
                             <Link to="/login" className="navbar-item" onClick={logout}>
                                 <span className="icon is-large">
                                     <i className="fas fa-door-open"></i>
@@ -157,7 +160,7 @@ const Layout = () => {
             </div>
         </nav>
 
-        <Outlet context={{id, firstName, lastName, username, avatar, restaurant}} />
+        <Outlet context={{ id, firstName, lastName, username, avatar, restaurant }} />
     </>
 }
 
