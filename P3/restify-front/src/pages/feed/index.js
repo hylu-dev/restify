@@ -77,8 +77,10 @@ const Feed = () => {
                                 return <PostBox key={result.id} userID={result.user} restaurant={result.restaurant} timestamp={result.timestamp} text={result.body} postID={result.id} />
                             })
                         }
-                        {previous ? <Button styles="" value="Previous" handler={prev_request}></Button> : <></>}
-                        {next ? <Button styles="" value="Next" handler={next_request}></Button> : <></>}
+                        <div className="navigation">
+                            {previous ? <Button styles="" value="Previous" handler={prev_request}></Button> : <></>}
+                            {next ? <Button styles="" value="Next" handler={next_request}></Button> : <></>}
+                        </div>
                     </div>
                     
                 </div>

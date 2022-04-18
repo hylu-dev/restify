@@ -77,11 +77,6 @@ html {
 	display: inline;
 }
 
-.heart {
-	padding-top: 8px;
-	/*z-index: ;*/
-}
-
 .reply {
 	padding: 0 5px 0 5px;
 }
@@ -97,4 +92,9 @@ html {
 
 hr {
 	margin-top: 5px;
+}
+
+.navigation {
+	display: flex;
+	justify-content: center;
 }
