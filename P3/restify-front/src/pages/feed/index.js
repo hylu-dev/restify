@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { get } from "../../utils";
 import Button from "../../components/Common/button";
 import PostBox from "../../components/PostBox";
+import { useOutletContext } from "react-router-dom";
 
 const Feed = () => {
     const [next, setNext] = useState("");
     const [previous, setPrevious] = useState("");
     const [results, setResults] = useState([]);
+    const user = useOutletContext();
 
     useEffect(() => {
         let request = get("http://127.0.0.1:8000/accounts/api/feed/", window.localStorage.getItem("access_token"))
@@ -64,7 +66,7 @@ const Feed = () => {
                         {
                             results.map(result => {
                                 { var state = result.userlikers.includes(user.id) ? state = true : state = false; }
-                                return <PostBox key={result.id} userID={result.user} restaurant={result.restaurant} timestamp={result.timestamp} text={result.body} postID={result.id} likes={result.likes} state= />
+                                return <PostBox key={result.id} userID={result.user} restaurant={result.restaurant} timestamp={result.timestamp} text={result.body} postID={result.id} likes={result.likes} state={state} />
                             })
                         }
                         <div className="navigation">
