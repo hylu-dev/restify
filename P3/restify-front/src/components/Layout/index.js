@@ -10,7 +10,6 @@ const Layout = () => {
     const [lastName, setLastName] = useState("");
     const [username, setUsername] = useState("");
     const [avatar, setAvatar] = useState("");
-    const [owner, setOwner] = useState("")
     const [restaurant, setRestaurant] = useState("");
     const navigate = useNavigate();
 
@@ -24,7 +23,6 @@ const Layout = () => {
                     setLastName(data.last_name);
                     setUsername(data.username);
                     setAvatar(data.avatar);
-                    setOwner(data.owner);
                     setRestaurant(data.owner);
                 })
             } else {
@@ -74,7 +72,7 @@ const Layout = () => {
                             <span>Browse</span>
                         </span>
                     </Link>
-                    <Link to="/restaurant/1/menu" className="navbar-item">
+                    <Link to={`/restaurant/${restaurant}/menu`} className="navbar-item">
                         <span className="icon-text">
                             <span className="icon">
                                 <i className="fas fa-store"></i>
@@ -108,7 +106,7 @@ const Layout = () => {
                                 <div className="media-right pr-5 pt-4">
                                     <div className="box has-background-info-light has-text-centered p-2" style={{width: '80px'}}>
                                         {
-                                            owner ? "Owner" : "User"
+                                            restaurant ? "Owner" : "User"
                                         }
                                     </div>
                                 </div>

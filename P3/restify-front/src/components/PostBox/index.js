@@ -15,8 +15,15 @@ const PostBox = ({ userID, restaurant, timestamp, text, postID }) => {
             if (response.status === 200) {
                 response.json().then(data => {
                     setUsername(data.username);
-                    setRestaurant(data.restaurant)
                     setAvatar(data.avatar);
+                })
+            }
+        })
+        request = get(`http://127.0.0.1:8000/restaurants/api/restaurant/${restaurant}/details/`)
+        request.then(response => {
+            if (response.status === 200) {
+                response.json().then(data => {
+                    setRestaurant(data.name)
                 })
             }
         })
