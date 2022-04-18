@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const RestaurantCard = ({ id, name, address, postal_code, likes, logo, state, following}) => {
 
     return <>
-    <Link to={"/restaurant/" + id + "/menu/"}>
+    <Link to={"/restaurant/" + id + "/menu/"} className="column is-3">
         <div className="card browse-card p-1">
             <div className="card-image p-5">
                 <figure className="image is-4by3">
