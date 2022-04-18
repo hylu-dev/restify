@@ -72,7 +72,7 @@ const Browse = () => {
                         {
                             results.map(result => {
                                 return <RestaurantCard key={result.id} name={result.name} address={result.address} 
-                                postal_code={result.postal_code} likes={result.likes} postID={result.logo}/>
+                                postal_code={result.postal_code} likes={result.likes} id={result.id} logo={result.logo}/>
                             })
                         }
                         {previous ? <Button styles="" value="Previous" handler={prev_request}></Button> : <></>}
