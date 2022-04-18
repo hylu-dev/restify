@@ -172,7 +172,9 @@ class BrowsingSerializer(serializers.ModelSerializer):
             'name',
             'address',
             'postal_code',
-            'likes'
+            'likes',
+            'id',
+            'logo'
             ]
 
 class NotificationSerializer(serializers.ModelSerializer):
