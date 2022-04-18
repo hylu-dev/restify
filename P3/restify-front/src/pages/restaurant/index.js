@@ -1,11 +1,39 @@
-//import React, {useEffect, useState} from 'react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Outlet } from "react-router-dom";
 import Button from "../../components/Common/button"
 import { post } from "../../utils"
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 
 const Restaurant = () => {
+    const user = useOutletContext();
+
+    const [name, setName] = useState("");
+    const [logo, setLogo] = useState(null);
+    const [address, setAddress] = useState("");
+    const [postal, setPostal] = useState("");
+    const [phone, setPhone] = useState("");
+    const [followers, setFollowers] = useState([]);
+    const [likes, setLikes] = useState(1);
+    const { id } = useParams();
+
+    let does_own = (user.restaurant == id);
+
+    useEffect(() => {
+        fetch(`http://127.0.0.1:8000/restaurants/api/restaurant/` + id + `/details/`, {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(data => {
+                setName(data.name)
+                setLogo(data.logo)
+                setAddress(data.address)
+                setPostal(data.postal_code)
+                setPhone(data.phone_number)
+                setFollowers(data.followers)
+                setLikes(data.likes)
+            })
+    }, [id, likes])
+
     return <>
         <section className="section" style={{padding: "0px"}}>
             <section className="hero is-primary is-halfheight">
@@ -13,19 +41,20 @@ const Restaurant = () => {
                     <div className="columns my-6">
                         <div className="column is-full">
                             <figure className="image is-square is-128x128" style={{border: "2px dashed white", borderRadius: "90px"}}>
-                                <img className="is-rounded" src="https://th.bing.com/th/id/R.23bce0ee3759a2d1f406aaeb0592ffea?rik=Huo25KyrLKlNGw&riu=http%3a%2f%2fcdn.abclocal.go.com%2fcontent%2fwpvi%2fimages%2fcms%2f306462_1280x720.jpg&ehk=usR8dR5UJvUM7sIxlatLasT0uW%2bsz41KQkRFgP8VwWc%3d&risl=&pid=ImgRaw&r=0" alt="Olive Garden"></img>
+                                <img className="is-rounded" src={ logo } alt=""></img>
                             </figure>
                         </div>
                     </div>
 
                     <div className="column is-four-fifths" style={{marginLeft: "80px"}}>
-                        <p className="title ml-6">
-                            Olive Garden
-                        </p>
+                        <p className="title ml-6">{ name }</p>
                         <hr className="navbar-divider" style={{width: "300px"}}></hr>
 
                         <p className="subtitle mt-5 ml-6">
-                            fillerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+                            { address } { postal }
+                        </p>
+                        <p className="subtitle mt-5 ml-6">
+                            { phone }
                         </p>
                     </div>
                 </div>
@@ -33,46 +62,39 @@ const Restaurant = () => {
 
             <nav className="navbar is-primary is-transparent" style={{backgroundColor: "#02b196", height: "10px", zIndex: "0"}}>  
                 <div className="navbar-menu">
-                    <div className="navbar-item pl-6 ml-3">
+                    {does_own ? "" : <div className="navbar-item pl-6 ml-3">
                         <a className="button is-light my-1">
                             <span className="icon">
                                 <i className="fas fa-heart"></i>
                             </span>
                             <span>Follow</span>
                         </a>
-                    </div>
+                    </div>}
 
                     <a className="navbar-item has-text-light ml-6">
                         <span className="icon is-large">
                             <i className="fas fa-thumbs-up"></i>
                         </span>
-                        <span>500</span>
-                    </a>
-                    
-                    <a className="navbar-item has-text-light is-expanded ml-6">
-                        <span className="icon is-large">
-                            <i className="fas fa-share"></i>
-                        </span>
-                        <span>Share</span>
+                        <span>{ likes }</span>
                     </a>
 
-                    <div className="navbar-item pr-4">
+                    {does_own ? <div className="navbar-item pr-4">
                         <label className="button is-light my-1">
                             <span className="icon">
                                 <i className="fas fa-edit"></i>
                             </span>
                             <span>Edit</span>
                         </label>
-                    </div>
+                    </div> : ""}
 
-                    <div className="navbar-item pr-6 mr-3">
+                    {does_own ? <div className="navbar-item pr-6 mr-3">
                         <a className="button is-danger my-1">
                             <span className="icon">
                                 <i className="fas fa-trash-alt"></i>
                             </span>
                             <span>Delete Restaurant</span>
                         </a>
-                    </div>
+                    </div> : ""}
                 </div>
             </nav>
 

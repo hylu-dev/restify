@@ -20,7 +20,7 @@ const Layout = () => {
                     setLastName(data.last_name);
                     setUsername(data.username);
                     setAvatar(data.avatar);
-                    setRestaurant(data.restaurant);
+                    setRestaurant(data.owner);
                 })
             } else {
                 logout();
@@ -147,7 +147,7 @@ const Layout = () => {
             </div>
         </nav>
 
-        <Outlet />
+        <Outlet context={{username, avatar, restaurant}} />
     </>
 }
 
