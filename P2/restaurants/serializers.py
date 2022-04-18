@@ -196,7 +196,7 @@ class FoodItemSerializer(serializers.ModelSerializer):
 class PostRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ['timestamp', 'body', 'likes', 'user', 'restaurant']
+        fields = ['id', 'timestamp', 'body', 'likes', 'user', 'restaurant']
 
 class PostSerializer(serializers.ModelSerializer):
     user = serializers.CharField(read_only=True)

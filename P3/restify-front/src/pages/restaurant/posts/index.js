@@ -24,6 +24,7 @@ const Posts = () => {
             if (response.status === 200) {
                 response.json().then(data => {
                     setPosts(data.results);
+                    console.log(data.results);
                     setTotalPages1(Math.ceil(data.count / 8));
                 })
             }

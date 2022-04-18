@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { del, get } from "../../utils";
 
 const PostBox = ({ userID, restaurant, timestamp, text, postID, likes, deleted=false, state=false }) => {
-
     const [username, setUsername] = useState("");
     const [restaurantname, setRestaurant] = useState("");
     const [avatar, setAvatar] = useState("");
@@ -30,7 +29,7 @@ const PostBox = ({ userID, restaurant, timestamp, text, postID, likes, deleted=f
     }, [restaurant, userID])
 
     const delete_post = () => {
-        let request = del(`http://127.0.0.1:8000/restaurants/api/restaurant/post/` + postID, window.localStorage.getItem("access_token"))
+        let request = del(`http://127.0.0.1:8000/restaurants/api/restaurant/post/${postID}/delete/`, window.localStorage.getItem("access_token"))
         request.then(response => {
             if (response.status === 204) {
                 state()
