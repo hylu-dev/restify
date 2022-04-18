@@ -41,7 +41,7 @@ class SearchRestaurantView(ListAPIView):
 
     def get_queryset(self):
         if not self.request.query_params.get('query'):
-            return Restaurant.objects.none()
+            return Restaurant.objects.all().order_by('-likes')
             
         query = self.request.query_params.get('query').split()
         queryset = Restaurant.objects.all().filter(
