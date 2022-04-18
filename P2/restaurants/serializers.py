@@ -32,7 +32,7 @@ class RestaurantSerializer(serializers.ModelSerializer):
 class LikedRestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
-        fields = ['likes', 'likers']
+        fields = ['likes', 'userlikers']
 
     """
     Instead of receiving input and updating the model instance, simply increment
