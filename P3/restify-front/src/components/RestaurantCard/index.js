@@ -1,7 +1,7 @@
 import FollowLikeBox from "../../components/FollowLikeBox";
 import { Link } from 'react-router-dom';
 
-const RestaurantCard = ({ id, name, address, postal_code, likes, logo, state}) => {
+const RestaurantCard = ({ id, name, address, postal_code, likes, logo, state, following}) => {
 
     return <>
     <Link to={"/restaurant/" + id + "/menu/"}>
@@ -18,7 +18,7 @@ const RestaurantCard = ({ id, name, address, postal_code, likes, logo, state}) =
                 {address + " " + postal_code}    
             </div>
 
-            <FollowLikeBox restaurantID={id} likes={likes} state={state}/>
+            <FollowLikeBox restaurantID={id} likes={likes} state={state}, following={following}/>
         </div>
     </Link>
     </>
