@@ -6,6 +6,7 @@ from django.core.exceptions import BadRequest
 from restaurants.models import Restaurant, Post, FoodItem, Comment
 from accounts.models import Notification
 
+
 class RestaurantSerializer(serializers.ModelSerializer):
     # Custom serializer field to show owner name instead of id
     # Two queries, since we're checking the User model as well
@@ -13,21 +14,23 @@ class RestaurantSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Restaurant
-        fields = ['id', 'name', 'address', 'logo', 'postal_code', 'phone_number', 'owner', 'followers', 'likers', 'likes']
+        fields = ['id', 'name', 'address', 'logo', 'postal_code',
+                  'phone_number', 'owner', 'followers', 'likers', 'likes']
         read_only_fields = ('followers', 'likers', 'likes')
 
     def create(self, data):
         if hasattr(self.context.get('request').user, 'owner'):
             raise serializers.ValidationError("Owner already has a restaurant")
         restaurant = Restaurant.objects.create(
-                name=data.get('name',''),
-                address=data.get('address',''),
-                logo=data.get('logo',''),
-                postal_code=data.get('postal_code',''),
-                phone_number=data.get('phone_number',''),
-                owner=self.context['request'].user
+            name=data.get('name', ''),
+            address=data.get('address', ''),
+            logo=data.get('logo', ''),
+            postal_code=data.get('postal_code', ''),
+            phone_number=data.get('phone_number', ''),
+            owner=self.context['request'].user
         )
         return restaurant
+
 
 class LikedRestaurantSerializer(serializers.ModelSerializer):
     class Meta:
@@ -38,12 +41,14 @@ class LikedRestaurantSerializer(serializers.ModelSerializer):
     Instead of receiving input and updating the model instance, simply increment
     the likes attribute by 1
     """
+
     def update(self, instance, validated_data):
         instance.likers.add(self.context.get('request', None).user)
         instance.likes += 1
         instance.save()
 
         return instance
+
 
 class LikedPostSerializer(serializers.ModelSerializer):
     class Meta:
@@ -54,6 +59,7 @@ class LikedPostSerializer(serializers.ModelSerializer):
     Instead of receiving input and updating the model instance, simply increment
     the likes attribute by 1
     """
+
     def update(self, instance, validated_data):
         instance.likes += 1
         instance.userlikers.add(self.context.get('request', None).user)
@@ -61,6 +67,7 @@ class LikedPostSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
 
 class UnlikedRestaurantSerializer(serializers.ModelSerializer):
     class Meta:
@@ -71,12 +78,14 @@ class UnlikedRestaurantSerializer(serializers.ModelSerializer):
     Instead of receiving input and updating the model instance, simply decrement
     the likes attribute by 1
     """
+
     def update(self, instance, validated_data):
         instance.likes -= 1
         instance.likers.remove(self.context.get('request', None).user)
         instance.save()
 
         return instance
+
 
 class UnlikedPostSerializer(serializers.ModelSerializer):
     class Meta:
@@ -87,6 +96,7 @@ class UnlikedPostSerializer(serializers.ModelSerializer):
     Instead of receiving input and updating the model instance, simply decrement
     the likes attribute by 1
     """
+
     def update(self, instance, validated_data):
         instance.likes -= 1
         instance.userlikers.remove(self.context.get('request', None).user)
@@ -94,25 +104,28 @@ class UnlikedPostSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+
 class CommentSerializer(serializers.ModelSerializer):
-    
+
     class Meta:
         model = Comment
-        fields = ['timestamp',
-                    'body',
-                    'user',
-                    'restaurant'
-        ]
+        fields = ['id',
+                  'timestamp',
+                  'body',
+                  'user',
+                  'restaurant'
+                  ]
         read_only_fields = ('timestamp', 'user', 'restaurant')
 
     def create(self, data):
-        restaurant = get_object_or_404(Restaurant, id=self.context.get('id', None))
+        restaurant = get_object_or_404(
+            Restaurant, id=self.context.get('id', None))
         user = self.context['request'].user
 
         comment = Comment.objects.create(
-            user = user,
-            body = data.get('body', ''),
-            restaurant = restaurant,
+            user=user,
+            body=data.get('body', ''),
+            restaurant=restaurant,
         )
 
         # Create a Notification for the restaurant owner
@@ -128,6 +141,7 @@ class CommentSerializer(serializers.ModelSerializer):
         notification.save()
         return comment
 
+
 class FoodItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = FoodItem
@@ -135,7 +149,8 @@ class FoodItemSerializer(serializers.ModelSerializer):
 
     def create(self, data):
         if not hasattr(self.context.get('request').user, 'owner'):
-            raise serializers.ValidationError("User does not have a restaurant to add a food item to")
+            raise serializers.ValidationError(
+                "User does not have a restaurant to add a food item to")
         restaurant = self.context.get('request').user.owner
 
         if restaurant.owner.id == self.context['request'].user.id:
@@ -165,9 +180,9 @@ class FoodItemSerializer(serializers.ModelSerializer):
 
         else:
             raise BadRequest
-    
+
     def update(self, instance, validated_data):
-        restaurant=self.context['request'].user.owner
+        restaurant = self.context['request'].user.owner
 
         if restaurant.owner.id == self.context['request'].user.id:
             instance.name = validated_data.get('name')
@@ -194,10 +209,12 @@ class FoodItemSerializer(serializers.ModelSerializer):
         else:
             raise BadRequest
 
+
 class PostRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ['id', 'timestamp', 'body', 'likes', 'user', 'restaurant']
+
 
 class PostSerializer(serializers.ModelSerializer):
     user = serializers.CharField(read_only=True)
@@ -205,18 +222,20 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['timestamp', 'body', 'likes', 'user', 'restaurant', 'userlikers']
+        fields = ['timestamp', 'body', 'likes',
+                  'user', 'restaurant', 'userlikers']
 
     def create(self, data):
         if not hasattr(self.context.get('request').user, 'owner'):
-            raise serializers.ValidationError("User does not have a restaurant to post on")
+            raise serializers.ValidationError(
+                "User does not have a restaurant to post on")
         restaurant = self.context.get('request').user.owner
         user = self.context['request'].user
 
         # First, create the Post object
         post = Post.objects.create(
-            timestamp=data.get('timestamp',''),
-            body=data.get('body',''),
+            timestamp=data.get('timestamp', ''),
+            body=data.get('body', ''),
             user=user,
             restaurant=restaurant,
         )
@@ -250,6 +269,7 @@ class PostSerializer(serializers.ModelSerializer):
 
         return post
 
+
 class PhotoSerializer(serializers.ModelSerializer):
     restaurant = serializers.CharField(read_only=True)
     image = serializers.ImageField()
@@ -260,7 +280,8 @@ class PhotoSerializer(serializers.ModelSerializer):
 
     def create(self, data):
         if not hasattr(self.context.get('request').user, 'owner'):
-            raise serializers.ValidationError("User does not have a restaurant to add a photo to")
+            raise serializers.ValidationError(
+                "User does not have a restaurant to add a photo to")
         restaurant = self.context.get('request').user.owner
 
         photo = Photo.objects.create(
@@ -270,6 +291,7 @@ class PhotoSerializer(serializers.ModelSerializer):
         )
 
         return photo
+
 
 class GallerySerializer(serializers.ModelSerializer):
     class Meta:

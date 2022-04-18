@@ -5,7 +5,7 @@ import { useParams, useOutletContext } from 'react-router-dom';
 import Modal from "../menu-modal";
 
 const Menu = () => {
-    const does_own = useOutletContext();
+    const does_own = useOutletContext().does_own;
 
     const { id } = useParams();
     const [menu, setMenu] = useState([]);

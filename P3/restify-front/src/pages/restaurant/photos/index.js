@@ -5,7 +5,7 @@ import Modal from "../photo-modal";
 import { useParams, useOutletContext } from 'react-router-dom';
 
 const Gallery = () => {
-    const does_own = useOutletContext();
+    const does_own = useOutletContext().does_own;
 
     const { id } = useParams();
     const [gallery, setGallery] = useState([]);
