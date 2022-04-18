@@ -22,7 +22,7 @@ const Menu = () => {
                 setMenu(data.results)
                 setTotalPages(Math.ceil(data.count / 8))
             })
-    }, [id, query])
+    }, [id, query, isOpen])
 
     const menu_list = menu ?
         <div className="box p-auto mx-6 has-shadow" style={{ backgroundColor: "rgb(214, 159, 135)" }}>
