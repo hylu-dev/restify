@@ -118,7 +118,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 class FollowedRestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
-        fields = ['followers']
+        fields = ['followers', 'likers']
 
     def update(self, instance, validated_data):
         instance.followers.add(self.context.get('request', None).user)

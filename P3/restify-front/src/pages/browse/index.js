@@ -3,8 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { get } from "../../utils";
 import Button from "../../components/Common/button";
 import RestaurantCard from "../../components/RestaurantCard";
+import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 
 const Browse = () => {
+    const user = useOutletContext();
+
+    const [count, setCount] = useState("");
     const [next, setNext] = useState("");
     const [previous, setPrevious] = useState("");
     const [results, setResults] = useState([]);
@@ -64,8 +68,9 @@ const Browse = () => {
             <div className="container">
                     {
                         results.map(result => {
+                            {var state = result.likers.includes(user.id) ? state=true : state=false;}
                             return <RestaurantCard key={result.id} name={result.name} address={result.address} 
-                            postal_code={result.postal_code} likes={result.likes} id={result.id} logo={result.logo}/>
+                            postal_code={result.postal_code} likes={result.likes} id={result.id} logo={result.logo} state={state}/>
                         })
                     }
                     {previous ? <Button styles="" value="Previous" handler={prev_request}></Button> : <></>}
