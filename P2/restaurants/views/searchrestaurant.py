@@ -48,5 +48,5 @@ class SearchRestaurantView(ListAPIView):
             reduce(operator.and_, [(
                 Q(name__contains=term) | Q(address__contains=term) | Q(fooditem__name__contains=term)
             ) for term in query])
-            ).order_by('-likes')
+            ).order_by('-likes').distinct()
         return queryset

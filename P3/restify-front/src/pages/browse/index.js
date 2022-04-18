@@ -17,8 +17,8 @@ const Browse = () => {
     const query = new URLSearchParams(windowUrl).get("query");
 
     useEffect(() => {
-        // let request = get(`http://127.0.0.1:8000/restaurants/api/restaurant/search/?query=${query}`, window.localStorage.getItem("access_token"))
-        let request = get("http://127.0.0.1:8000/accounts/api/browse/", window.localStorage.getItem("access_token"))
+        let request = get(`http://127.0.0.1:8000/restaurants/api/restaurant/search/?query=${query}`, window.localStorage.getItem("access_token"))
+        // let request = get("http://127.0.0.1:8000/accounts/api/browse/", window.localStorage.getItem("access_token"))
         request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
