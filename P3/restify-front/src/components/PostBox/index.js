@@ -42,7 +42,7 @@ const PostBox = ({ userID, restaurant, timestamp, text, postID }) => {
                 <div className="level-left"></div>
                 <div className="level-right">
                     <div className="heart reply">
-                        <LikeButton postID={postID} post={true}
+                        <LikeButton id={postID} post={true}
                         />
                     </div>
                 </div>
