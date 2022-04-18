@@ -34,8 +34,9 @@ html {
 	justify-content: space-between;
 	align-content: center;
 	border: 2px solid #DDDEE4;
-	margin: 10px 5px 5px 5px;
+	margin: 10px 5px 10px 5px;
 	border-radius: 3px;
+	
 }
 
 .restaurant-name {
@@ -96,7 +97,6 @@ hr {
 
 .navigation {
 	display: flex;
-	margin-bottom: 8px;
 	justify-content: space-around;
 	width: 100%;
 }
