@@ -3,6 +3,9 @@ import Layout from "../Layout";
 import Browse from "../../pages/browse";
 import Feed from "../../pages/feed";
 import Restaurant from "../../pages/restaurant";
+import Menu from "../../pages/restaurant/menu";
+import Gallery from "../../pages/restaurant/photos";
+import Posts from "../../pages/restaurant/posts";
 import Profile from "../../pages/profile";
 import Notifications from "../../pages/notifications";
 import Login from "../../pages/login"
@@ -18,7 +21,11 @@ const Router = () => {
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Feed />} />
                     <Route path="browse" element={<Browse />} />
-                    <Route path="restaurant/:id" element={<Restaurant />} />
+                    <Route path="restaurant/:id/" element={<Restaurant />}>
+                        <Route path="menu" element={<Menu />}/>
+                        <Route path="gallery" element={<Gallery />}/>
+                        <Route path="posts" element={<Posts />}/>
+                    </Route>
                     <Route path="profile" element={<Profile />} />
                     <Route path="restaurant/create" element={<EditRestaurant />} />
                     <Route path="notifications" element={<Notifications />} />

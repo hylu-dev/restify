@@ -5,11 +5,13 @@ import { get } from "../../utils";
 import Search from "../search";
 
 const Layout = () => {
+    const [id, setId] = useState(1);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [username, setUsername] = useState("");
     const [avatar, setAvatar] = useState("");
     const [owner, setOwner] = useState("")
+    const [restaurant, setRestaurant] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -17,11 +19,13 @@ const Layout = () => {
         request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
+                    setId(data.id);
                     setFirstName(data.first_name);
                     setLastName(data.last_name);
                     setUsername(data.username);
                     setAvatar(data.avatar);
                     setOwner(data.owner);
+                    setRestaurant(data.owner);
                 })
             } else {
                 logout();
@@ -70,7 +74,7 @@ const Layout = () => {
                             <span>Browse</span>
                         </span>
                     </Link>
-                    <Link to="/restaurant/1" className="navbar-item">
+                    <Link to="/restaurant/1/menu" className="navbar-item">
                         <span className="icon-text">
                             <span className="icon">
                                 <i className="fas fa-store"></i>
@@ -155,7 +159,7 @@ const Layout = () => {
             </div>
         </nav>
 
-        <Outlet />
+        <Outlet context={{id, username, avatar, restaurant}} />
     </>
 }
 
