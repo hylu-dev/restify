@@ -8,8 +8,8 @@ const Search = () => {
     const submit_search = e => {
         console.log(e)
         if (e.keyCode === 13 || e.type === 'click') {
-            
             navigate(`/browse/?query=${query}`)
+            window.location.reload();
         }
     }
 
