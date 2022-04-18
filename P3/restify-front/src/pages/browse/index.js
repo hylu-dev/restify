@@ -15,7 +15,7 @@ const Browse = () => {
     const [results, setResults] = useState([]);
 
     useEffect(() => {
-        let request = get("http://127.0.0.1:8000/accounts/api/feed/", window.localStorage.getItem("access_token"))
+        let request = get("http://127.0.0.1:8000/accounts/api/browse/", window.localStorage.getItem("access_token"))
         request.then(response => {
             if (response.status === 200) {
                 response.json().then(data => {
