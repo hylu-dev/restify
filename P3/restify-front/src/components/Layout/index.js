@@ -157,7 +157,7 @@ const Layout = () => {
             </div>
         </nav>
 
-        <Outlet context={{id, username, avatar, restaurant}} />
+        <Outlet context={{id, firstName, lastName, username, avatar, restaurant}} />
     </>
 }
 
