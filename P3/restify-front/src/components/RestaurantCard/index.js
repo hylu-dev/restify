@@ -18,7 +18,7 @@ const RestaurantCard = ({ id, name, address, postal_code, likes, logo, state, fo
                 {address + " " + postal_code}    
             </div>
 
-            <FollowLikeBox restaurantID={id} likes={likes} state={state}, following={following}/>
+            <FollowLikeBox restaurantID={id} likes={likes} state={state} following={following}/>
         </div>
     </Link>
     </>
